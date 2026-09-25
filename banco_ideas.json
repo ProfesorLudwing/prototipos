@@ -1,0 +1,723 @@
+{
+  "version": "1.0",
+  "descripcion": "Banco de dominios de impacto para el motor de propuestas de 'prototipos'. Editable por el tutor sin tocar el código.",
+  "dominios": [
+    {
+      "id": "agua",
+      "nombre": "Agua y saneamiento",
+      "palabras_clave": [
+        "agua", "hidrico", "hídrico", "potable", "tuberia", "tubería", "fuga",
+        "desperdicio de agua", "saneamiento", "drenaje", "alcantarillado",
+        "pozo", "cisterna", "tinaco", "purificacion", "purificación",
+        "contaminacion del agua", "contaminación del agua", "rio", "río",
+        "arroyo", "sequia", "sequía", "escasez de agua", "lavado de manos",
+        "sanitario", "baño", "letrina"
+      ],
+      "plantilla": {
+        "titulo_base": "Cuidado y acceso al agua en {comunidad}",
+        "resumen": "El equipo detectó que en {comunidad} existe un problema relacionado con el agua: {problema}. Proponemos una solución enfocada en el uso responsable, el acceso equitativo y la participación de la comunidad escolar y vecinal, tomando como base experiencias exitosas en otras regiones del mundo.",
+        "objetivo_general": "Diseñar e implementar una solución que mejore el acceso, uso o cuidado del agua en {comunidad}, involucrando a estudiantes y comunidad.",
+        "objetivos_especificos": [
+          "Diagnosticar la situación actual del agua en la comunidad (fuentes, uso, pérdidas y calidad).",
+          "Diseñar una propuesta técnica y social viable con recursos locales.",
+          "Medir el impacto de la propuesta en al menos un indicador claro (litros ahorrados, personas beneficiadas, etc.)."
+        ],
+        "aliados": [
+          "Comité de agua o autoridades locales",
+          "Padres de familia y vecinos",
+          "Organismos como CONAGUA o CEAS locales",
+          "Universidades o tecnológicos cercanos"
+        ],
+        "indicadores": [
+          "Litros de agua ahorrados o recuperados por semana",
+          "Número de personas con acceso mejorado",
+          "Reducción de fugas o desperdicio detectado",
+          "Nivel de participación comunitaria"
+        ],
+        "riesgos": [
+          "Falta de permisos para intervenir en infraestructura",
+          "Baja participación de la comunidad",
+          "Recursos económicos insuficientes"
+        ]
+      },
+      "referencias_globales": [
+        {
+          "titulo": "ODS 6 — Agua limpia y saneamiento (ONU)",
+          "url": "https://www.un.org/sustainabledevelopment/es/water-and-sanitation/",
+          "descripcion": "Meta global de acceso universal al agua."
+        },
+        {
+          "titulo": "UNICEF — Agua, saneamiento e higiene",
+          "url": "https://www.unicef.org/es/agua-saneamiento-higiene",
+          "descripcion": "Programas escolares y comunitarios."
+        }
+      ]
+    },
+    {
+      "id": "residuos",
+      "nombre": "Residuos y reciclaje",
+      "palabras_clave": [
+        "basura", "residuo", "residuos", "desecho", "desechos", "reciclaje",
+        "reciclar", "plastico", "plástico", "pet", "carton", "cartón",
+        "organico", "orgánico", "inorganico", "inorgánico", "composta",
+        "compostaje", "relleno sanitario", "tiradero", "contenedor",
+        "separacion de residuos", "separación de residuos", "microplastico",
+        "microplástico", "contaminacion por basura", "contaminación por basura"
+      ],
+      "plantilla": {
+        "titulo_base": "Manejo de residuos y reciclaje en {comunidad}",
+        "resumen": "En {comunidad} identificamos un problema con los residuos: {problema}. Proponemos un sistema de separación, reutilización o aprovechamiento que involucre a la escuela y a la comunidad, inspirado en modelos aplicados en otras ciudades del mundo.",
+        "objetivo_general": "Reducir el volumen de residuos mal manejados en {comunidad} mediante separación, reciclaje o aprovechamiento.",
+        "objetivos_especificos": [
+          "Caracterizar los residuos que se generan en la escuela y la comunidad.",
+          "Implementar un sistema de separación o aprovechamiento replicable.",
+          "Medir la reducción de residuos y el nivel de participación."
+        ],
+        "aliados": [
+          "Autoridades municipales de limpia",
+          "Recicladores o centros de acopio locales",
+          "Comercios y tiendas de la zona",
+          "Padres de familia"
+        ],
+        "indicadores": [
+          "Kilos de residuos separados por semana",
+          "Porcentaje de reducción de basura mezclada",
+          "Número de personas capacitadas",
+          "Ingresos o material recuperado"
+        ],
+        "riesgos": [
+          "Falta de contenedores adecuados",
+          "Abandono del hábito después de unas semanas",
+          "Mercado limitado para el material reciclado"
+        ]
+      },
+      "referencias_globales": [
+        {
+          "titulo": "ODS 12 — Producción y consumo responsables",
+          "url": "https://www.un.org/sustainabledevelopment/es/sustainable-consumption-production/",
+          "descripcion": "Meta global de reducción de residuos."
+        },
+        {
+          "titulo": "ONU Medio Ambiente — Residuos",
+          "url": "https://www.unep.org/es/regiones/america-latina-y-el-caribe",
+          "descripcion": "Programas regionales de gestión de residuos."
+        }
+      ]
+    },
+    {
+      "id": "movilidad",
+      "nombre": "Movilidad y transporte",
+      "palabras_clave": [
+        "transporte", "movilidad", "camion", "camión", "autobus", "autobús",
+        "ruta", "traslado", "traslados", "trafico", "tráfico", "congestion",
+        "congestión", "bicicleta", "bici", "ciclovia", "ciclovía", "banqueta",
+        "peatonal", "peatón", "peaton", "seguridad vial", "accidente",
+        "accidentes", "choque", "semaforo", "semáforo", "paso peatonal",
+        "transporte publico", "transporte público", "taxi", "colectivo"
+      ],
+      "plantilla": {
+        "titulo_base": "Movilidad segura y accesible en {comunidad}",
+        "resumen": "En {comunidad} detectamos un problema de movilidad: {problema}. Proponemos una solución que priorice la seguridad, la accesibilidad y el uso de medios alternativos de transporte, tomando como referencia estrategias globales.",
+        "objetivo_general": "Mejorar la movilidad segura, accesible y sostenible en {comunidad}.",
+        "objetivos_especificos": [
+          "Diagnosticar los puntos críticos de movilidad o seguridad vial.",
+          "Diseñar una propuesta de mejora (señalética, rutas, ciclovía, concientización).",
+          "Medir la mejora en seguridad o accesibilidad."
+        ],
+        "aliados": [
+          "Autoridad municipal de tránsito",
+          "Dirección de la escuela",
+          "Transportistas o concesionarios locales",
+          "Colectivos ciclistas o peatonales"
+        ],
+        "indicadores": [
+          "Número de puntos críticos atendidos",
+          "Reducción de incidentes reportados",
+          "Aumento de usuarios de movilidad alternativa",
+          "Nivel de satisfacción de la comunidad"
+        ],
+        "riesgos": [
+          "Resistencia al cambio de hábitos",
+          "Falta de presupuesto para infraestructura",
+          "Burocracia para permisos"
+        ]
+      },
+      "referencias_globales": [
+        {
+          "titulo": "ODS 11 — Ciudades y comunidades sostenibles",
+          "url": "https://www.un.org/sustainabledevelopment/es/cities/",
+          "descripcion": "Meta global de movilidad segura y accesible."
+        },
+        {
+          "titulo": "OMS — Seguridad vial",
+          "url": "https://www.who.int/es/health-topics/road-safety",
+          "descripcion": "Datos y estrategias globales de seguridad vial."
+        }
+      ]
+    },
+    {
+      "id": "salud",
+      "nombre": "Salud comunitaria",
+      "palabras_clave": [
+        "salud", "enfermedad", "enfermedades", "medico", "médico", "doctor",
+        "consulta", "medicina", "hospital", "centro de salud", "vacuna",
+        "vacunacion", "vacunación", "dengue", "zancudo", "mosquito",
+        "diabetes", "obesidad", "hipertension", "hipertensión",
+        "salud mental", "depresion", "depresión", "ansiedad", "estres",
+        "estrés", "primeros auxilios", "botiquin", "botiquín"
+      ],
+      "plantilla": {
+        "titulo_base": "Salud y bienestar en {comunidad}",
+        "resumen": "El equipo detectó en {comunidad} un problema de salud: {problema}. Proponemos una intervención preventiva y comunitaria, con enfoque en educación, detección temprana o acceso a servicios, tomando experiencias internacionales como referencia.",
+        "objetivo_general": "Mejorar el bienestar y la prevención en salud en {comunidad}.",
+        "objetivos_especificos": [
+          "Diagnosticar las principales problemáticas de salud en la comunidad.",
+          "Diseñar una campaña o intervención preventiva.",
+          "Medir el impacto en conocimiento, hábitos o acceso a servicios."
+        ],
+        "aliados": [
+          "Centro de salud o clínica local",
+          "Jurisdicción sanitaria",
+          "Padres de familia y docentes",
+          "Organizaciones juveniles o de salud"
+        ],
+        "indicadores": [
+          "Número de personas informadas o atendidas",
+          "Cambio en hábitos reportados",
+          "Casos detectados a tiempo",
+          "Nivel de satisfacción de los beneficiarios"
+        ],
+        "riesgos": [
+          "Desconfianza de la comunidad",
+          "Falta de personal médico",
+          "Seguimiento limitado en el tiempo"
+        ]
+      },
+      "referencias_globales": [
+        {
+          "titulo": "ODS 3 — Salud y bienestar",
+          "url": "https://www.un.org/sustainabledevelopment/es/health/",
+          "descripcion": "Metas globales de salud."
+        },
+        {
+          "titulo": "OPS — Salud en las Américas",
+          "url": "https://www.paho.org/es",
+          "descripcion": "Programas regionales de salud comunitaria."
+        }
+      ]
+    },
+    {
+      "id": "educacion",
+      "nombre": "Educación y aprendizaje",
+      "palabras_clave": [
+        "educacion", "educación", "escuela", "aprendizaje", "estudiar",
+        "estudio", "tarea", "tareas", "clase", "maestro", "maestra",
+        "profesor", "profesora", "reprobado", "reprobados", "desercion",
+        "deserción", "abandono escolar", "rezago", "tutoria", "tutoría",
+        "lectura", "comprension lectora", "comprensión lectora",
+        "matematicas", "matemáticas", "ciencias", "biblioteca",
+        "material didactico", "material didáctico", "clases en linea",
+        "clases en línea", "reforzamiento"
+      ],
+      "plantilla": {
+        "titulo_base": "Fortalecimiento del aprendizaje en {comunidad}",
+        "resumen": "En {comunidad} identificamos un problema educativo: {problema}. Proponemos una estrategia de apoyo al aprendizaje, con materiales, tutorías o recursos didácticos, inspirada en modelos globales de mejora educativa.",
+        "objetivo_general": "Mejorar los procesos de aprendizaje en {comunidad} con recursos y estrategias accesibles.",
+        "objetivos_especificos": [
+          "Identificar las principales dificultades de aprendizaje.",
+          "Diseñar materiales, tutorías o actividades de refuerzo.",
+          "Medir el avance en comprensión, participación o resultados."
+        ],
+        "aliados": [
+          "Docentes y directivos",
+          "Padres de familia",
+          "Bibliotecas o centros culturales",
+          "Universidades o tecnológicos"
+        ],
+        "indicadores": [
+          "Número de estudiantes beneficiados",
+          "Mejora en evaluaciones o comprensión",
+          "Frecuencia de uso de los recursos",
+          "Participación de la comunidad educativa"
+        ],
+        "riesgos": [
+          "Poco tiempo disponible de docentes",
+          "Falta de materiales impresos",
+          "Baja continuidad del programa"
+        ]
+      },
+      "referencias_globales": [
+        {
+          "titulo": "ODS 4 — Educación de calidad",
+          "url": "https://www.un.org/sustainabledevelopment/es/education/",
+          "descripcion": "Metas globales de educación inclusiva y equitativa."
+        },
+        {
+          "titulo": "UNESCO — Educación",
+          "url": "https://www.unesco.org/es/education",
+          "descripcion": "Programas y recursos educativos globales."
+        }
+      ]
+    },
+    {
+      "id": "alimentacion",
+      "nombre": "Alimentación y nutrición",
+      "palabras_clave": [
+        "alimentacion", "alimentación", "comida", "nutricion", "nutrición",
+        "dieta", "comida chatarra", "chatarra", "refresco", "golosina",
+        "obesidad", "desnutricion", "desnutrición", "sobrepeso",
+        "frutas", "verduras", "huerto", "huerto escolar", "comida saludable",
+        "comedor", "desayuno", "lunch", "lonche", "lonchera",
+        "seguridad alimentaria", "bandera blanca"
+      ],
+      "plantilla": {
+        "titulo_base": "Alimentación saludable en {comunidad}",
+        "resumen": "En {comunidad} detectamos un problema de alimentación: {problema}. Proponemos una intervención que mejore la nutrición y los hábitos alimenticios, con base en experiencias globales exitosas.",
+        "objetivo_general": "Mejorar los hábitos alimenticios y el acceso a comida saludable en {comunidad}.",
+        "objetivos_especificos": [
+          "Diagnosticar los hábitos y el acceso a alimentos en la comunidad.",
+          "Diseñar un huerto, menú, campaña o intervención alimentaria.",
+          "Medir el cambio en consumo o conocimiento nutricional."
+        ],
+        "aliados": [
+          "Nutriólogos o centros de salud",
+          "Comercios locales",
+          "Padres de familia",
+          "Autoridades escolares"
+        ],
+        "indicadores": [
+          "Porcentaje de mejora en hábitos reportados",
+          "Kilos de alimento producido o consumido saludablemente",
+          "Número de personas capacitadas",
+          "Cambios en el menú o lonchera"
+        ],
+        "riesgos": [
+          "Resistencia a cambiar la dieta",
+          "Poco acceso a frutas y verduras",
+          "Falta de continuidad después del proyecto"
+        ]
+      },
+      "referencias_globales": [
+        {
+          "titulo": "ODS 2 — Hambre cero",
+          "url": "https://www.un.org/sustainabledevelopment/es/hunger/",
+          "descripcion": "Metas globales de seguridad alimentaria."
+        },
+        {
+          "titulo": "FAO — Nutrición",
+          "url": "https://www.fao.org/nutrition/es/",
+          "descripcion": "Recursos globales de alimentación y nutrición."
+        }
+      ]
+    },
+    {
+      "id": "convivencia",
+      "nombre": "Violencia y convivencia escolar",
+      "palabras_clave": [
+        "bullying", "acoso", "acoso escolar", "violencia", "violencia escolar",
+        "pelea", "peleas", "discriminacion", "discriminación", "broma pesada",
+        "exclusion", "exclusión", "rechazo", "insulto", "insultos",
+        "ciberacoso", "ciberbullying", "redes sociales", "convivencia",
+        "ambiente escolar", "maltrato", "golpes", "amenaza", "amenazas"
+      ],
+      "plantilla": {
+        "titulo_base": "Convivencia sana y libre de violencia en {comunidad}",
+        "resumen": "En {comunidad} identificamos problemas de convivencia o violencia: {problema}. Proponemos una estrategia de prevención, mediación o sensibilización, inspirada en programas globales de convivencia escolar.",
+        "objetivo_general": "Fortalecer la convivencia sana y prevenir la violencia en {comunidad}.",
+        "objetivos_especificos": [
+          "Diagnosticar los tipos y espacios donde ocurre la violencia o exclusión.",
+          "Diseñar una campaña, taller o sistema de mediación.",
+          "Medir la mejora en clima escolar o convivencia."
+        ],
+        "aliados": [
+          "Orientación educativa y docentes",
+          "Padres de familia",
+          "Psicólogos o trabajadores sociales",
+          "Organizaciones juveniles"
+        ],
+        "indicadores": [
+          "Reducción de reportes de violencia",
+          "Número de estudiantes sensibilizados",
+          "Mejora en encuestas de clima escolar",
+          "Participación en actividades de convivencia"
+        ],
+        "riesgos": [
+          "Miedo a denunciar",
+          "Falta de seguimiento a casos",
+          "Resistencia de algunos grupos"
+        ]
+      },
+      "referencias_globales": [
+        {
+          "titulo": "ODS 16 — Paz, justicia e instituciones sólidas",
+          "url": "https://www.un.org/sustainabledevelopment/es/peace-justice/",
+          "descripcion": "Metas globales de paz y convivencia."
+        },
+        {
+          "titulo": "UNESCO — Violencia escolar y bullying",
+          "url": "https://www.unesco.org/es/education/violence-bullying",
+          "descripcion": "Programas globales contra el acoso escolar."
+        }
+      ]
+    },
+    {
+      "id": "medio_ambiente",
+      "nombre": "Medio ambiente y cambio climático",
+      "palabras_clave": [
+        "medio ambiente", "ambiente", "contaminacion", "contaminación",
+        "clima", "cambio climatico", "cambio climático", "calentamiento global",
+        "arboles", "árboles", "deforestacion", "deforestación", "tala",
+        "incendio", "incendios", "aire", "calidad del aire", "humo",
+        "rios contaminados", "ríos contaminados", "fauna", "animales",
+        "ecosistema", "biodiversidad", "playa", "selva", "bosque",
+        "huella de carbono", "sostenibilidad"
+      ],
+      "plantilla": {
+        "titulo_base": "Cuidado del medio ambiente en {comunidad}",
+        "resumen": "En {comunidad} detectamos un problema ambiental: {problema}. Proponemos una intervención de restauración, mitigación o sensibilización, alineada con acuerdos globales de sostenibilidad.",
+        "objetivo_general": "Contribuir a la mitigación o adaptación ambiental en {comunidad}.",
+        "objetivos_especificos": [
+          "Diagnosticar el estado ambiental actual y sus causas.",
+          "Diseñar una acción concreta (reforestación, limpieza, monitoreo, campaña).",
+          "Medir el impacto ambiental o educativo alcanzado."
+        ],
+        "aliados": [
+          "Autoridades ambientales municipales",
+          "Viveros o grupos ecologistas",
+          "Escuelas y comunidad",
+          "Universidades o centros de investigación"
+        ],
+        "indicadores": [
+          "Árboles plantados o área restaurada",
+          "Kilos de residuos recogidos",
+          "Personas sensibilizadas",
+          "Cambios medibles en calidad ambiental"
+        ],
+        "riesgos": [
+          "Falta de permisos para intervenir",
+          "Pérdida de plantas por falta de riego",
+          "Poco seguimiento a largo plazo"
+        ]
+      },
+      "referencias_globales": [
+        {
+          "titulo": "ODS 13 — Acción por el clima",
+          "url": "https://www.un.org/sustainabledevelopment/es/climate-change-2/",
+          "descripcion": "Metas globales de acción climática."
+        },
+        {
+          "titulo": "PNUMA — Programa de las Naciones Unidas para el Medio Ambiente",
+          "url": "https://www.unep.org/es",
+          "descripcion": "Programas ambientales globales."
+        }
+      ]
+    },
+    {
+      "id": "energia",
+      "nombre": "Energía y eficiencia",
+      "palabras_clave": [
+        "energia", "energía", "electricidad", "luz", "foco", "focos",
+        "lámpara", "lampara", "apagón", "apagon", "panel solar",
+        "paneles solares", "solar", "renovable", "renovables", "bateria",
+        "batería", "cargador", "consumo electrico", "consumo eléctrico",
+        "ahorro de energia", "ahorro de energía", "contaminacion luminica",
+        "contaminación lumínica", "eolica", "eólica"
+      ],
+      "plantilla": {
+        "titulo_base": "Energía limpia y eficiente en {comunidad}",
+        "resumen": "En {comunidad} identificamos un problema energético: {problema}. Proponemos una solución enfocada en eficiencia, ahorro o energías renovables, alineada con compromisos globales de transición energética.",
+        "objetivo_general": "Mejorar el uso, ahorro o acceso a la energía en {comunidad}.",
+        "objetivos_especificos": [
+          "Diagnosticar el consumo y las fuentes de energía actuales.",
+          "Diseñar una intervención de eficiencia, ahorro o renovables.",
+          "Medir el ahorro energético o el impacto logrado."
+        ],
+        "aliados": [
+          "CFE o autoridad energética local",
+          "Especialistas técnicos",
+          "Escuela y padres de familia",
+          "Proveedores de tecnología solar"
+        ],
+        "indicadores": [
+          "kWh ahorrados o generados",
+          "Porcentaje de reducción de consumo",
+          "Personas beneficiadas",
+          "Inversión recuperada"
+        ],
+        "riesgos": [
+          "Costo inicial elevado",
+          "Falta de mantenimiento",
+          "Tecnología poco accesible en la zona"
+        ]
+      },
+      "referencias_globales": [
+        {
+          "titulo": "ODS 7 — Energía asequible y no contaminante",
+          "url": "https://www.un.org/sustainabledevelopment/es/energy/",
+          "descripcion": "Metas globales de energía."
+        },
+        {
+          "titulo": "IRENA — Agencia Internacional de Energías Renovables",
+          "url": "https://www.irena.org/",
+          "descripcion": "Datos y casos globales de energías renovables."
+        }
+      ]
+    },
+    {
+      "id": "inclusion",
+      "nombre": "Inclusión y discapacidad",
+      "palabras_clave": [
+        "inclusion", "inclusión", "discapacidad", "discapacitado", "silla de ruedas",
+        "ciego", "invidente", "sordo", "sordera", "lengua de señas",
+        "lengua de signos", "autismo", "down", "sindrome de down",
+        "síndrome de down", "accesibilidad", "rampa", "braille",
+        "igualdad", "equidad", "diversidad", "adultos mayores",
+        "tercera edad", "indigena", "indígena", "migrante"
+      ],
+      "plantilla": {
+        "titulo_base": "Inclusión y accesibilidad en {comunidad}",
+        "resumen": "En {comunidad} detectamos barreras de inclusión: {problema}. Proponemos una intervención de accesibilidad, sensibilización o integración, alineada con marcos globales de derechos humanos.",
+        "objetivo_general": "Favorecer la inclusión y accesibilidad en {comunidad}.",
+        "objetivos_especificos": [
+          "Diagnosticar las barreras físicas, sociales o comunicativas.",
+          "Diseñar una intervención de accesibilidad o sensibilización.",
+          "Medir la mejora en inclusión o percepción comunitaria."
+        ],
+        "aliados": [
+          "Asociaciones de personas con discapacidad",
+          "Autoridades municipales",
+          "Escuela y docentes",
+          "Organizaciones de derechos humanos"
+        ],
+        "indicadores": [
+          "Barreras eliminadas o señaladas",
+          "Personas beneficiadas",
+          "Nivel de sensibilización alcanzado",
+          "Cambios en infraestructura"
+        ],
+        "riesgos": [
+          "Falta de recursos para infraestructura",
+          "Resistencia cultural",
+          "Poco seguimiento después del proyecto"
+        ]
+      },
+      "referencias_globales": [
+        {
+          "titulo": "ODS 10 — Reducción de las desigualdades",
+          "url": "https://www.un.org/sustainabledevelopment/es/inequality/",
+          "descripcion": "Metas globales de inclusión."
+        },
+        {
+          "titulo": "ONU — Convención sobre los derechos de las personas con discapacidad",
+          "url": "https://www.un.org/development/desa/disabilities-es/convencion-sobre-los-derechos-de-las-personas-con-discapacidad.html",
+          "descripcion": "Marco internacional de derechos."
+        }
+      ]
+    },
+    {
+      "id": "cultura",
+      "nombre": "Cultura y patrimonio local",
+      "palabras_clave": [
+        "cultura", "cultural", "patrimonio", "tradicion", "tradición",
+        "tradiciones", "costumbres", "fiesta", "fiestas", "carnaval",
+        "danza", "musica", "música", "artesania", "artesanía", "artesano",
+        "lengua", "lenguas", "indigena", "indígena", "identidad",
+        "historia local", "museo", "monumento", "zona arqueologica",
+        "zona arqueológica", "leyenda", "leyendas", "gastronomia",
+        "gastronomía", "tradiciones orales"
+      ],
+      "plantilla": {
+        "titulo_base": "Rescate y difusión de la cultura en {comunidad}",
+        "resumen": "En {comunidad} identificamos un problema cultural: {problema}. Proponemos una intervención de rescate, difusión o fortalecimiento de la identidad local, inspirada en estrategias globales de salvaguarda del patrimonio.",
+        "objetivo_general": "Fortalecer la identidad cultural y el patrimonio de {comunidad}.",
+        "objetivos_especificos": [
+          "Diagnosticar qué tradiciones o patrimonios están en riesgo.",
+          "Diseñar una intervención de rescate o difusión (digital, artística, educativa).",
+          "Medir el impacto en conocimiento, participación o registro."
+        ],
+        "aliados": [
+          "Cronistas o historiadores locales",
+          "Casas de cultura o museos",
+          "Artesanos y portadores de tradición",
+          "Escuelas y comunidad"
+        ],
+        "indicadores": [
+          "Personas involucradas en la actividad",
+          "Materiales producidos (videos, fichas, exposiciones)",
+          "Nivel de conocimiento antes y después",
+          "Registros o archivos generados"
+        ],
+        "riesgos": [
+          "Pérdida de interés de los jóvenes",
+          "Poco respaldo institucional",
+          "Falta de recursos para difusión"
+        ]
+      },
+      "referencias_globales": [
+        {
+          "titulo": "UNESCO — Patrimonio cultural",
+          "url": "https://www.unesco.org/es/culture",
+          "descripcion": "Programas globales de salvaguarda cultural."
+        },
+        {
+          "titulo": "ODS 11 — Ciudades y comunidades sostenibles",
+          "url": "https://www.un.org/sustainabledevelopment/es/cities/",
+          "descripcion": "Incluye protección del patrimonio cultural."
+        }
+      ]
+    },
+    {
+      "id": "empleo",
+      "nombre": "Empleo juvenil y emprendimiento",
+      "palabras_clave": [
+        "empleo", "trabajo", "desempleo", "emprender", "emprendimiento",
+        "negocio", "negocios", "venta", "ventas", "microempresa",
+        "autoempleo", "ingresos", "dinero", "economia", "economía",
+        "pobreza", "oportunidades", "habilidades", "capacitacion",
+        "capacitación", "oficio", "oficios", "feria de emprendimiento",
+        "jovenes sin trabajo", "jóvenes sin trabajo", "informalidad"
+      ],
+      "plantilla": {
+        "titulo_base": "Oportunidades económicas para jóvenes en {comunidad}",
+        "resumen": "En {comunidad} detectamos un problema de empleo o emprendimiento: {problema}. Proponemos una intervención que genere ingresos, habilidades o autoempleo entre los jóvenes, inspirada en modelos globales de inclusión económica juvenil.",
+        "objetivo_general": "Mejorar las oportunidades económicas de los jóvenes en {comunidad}.",
+        "objetivos_especificos": [
+          "Diagnosticar las barreras de empleo o emprendimiento.",
+          "Diseñar una intervención productiva, formativa o de vinculación.",
+          "Medir ingresos, habilidades o empleos generados."
+        ],
+        "aliados": [
+          "Empresas locales y cámaras de comercio",
+          "Autoridades de fomento económico",
+          "Instituciones educativas",
+          "Organizaciones juveniles y de emprendimiento"
+        ],
+        "indicadores": [
+          "Número de jóvenes capacitados",
+          "Ingresos generados",
+          "Negocios o proyectos iniciados",
+          "Alianzas con empresas logradas"
+        ],
+        "riesgos": [
+          "Falta de capital semilla",
+          "Poco mercado para los productos",
+          "Abandono por bajos ingresos iniciales"
+        ]
+      },
+      "referencias_globales": [
+        {
+          "titulo": "ODS 8 — Trabajo decente y crecimiento económico",
+          "url": "https://www.un.org/sustainabledevelopment/es/economic-growth/",
+          "descripcion": "Metas globales de empleo juvenil."
+        },
+        {
+          "titulo": "OIT — Empleo juvenil",
+          "url": "https://www.ilo.org/es/temas/empleo-juvenil",
+          "descripcion": "Programas globales de empleabilidad juvenil."
+        }
+      ]
+    },
+    {
+      "id": "tecnologia",
+      "nombre": "Tecnología y conectividad",
+      "palabras_clave": [
+        "tecnologia", "tecnología", "internet", "conexion", "conexión",
+        "wifi", "red", "señal", "telefono", "teléfono", "celular",
+        "computadora", "computadoras", "tablet", "app", "aplicacion",
+        "aplicación", "software", "digital", "digitalizacion", "digitalización",
+        "brecha digital", "alfabetizacion digital", "alfabetización digital",
+        "ciberseguridad", "datos", "inteligencia artificial"
+      ],
+      "plantilla": {
+        "titulo_base": "Tecnología accesible en {comunidad}",
+        "resumen": "En {comunidad} identificamos un problema tecnológico: {problema}. Proponemos una intervención de acceso, capacitación o desarrollo tecnológico, alineada con metas globales de inclusión digital.",
+        "objetivo_general": "Mejorar el acceso o uso de la tecnología en {comunidad}.",
+        "objetivos_especificos": [
+          "Diagnosticar el acceso y las habilidades digitales actuales.",
+          "Diseñar una intervención (capacitación, desarrollo, acceso a red).",
+          "Medir la mejora en uso, acceso o habilidades digitales."
+        ],
+        "aliados": [
+          "Proveedores de internet o telefonía",
+          "Autoridades municipales",
+          "Escuelas y bibliotecas",
+          "Organizaciones de tecnología social"
+        ],
+        "indicadores": [
+          "Personas con nuevo acceso a internet",
+          "Nivel de habilidades digitales alcanzado",
+          "Servicios o apps desarrolladas",
+          "Reducción de la brecha digital en el grupo beneficiado"
+        ],
+        "riesgos": [
+          "Costo de infraestructura o datos",
+          "Falta de mantenimiento",
+          "Obsolescencia tecnológica"
+        ]
+      },
+      "referencias_globales": [
+        {
+          "titulo": "ODS 9 — Industria, innovación e infraestructura",
+          "url": "https://www.un.org/sustainabledevelopment/es/infrastructure/",
+          "descripcion": "Metas globales de innovación y acceso."
+        },
+        {
+          "titulo": "UIT — Unión Internacional de Telecomunicaciones",
+          "url": "https://www.itu.int/es/Pages/default.aspx",
+          "descripcion": "Datos globales de conectividad."
+        }
+      ]
+    },
+    {
+      "id": "espacio_publico",
+      "nombre": "Espacio público y vivienda",
+      "palabras_clave": [
+        "espacio publico", "espacio público", "parque", "jardin", "jardín",
+        "plaza", "cancha", "areas verdes", "áreas verdes", "banqueta",
+        "alumbrado", "luminaria", "vivienda", "casa", "techo", "piso",
+        "banquetas rotas", "baches", "calles", "seguridad publica",
+        "seguridad pública", "pandillerismo", "grafiti", "vandalismo",
+        "recreacion", "recreación", "deporte", "canchas deportivas"
+      ],
+      "plantilla": {
+        "titulo_base": "Mejora del espacio público en {comunidad}",
+        "resumen": "En {comunidad} detectamos un problema de espacio público o vivienda: {problema}. Proponemos una intervención de recuperación, mejora o apropiación del espacio, inspirada en proyectos globales de urbanismo social.",
+        "objetivo_general": "Recuperar o mejorar el espacio público en {comunidad}.",
+        "objetivos_especificos": [
+          "Diagnosticar el estado y uso actual del espacio.",
+          "Diseñar una intervención de mejora, recuperación o apropiación.",
+          "Medir el impacto en uso, seguridad o percepción comunitaria."
+        ],
+        "aliados": [
+          "Autoridades municipales de obras públicas",
+          "Vecinos y comités",
+          "Escuela y jóvenes",
+          "Organizaciones culturales o deportivas"
+        ],
+        "indicadores": [
+          "Metros cuadrados intervenidos",
+          "Personas que usan el espacio",
+          "Percepción de seguridad",
+          "Actividades realizadas en el espacio"
+        ],
+        "riesgos": [
+          "Permisos y burocracia",
+          "Vandalismo posterior",
+          "Falta de mantenimiento"
+        ]
+      },
+      "referencias_globales": [
+        {
+          "titulo": "ODS 11 — Ciudades y comunidades sostenibles",
+          "url": "https://www.un.org/sustainabledevelopment/es/cities/",
+          "descripcion": "Metas globales de espacio público."
+        },
+        {
+          "titulo": "ONU-Hábitat",
+          "url": "https://onuhabitat.org.mx/",
+          "descripcion": "Programas de urbanismo y vivienda en la región."
+        }
+      ]
+    }
+  ]
+}
