@@ -1,1 +1,156 @@
-[]
+[
+  {
+    "id": "9c69a78a",
+    "nombre_equipo": "los innova",
+    "nombre_proyecto": "Espacio público y vivienda en No Hay Espacios Comunitarios Para Convivir",
+    "problematica": "no hay espacios comunitarios para convivir",
+    "etapa_actual": "inicio",
+    "integrantes": [
+      {
+        "nombre": "Ana Prueba",
+        "escuela": "CBTIS 303"
+      },
+      {
+        "nombre": "alumno Demo",
+        "escuela": "CBTIS 303"
+      },
+      {
+        "nombre": "Diana la cazadora",
+        "escuela": "CBTIS 303"
+      }
+    ],
+    "asesores": [
+      {
+        "nombre": "asesor 1",
+        "rol": "tecnico",
+        "cedula": ""
+      },
+      {
+        "nombre": "Asesor 2",
+        "rol": "metodologico",
+        "cedula": ""
+      }
+    ],
+    "modalidad": "prototipo",
+    "linea_proidet": {
+      "numero": 5,
+      "nombre": "Desarrollo Humano, Social y Emocional"
+    },
+    "respuestas": [
+      {
+        "bloque": "inicio",
+        "pregunta": "¿Qué problema vieron en su comunidad?",
+        "respuesta": "no hay espacios comunitarios para convivir"
+      },
+      {
+        "bloque": "inicio",
+        "pregunta": "¿A quiénes afecta y desde cuándo?",
+        "respuesta": "a los alumnos del cbtis 303"
+      },
+      {
+        "bloque": "inicio",
+        "pregunta": "¿Cómo se resuelve hoy ese problema?",
+        "respuesta": "construyendo mesas de un diseño multiproposito"
+      },
+      {
+        "bloque": "inicio",
+        "pregunta": "¿Por qué la solución actual no es suficiente?",
+        "respuesta": "no hay ninguna mesa y no se tiene un proyecto para solucionar"
+      },
+      {
+        "bloque": "inicio",
+        "pregunta": "¿Qué pasa si nadie lo resuelve en 5 años?",
+        "respuesta": "la escuela se volvera hostil"
+      },
+      {
+        "bloque": "inicio",
+        "pregunta": "¿Qué proponen hacer?",
+        "respuesta": "proponer una mesa multiproposito"
+      },
+      {
+        "bloque": "inicio",
+        "pregunta": "¿Por qué es innovador frente a lo que ya existe?",
+        "respuesta": "solo hay mesas aburridas"
+      },
+      {
+        "bloque": "inicio",
+        "pregunta": "¿Qué necesitan (materiales, personas, permiso, dinero)?",
+        "respuesta": "materiales , personas, dinero"
+      },
+      {
+        "bloque": "inicio",
+        "pregunta": "¿Cómo sabrán si funcionó?",
+        "respuesta": "el ambiente mejorara"
+      }
+    ],
+    "propuesta": {
+      "dominio_id": "espacio_publico",
+      "dominio_nombre": "Espacio público y vivienda",
+      "puntaje_coincidencia": 2,
+      "linea_proidet": {
+        "numero": 5,
+        "nombre": "Desarrollo Humano, Social y Emocional"
+      },
+      "modalidades_sugeridas": [
+        "prototipo",
+        "emprendimiento"
+      ],
+      "titulo_sugerido": "Mejora del espacio público en no hay espacios comunitarios para convivir",
+      "resumen": "En no hay espacios comunitarios para convivir detectamos un problema de espacio público o vivienda: no hay espacios comunitarios para convivir. Proponemos una intervención de recuperación, mejora o apropiación del espacio, inspirada en proyectos globales de urbanismo social.",
+      "objetivo_general": "Recuperar o mejorar el espacio público en no hay espacios comunitarios para convivir.",
+      "objetivos_especificos": [
+        "Diagnosticar el estado y uso actual del espacio.",
+        "Diseñar una intervención de mejora, recuperación o apropiación.",
+        "Medir el impacto en uso, seguridad o percepción comunitaria."
+      ],
+      "aliados": [
+        "Autoridades municipales de obras públicas",
+        "Vecinos y comités",
+        "Escuela y jóvenes",
+        "Organizaciones culturales o deportivas"
+      ],
+      "indicadores": [
+        "Metros cuadrados intervenidos",
+        "Personas que usan el espacio",
+        "Percepción de seguridad",
+        "Actividades realizadas en el espacio"
+      ],
+      "riesgos": [
+        "Permisos y burocracia",
+        "Vandalismo posterior",
+        "Falta de mantenimiento"
+      ],
+      "referencias_globales": [
+        {
+          "titulo": "ODS 11 — Ciudades y comunidades sostenibles",
+          "url": "https://www.un.org/sustainabledevelopment/es/cities/",
+          "descripcion": "Metas globales de espacio público."
+        },
+        {
+          "titulo": "ONU-Hábitat",
+          "url": "https://onuhabitat.org.mx/",
+          "descripcion": "Programas de urbanismo y vivienda en la región."
+        }
+      ],
+      "alternativas": [
+        {
+          "id": "espacio_publico",
+          "nombre": "Espacio público y vivienda",
+          "puntaje": 2
+        },
+        {
+          "id": "educacion",
+          "nombre": "Educación y aprendizaje",
+          "puntaje": 1
+        },
+        {
+          "id": "medio_ambiente",
+          "nombre": "Medio ambiente y cambio climático",
+          "puntaje": 1
+        }
+      ],
+      "innovacion_declarada": "solo hay mesas aburridas"
+    },
+    "fecha_registro": "2026-09-25T01:01:32"
+  }
+]

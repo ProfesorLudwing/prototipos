@@ -207,7 +207,8 @@ def _extraer_comunidad(respuestas: List[Respuesta]) -> str:
     c = _valor(respuestas, "comunidad", "")
     if not c:
         c = _valor(respuestas, "afecta", "")
-    if not c:
+    # Si la respuesta es larga, probablemente no es un nombre de comunidad
+    if not c or len(c.split()) > 5:
         c = "tu comunidad"
     return c.strip().rstrip(".")[:80]
 

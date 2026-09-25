@@ -15,6 +15,7 @@ import streamlit as st
 import config
 import db
 import reportes
+import seed           # ← AÑADIR ESTA LÍNEA
 from models import Aviso, Entregable
 from ui_comun import (
     header, badge_etapa, progreso_etapas, tarjeta_aviso,
@@ -215,7 +216,42 @@ def _tab_entregables():
         mensaje_vacio("👥", "Registra al menos un equipo primero.")
         return
 
-    st.markdown("### ➕ Asignar nuevo entregable")
+    # ---------- Cargar cronograma DGETI ----------
+    st.markdown("### 📥 Cronograma oficial DGETI 2026-2027")
+    st.caption(
+        "Crea automáticamente los 10 entregables del cronograma oficial "
+        "con sus fechas. **No duplica** los que ya existan."
+    )
+    col1, col2 = st.columns(2)
+    with col1:
+        equipo_sel_cron = st.selectbox(
+            "Aplicar a un equipo:",
+            options=[e.id for e in equipos],
+            format_func=lambda x: next(e.nombre_equipo for e in equipos if e.id == x),
+            key="cron_equipo",
+        )
+        if st.button("📥 Cargar a este equipo", key="btn_cron_uno"):
+            n = seed.aplicar_cronograma_a_equipo(equipo_sel_cron)
+            if n:
+                st.success(f"✅ Se crearon {n} entregables nuevos.")
+            else:
+                st.info("Este equipo ya tiene todos los entregables del cronograma.")
+            st.rerun()
+    with col2:
+        st.write("")
+        st.write("")
+        if st.button("📥 Cargar a TODOS los equipos", key="btn_cron_todos", type="primary"):
+            res = seed.aplicar_cronograma_a_todos()
+            st.success(
+                f"✅ Se crearon {res['entregables_creados']} entregables nuevos "
+                f"en {res['equipos']} equipo(s)."
+            )
+            st.rerun()
+
+    st.divider()
+
+    # ---------- Asignar entregable individual ----------
+    st.markdown("### ➕ Asignar nuevo entregable (individual)")
     with st.form("form_nuevo_entregable"):
         col1, col2 = st.columns(2)
         with col1:
@@ -252,6 +288,8 @@ def _tab_entregables():
                 st.rerun()
 
     st.divider()
+
+    # ---------- Lista por equipo ----------
     st.markdown("### 📋 Entregables por equipo")
     for eq in equipos:
         ents = db.entregables_de_equipo(eq.id)
@@ -270,14 +308,12 @@ def _tab_entregables():
                             mime="application/pdf",
                             key=f"dl_{ent.id}",
                         )
-                # Eliminar entregable
                 if st.button("🗑️ Eliminar", key=f"del_{ent.id}"):
                     todos = [e for e in db.get_entregables() if e.id != ent.id]
                     import json as _json
                     with open(config.ARCHIVO_ENTREGABLES, "w", encoding="utf-8") as f:
                         _json.dump([e.to_dict() for e in todos], f, ensure_ascii=False, indent=2)
                     st.rerun()
-
 
 # ============================================================
 # 4) Documentos

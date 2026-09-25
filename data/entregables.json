@@ -1,1 +1,112 @@
-[]
+[
+  {
+    "id": "c4bce56d",
+    "equipo_id": "9c69a78a",
+    "etapa": "inicio",
+    "titulo": "1. Conformación del equipo y modalidad",
+    "descripcion": "Integración del equipo (1 a 4 estudiantes), definición de la modalidad (Prototipo o Emprendimiento) y registro interno en el plantel.",
+    "fecha_limite": "2026-10-10",
+    "estado": "pendiente",
+    "archivo_pdf": null,
+    "fecha_entrega": null
+  },
+  {
+    "id": "55f38983",
+    "equipo_id": "9c69a78a",
+    "etapa": "inicio",
+    "titulo": "2. Asignación de asesor",
+    "descripcion": "Designación del docente asesor (técnico y metodológico). Verificar constancia del curso o taller de metodología de investigación (2025 o 2026).",
+    "fecha_limite": "2026-10-25",
+    "estado": "pendiente",
+    "archivo_pdf": null,
+    "fecha_entrega": null
+  },
+  {
+    "id": "95d4f68b",
+    "equipo_id": "9c69a78a",
+    "etapa": "inicio",
+    "titulo": "3. Enfoque, ética y línea PROIDET",
+    "descripcion": "Vinculación con un problema real / PAEC, selección de la línea PROIDET y elaboración y firma del Formato de Compromiso de Ética y Originalidad (FOCOMO).",
+    "fecha_limite": "2026-10-31",
+    "estado": "pendiente",
+    "archivo_pdf": null,
+    "fecha_entrega": null
+  },
+  {
+    "id": "a86ec270",
+    "equipo_id": "9c69a78a",
+    "etapa": "desarrollo",
+    "titulo": "4. Registro en SIGPE",
+    "descripcion": "Conclusión del borrador del Informe Técnico y la Bitácora de trabajo. Inserción de los datos en la plataforma oficial SIGPE.",
+    "fecha_limite": "2026-11-21",
+    "estado": "pendiente",
+    "archivo_pdf": null,
+    "fecha_entrega": null
+  },
+  {
+    "id": "86e51349",
+    "equipo_id": "9c69a78a",
+    "etapa": "desarrollo",
+    "titulo": "5. Cédulas oficiales (FOREG)",
+    "descripcion": "Descarga del formato impreso oficial FOREG con el folio asignado por el sistema SIGPE.",
+    "fecha_limite": "2026-11-24",
+    "estado": "pendiente",
+    "archivo_pdf": null,
+    "fecha_entrega": null
+  },
+  {
+    "id": "75813ed7",
+    "equipo_id": "9c69a78a",
+    "etapa": "desarrollo",
+    "titulo": "6. Evaluación local",
+    "descripcion": "Realización del certamen en el plantel evaluado por 3 jurados por proyecto. Puntaje mínimo de acreditación: 80 puntos.",
+    "fecha_limite": "2026-12-19",
+    "estado": "pendiente",
+    "archivo_pdf": null,
+    "fecha_entrega": null
+  },
+  {
+    "id": "2856a503",
+    "equipo_id": "9c69a78a",
+    "etapa": "desarrollo",
+    "titulo": "7. Carga de actas",
+    "descripcion": "Carga en el SIGPE de los PDF firmados: Acta de Apertura, Acta de Cierre y Anexo B de Puntajes.",
+    "fecha_limite": "2027-01-09",
+    "estado": "pendiente",
+    "archivo_pdf": null,
+    "fecha_entrega": null
+  },
+  {
+    "id": "068c68f6",
+    "equipo_id": "9c69a78a",
+    "etapa": "desarrollo",
+    "titulo": "8. Fase estatal",
+    "descripcion": "Evaluación estatal y compilación del expediente digital (FOREG, FOAPA, FOCOMO, FOAS, Informe Técnico y Carpeta Documental). Tramitar formato FOACT si hay cambios de integrantes.",
+    "fecha_limite": "2027-03-20",
+    "estado": "pendiente",
+    "archivo_pdf": null,
+    "fecha_entrega": null
+  },
+  {
+    "id": "e10836aa",
+    "equipo_id": "9c69a78a",
+    "etapa": "cierre",
+    "titulo": "9. Trámites nacionales",
+    "descripcion": "Publicación de aceptados, actualización final en SIGPE, carga documental definitiva y atención a observaciones ANIDET.",
+    "fecha_limite": "2027-05-26",
+    "estado": "pendiente",
+    "archivo_pdf": null,
+    "fecha_entrega": null
+  },
+  {
+    "id": "032495b3",
+    "equipo_id": "9c69a78a",
+    "etapa": "cierre",
+    "titulo": "10. Evento nacional",
+    "descripcion": "Asistencia presencial (máximo 2 alumnos autores y 1 asesor docente), montaje de stand, exposición ante jurados nacionales y ceremonia de premiación.",
+    "fecha_limite": "2027-06-25",
+    "estado": "pendiente",
+    "archivo_pdf": null,
+    "fecha_entrega": null
+  }
+]
