@@ -1,6 +1,7 @@
 """
 ui_comun.py — Componentes visuales reutilizables de 'prototipos'.
 Sin lógica de negocio. Solo pintar bonito y consistente.
+Compatible con tema claro y oscuro de Streamlit.
 """
 from datetime import datetime, date
 from typing import Optional, List
@@ -21,7 +22,7 @@ def header(usuario: dict):
         st.title(f"{config.ICONO} {config.APP_TITULO}")
         st.caption(f"{config.ESCUELA} · Registro y guía de proyectos de innovación")
     with col_der:
-        st.write("")  # pequeño espacio vertical
+        st.write("")
         if usuario:
             rol = usuario.get("rol", "")
             nombre = usuario.get("nombre", "")
@@ -47,7 +48,7 @@ def color_semaforo(fecha_limite_iso: str, estado: str = "pendiente") -> str:
     try:
         fecha = datetime.fromisoformat(fecha_limite_iso).date()
     except (ValueError, TypeError):
-        return "verde"  # sin fecha → no alertamos
+        return "verde"
 
     dias = (fecha - date.today()).days
 
@@ -132,19 +133,24 @@ def tarjeta_entregable(entregable, mostrar_boton: bool = False,
 # Tarjeta de aviso
 # ============================================================
 def tarjeta_aviso(aviso):
-    """Pinta un aviso como bloque informativo."""
+    """Pinta un aviso como bloque informativo. Compatible con tema claro/oscuro."""
     st.markdown(
         f"""
         <div style="
             border-left:5px solid #0d6efd;
-            background-color:#f8f9fa;
+            background-color:#e7f1ff;
+            color:#0a2540;
             padding:12px 16px;
             border-radius:6px;
             margin-bottom:10px;
         ">
-            <div style="font-weight:600; margin-bottom:4px;">📢 {aviso.titulo}</div>
-            <div style="font-size:0.9em; white-space:pre-wrap;">{aviso.contenido}</div>
-            <div style="font-size:0.75em; color:#6c757d; margin-top:6px;">
+            <div style="font-weight:600; margin-bottom:4px; color:#0a2540;">
+                📢 {aviso.titulo}
+            </div>
+            <div style="font-size:0.9em; white-space:pre-wrap; color:#0a2540;">
+                {aviso.contenido}
+            </div>
+            <div style="font-size:0.75em; color:#5a6b7c; margin-top:6px;">
                 {aviso.fecha.replace('T', ' ')[:16]}
             </div>
         </div>
@@ -185,18 +191,23 @@ def badge_etapa(etapa: str):
 # Caja informativa
 # ============================================================
 def caja_info(titulo: str, texto: str, color: str = "#0d6efd"):
-    """Caja con borde de color a la izquierda."""
+    """Caja con borde de color a la izquierda. Texto legible en tema claro y oscuro."""
     st.markdown(
         f"""
         <div style="
             border-left:5px solid {color};
-            background-color:#f8f9fa;
+            background-color:#e7f1ff;
+            color:#0a2540;
             padding:12px 16px;
             border-radius:6px;
             margin-bottom:10px;
         ">
-            <div style="font-weight:600; margin-bottom:4px;">{titulo}</div>
-            <div style="font-size:0.9em; white-space:pre-wrap;">{texto}</div>
+            <div style="font-weight:600; margin-bottom:4px; color:#0a2540;">
+                {titulo}
+            </div>
+            <div style="font-size:0.9em; white-space:pre-wrap; color:#0a2540;">
+                {texto}
+            </div>
         </div>
         """,
         unsafe_allow_html=True,

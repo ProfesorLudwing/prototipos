@@ -3,9 +3,12 @@ motor_ia.py — Motor de propuestas de 'prototipos'.
 Simula una IA usando reglas + banco de ideas (sin API, sin LLM).
 Lee banco_ideas.json y combina las respuestas del alumno
 para generar una propuesta lista para el equipo.
+
+Versión 1.2 — matching con límites de palabra (evita falsos positivos).
 """
 import json
 import os
+import re
 import unicodedata
 from typing import List, Dict, Optional
 
@@ -24,7 +27,6 @@ def _normalizar(texto: str) -> str:
     if not texto:
         return ""
     texto = texto.lower().strip()
-    # Descompone cada carácter en su forma base + diacrítico y descarta el diacrítico
     texto = "".join(
         c for c in unicodedata.normalize("NFD", texto)
         if unicodedata.category(c) != "Mn"
@@ -62,6 +64,17 @@ def listar_dominios() -> List[dict]:
 
 
 # ============================================================
+# Valores por defecto
+# ============================================================
+def _linea_proidet_por_defecto() -> dict:
+    return {"numero": 5, "nombre": "Desarrollo Humano, Social y Emocional"}
+
+
+def _modalidades_por_defecto() -> List[str]:
+    return ["prototipo", "emprendimiento"]
+
+
+# ============================================================
 # Detección de dominio
 # ============================================================
 def _texto_unido(respuestas: List[Respuesta]) -> str:
@@ -69,10 +82,25 @@ def _texto_unido(respuestas: List[Respuesta]) -> str:
     return _normalizar(" ".join(r.respuesta for r in respuestas))
 
 
+def _construir_patron(palabra_norm: str) -> str:
+    """
+    Construye un patrón regex que respeta límites de palabra.
+    Ej: 'agua' → r'\\bagua\\b' (matchea 'el agua' pero NO 'aguantar')
+    Los espacios internos de la palabra se reemplazan por \\s+ 
+    para tolerar saltos de línea o dobles espacios.
+    """
+    # Escapamos caracteres especiales de regex
+    base = re.escape(palabra_norm)
+    # Permitimos varios espacios donde originalmente había uno
+    base = base.replace(r"\ ", r"\s+")
+    return r"\b" + base + r"\b"
+
+
 def detectar_dominio(respuestas: List[Respuesta]) -> Dict:
     """
     Devuelve el dominio con más coincidencias de palabras clave.
-    Si no hay ninguna coincidencia, devuelve el dominio de respaldo.
+    Usa regex con límites de palabra para evitar falsos positivos
+    como 'aguantar' haciendo match con 'agua'.
     """
     texto = _texto_unido(respuestas)
     banco = cargar_banco()
@@ -84,7 +112,11 @@ def detectar_dominio(respuestas: List[Respuesta]) -> Dict:
     for dominio in banco.get("dominios", []):
         puntaje = 0
         for palabra in dominio.get("palabras_clave", []):
-            if _normalizar(palabra) in texto:
+            palabra_norm = _normalizar(palabra)
+            if not palabra_norm:
+                continue
+            patron = _construir_patron(palabra_norm)
+            if re.search(patron, texto):
                 puntaje += 1
         puntajes.append({
             "id": dominio["id"],
@@ -95,14 +127,14 @@ def detectar_dominio(respuestas: List[Respuesta]) -> Dict:
             mejor_puntaje = puntaje
             mejor = dominio
 
-    # Ordenar puntajes de mayor a menor (útil para mostrar alternativas)
     puntajes.sort(key=lambda p: p["puntaje"], reverse=True)
 
     if mejor is None:
-        # Dominio genérico de respaldo
         mejor = {
             "id": "generico",
             "nombre": "Propuesta general de impacto comunitario",
+            "linea_proidet": _linea_proidet_por_defecto(),
+            "modalidades_sugeridas": _modalidades_por_defecto(),
             "plantilla": _plantilla_generica(),
             "referencias_globales": [],
         }
@@ -110,7 +142,7 @@ def detectar_dominio(respuestas: List[Respuesta]) -> Dict:
     return {
         "dominio": mejor,
         "puntaje": mejor_puntaje,
-        "alternativas": puntajes[:3],   # top 3 para mostrar al alumno
+        "alternativas": puntajes[:3],
     }
 
 
@@ -156,7 +188,6 @@ def _plantilla_generica() -> dict:
 # ============================================================
 def _valor(respuestas: List[Respuesta], palabra_en_pregunta: str,
            por_defecto: str = "") -> str:
-    """Devuelve la respuesta cuya pregunta contiene la palabra dada."""
     palabra = _normalizar(palabra_en_pregunta)
     for r in respuestas:
         if palabra in _normalizar(r.pregunta):
@@ -165,17 +196,14 @@ def _valor(respuestas: List[Respuesta], palabra_en_pregunta: str,
 
 
 def _extraer_problema(respuestas: List[Respuesta]) -> str:
-    """Toma la respuesta a la pregunta del problema (o la primera respuesta)."""
     p = _valor(respuestas, "problema", "")
     if not p and respuestas:
         p = respuestas[0].respuesta
-    # Limitar longitud para que quepa bien en la propuesta
     p = p.strip().rstrip(".")
     return p[:280] if len(p) > 280 else p
 
 
 def _extraer_comunidad(respuestas: List[Respuesta]) -> str:
-    """Toma la respuesta a la pregunta de la comunidad/quiénes son afectados."""
     c = _valor(respuestas, "comunidad", "")
     if not c:
         c = _valor(respuestas, "afecta", "")
@@ -195,7 +223,7 @@ def generar_propuesta(respuestas: List[Respuesta],
                       nombre_equipo: str = "") -> dict:
     """
     Genera una propuesta completa a partir de las respuestas del alumno.
-    Devuelve un dict con la propuesta + metadatos.
+    Incluye línea PROIDET y modalidades sugeridas.
     """
     deteccion = detectar_dominio(respuestas)
     dominio = deteccion["dominio"]
@@ -215,23 +243,28 @@ def generar_propuesta(respuestas: List[Respuesta],
         try:
             return txt.format(**reemplazos)
         except (KeyError, IndexError):
-            return txt  # si algo falta, devolvemos el texto tal cual
+            return txt
+
+    linea_proidet = dominio.get("linea_proidet") or _linea_proidet_por_defecto()
+    modalidades = dominio.get("modalidades_sugeridas") or _modalidades_por_defecto()
 
     propuesta = {
-        "dominio_id":          dominio["id"],
-        "dominio_nombre":      dominio["nombre"],
+        "dominio_id":           dominio["id"],
+        "dominio_nombre":       dominio["nombre"],
         "puntaje_coincidencia": deteccion["puntaje"],
-        "titulo_sugerido":     _fmt(plantilla.get("titulo_base", "")),
-        "resumen":             _fmt(plantilla.get("resumen", "")),
-        "objetivo_general":    _fmt(plantilla.get("objetivo_general", "")),
+        "linea_proidet":        linea_proidet,
+        "modalidades_sugeridas": list(modalidades),
+        "titulo_sugerido":      _fmt(plantilla.get("titulo_base", "")),
+        "resumen":              _fmt(plantilla.get("resumen", "")),
+        "objetivo_general":     _fmt(plantilla.get("objetivo_general", "")),
         "objetivos_especificos": [
             _fmt(o) for o in plantilla.get("objetivos_especificos", [])
         ],
-        "aliados":             list(plantilla.get("aliados", [])),
-        "indicadores":         list(plantilla.get("indicadores", [])),
-        "riesgos":             list(plantilla.get("riesgos", [])),
+        "aliados":              list(plantilla.get("aliados", [])),
+        "indicadores":          list(plantilla.get("indicadores", [])),
+        "riesgos":              list(plantilla.get("riesgos", [])),
         "referencias_globales": list(dominio.get("referencias_globales", [])),
-        "alternativas":        deteccion["alternativas"],
+        "alternativas":         deteccion["alternativas"],
         "innovacion_declarada": _extraer_innovacion(respuestas),
     }
     return propuesta
@@ -240,17 +273,13 @@ def generar_propuesta(respuestas: List[Respuesta],
 # ============================================================
 # Sugerencia de nombre del proyecto
 # ============================================================
-def sugerir_nombre_proyecto(respuestas: List[Respuesta]) -> str:
-    """
-    Genera 3 posibles nombres de proyecto a partir del dominio detectado.
-    El alumno elegirá o editará uno.
-    """
+def sugerir_nombre_proyecto(respuestas: List[Respuesta]) -> List[str]:
+    """Genera 3 posibles nombres de proyecto a partir del dominio detectado."""
     deteccion = detectar_dominio(respuestas)
     dominio = deteccion["dominio"]
     comunidad = _extraer_comunidad(respuestas)
     problema = _extraer_problema(respuestas)
 
-    # Palabras clave del problema (las 3 más largas)
     palabras = [p for p in problema.split() if len(p) > 4][:3]
     nucleo = " ".join(palabras).title() if palabras else dominio["nombre"]
 
@@ -259,7 +288,6 @@ def sugerir_nombre_proyecto(respuestas: List[Respuesta]) -> str:
         f"{nucleo}: propuesta para {comunidad.title()}",
         f"Proyecto {dominio['nombre'].split()[0]} — {comunidad.title()}",
     ]
-    # Quitar duplicados manteniendo orden
     vistas = set()
     unicas = []
     for s in sugerencias:

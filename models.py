@@ -30,6 +30,25 @@ class Integrante:
 
 
 # ============================================================
+# Asesor — un docente que guía al equipo
+# rol: "tecnico" | "metodologico" | "ambos"
+# ============================================================
+@dataclass
+class Asesor:
+    nombre: str
+    rol: str = "ambos"
+    cedula: str = ""
+
+    @classmethod
+    def from_dict(cls, d: dict) -> "Asesor":
+        return cls(
+            nombre=d.get("nombre", ""),
+            rol=d.get("rol", "ambos"),
+            cedula=d.get("cedula", ""),
+        )
+
+
+# ============================================================
 # Respuesta — una respuesta del cuestionario guiado
 # ============================================================
 @dataclass
@@ -58,8 +77,11 @@ class Equipo:
     problematica: str
     etapa_actual: str = "inicio"
     integrantes: List[Integrante] = field(default_factory=list)
+    asesores: List[Asesor] = field(default_factory=list)
+    modalidad: str = "prototipo"
+    linea_proidet: dict = field(default_factory=dict)
     respuestas: List[Respuesta] = field(default_factory=list)
-    propuesta: dict = field(default_factory=dict)   # lo que genera motor_ia
+    propuesta: dict = field(default_factory=dict)
     fecha_registro: str = field(default_factory=_ahora)
 
     def to_dict(self) -> dict:
@@ -74,6 +96,9 @@ class Equipo:
             problematica=d.get("problematica", ""),
             etapa_actual=d.get("etapa_actual", "inicio"),
             integrantes=[Integrante.from_dict(i) for i in d.get("integrantes", [])],
+            asesores=[Asesor.from_dict(a) for a in d.get("asesores", [])],
+            modalidad=d.get("modalidad", "prototipo"),
+            linea_proidet=d.get("linea_proidet", {}),
             respuestas=[Respuesta.from_dict(r) for r in d.get("respuestas", [])],
             propuesta=d.get("propuesta", {}),
             fecha_registro=d.get("fecha_registro", _ahora()),
@@ -81,6 +106,20 @@ class Equipo:
 
     def nombres_integrantes(self) -> List[str]:
         return [i.nombre for i in self.integrantes]
+
+    def nombres_asesores(self) -> List[str]:
+        return [a.nombre for a in self.asesores]
+
+    def etiqueta_asesores(self) -> str:
+        """Texto resumido para mostrar en UI."""
+        if not self.asesores:
+            return "(sin asesores)"
+        if len(self.asesores) == 1:
+            a = self.asesores[0]
+            if a.rol == "ambos":
+                return f"{a.nombre} (técnico y metodológico)"
+            return f"{a.nombre} ({a.rol})"
+        return " + ".join(a.nombre for a in self.asesores)
 
 
 # ============================================================

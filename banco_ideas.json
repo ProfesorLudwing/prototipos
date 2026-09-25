@@ -1,10 +1,12 @@
 {
-  "version": "1.0",
-  "descripcion": "Banco de dominios de impacto para el motor de propuestas de 'prototipos'. Editable por el tutor sin tocar el código.",
+  "version": "1.1",
+  "descripcion": "Banco de dominios de impacto para el motor de propuestas de 'prototipos'. Editable por el tutor sin tocar el código. Cada dominio declara su línea PROIDET y las modalidades sugeridas.",
   "dominios": [
     {
       "id": "agua",
       "nombre": "Agua y saneamiento",
+      "linea_proidet": { "numero": 3, "nombre": "Desarrollo Sustentable y Medio Ambiente" },
+      "modalidades_sugeridas": ["prototipo", "emprendimiento"],
       "palabras_clave": [
         "agua", "hidrico", "hídrico", "potable", "tuberia", "tubería", "fuga",
         "desperdicio de agua", "saneamiento", "drenaje", "alcantarillado",
@@ -56,6 +58,8 @@
     {
       "id": "residuos",
       "nombre": "Residuos y reciclaje",
+      "linea_proidet": { "numero": 3, "nombre": "Desarrollo Sustentable y Medio Ambiente" },
+      "modalidades_sugeridas": ["prototipo", "emprendimiento"],
       "palabras_clave": [
         "basura", "residuo", "residuos", "desecho", "desechos", "reciclaje",
         "reciclar", "plastico", "plástico", "pet", "carton", "cartón",
@@ -107,6 +111,8 @@
     {
       "id": "movilidad",
       "nombre": "Movilidad y transporte",
+      "linea_proidet": { "numero": 5, "nombre": "Desarrollo Humano, Social y Emocional" },
+      "modalidades_sugeridas": ["prototipo", "emprendimiento"],
       "palabras_clave": [
         "transporte", "movilidad", "camion", "camión", "autobus", "autobús",
         "ruta", "traslado", "traslados", "trafico", "tráfico", "congestion",
@@ -158,6 +164,8 @@
     {
       "id": "salud",
       "nombre": "Salud comunitaria",
+      "linea_proidet": { "numero": 4, "nombre": "Investigación en Ciencias de la Salud" },
+      "modalidades_sugeridas": ["prototipo", "emprendimiento"],
       "palabras_clave": [
         "salud", "enfermedad", "enfermedades", "medico", "médico", "doctor",
         "consulta", "medicina", "hospital", "centro de salud", "vacuna",
@@ -209,6 +217,8 @@
     {
       "id": "educacion",
       "nombre": "Educación y aprendizaje",
+      "linea_proidet": { "numero": 2, "nombre": "Investigación Educativa" },
+      "modalidades_sugeridas": ["prototipo", "emprendimiento"],
       "palabras_clave": [
         "educacion", "educación", "escuela", "aprendizaje", "estudiar",
         "estudio", "tarea", "tareas", "clase", "maestro", "maestra",
@@ -262,6 +272,8 @@
     {
       "id": "alimentacion",
       "nombre": "Alimentación y nutrición",
+      "linea_proidet": { "numero": 3, "nombre": "Desarrollo Sustentable y Medio Ambiente" },
+      "modalidades_sugeridas": ["prototipo", "emprendimiento"],
       "palabras_clave": [
         "alimentacion", "alimentación", "comida", "nutricion", "nutrición",
         "dieta", "comida chatarra", "chatarra", "refresco", "golosina",
@@ -313,6 +325,8 @@
     {
       "id": "convivencia",
       "nombre": "Violencia y convivencia escolar",
+      "linea_proidet": { "numero": 5, "nombre": "Desarrollo Humano, Social y Emocional" },
+      "modalidades_sugeridas": ["prototipo", "emprendimiento"],
       "palabras_clave": [
         "bullying", "acoso", "acoso escolar", "violencia", "violencia escolar",
         "pelea", "peleas", "discriminacion", "discriminación", "broma pesada",
@@ -363,6 +377,8 @@
     {
       "id": "medio_ambiente",
       "nombre": "Medio ambiente y cambio climático",
+      "linea_proidet": { "numero": 3, "nombre": "Desarrollo Sustentable y Medio Ambiente" },
+      "modalidades_sugeridas": ["prototipo", "emprendimiento"],
       "palabras_clave": [
         "medio ambiente", "ambiente", "contaminacion", "contaminación",
         "clima", "cambio climatico", "cambio climático", "calentamiento global",
@@ -415,6 +431,8 @@
     {
       "id": "energia",
       "nombre": "Energía y eficiencia",
+      "linea_proidet": { "numero": 3, "nombre": "Desarrollo Sustentable y Medio Ambiente" },
+      "modalidades_sugeridas": ["prototipo"],
       "palabras_clave": [
         "energia", "energía", "electricidad", "luz", "foco", "focos",
         "lámpara", "lampara", "apagón", "apagon", "panel solar",
@@ -466,6 +484,8 @@
     {
       "id": "inclusion",
       "nombre": "Inclusión y discapacidad",
+      "linea_proidet": { "numero": 5, "nombre": "Desarrollo Humano, Social y Emocional" },
+      "modalidades_sugeridas": ["prototipo", "emprendimiento"],
       "palabras_clave": [
         "inclusion", "inclusión", "discapacidad", "discapacitado", "silla de ruedas",
         "ciego", "invidente", "sordo", "sordera", "lengua de señas",
@@ -517,6 +537,8 @@
     {
       "id": "cultura",
       "nombre": "Cultura y patrimonio local",
+      "linea_proidet": { "numero": 5, "nombre": "Desarrollo Humano, Social y Emocional" },
+      "modalidades_sugeridas": ["prototipo", "emprendimiento"],
       "palabras_clave": [
         "cultura", "cultural", "patrimonio", "tradicion", "tradición",
         "tradiciones", "costumbres", "fiesta", "fiestas", "carnaval",
@@ -569,6 +591,8 @@
     {
       "id": "empleo",
       "nombre": "Empleo juvenil y emprendimiento",
+      "linea_proidet": { "numero": 5, "nombre": "Desarrollo Humano, Social y Emocional" },
+      "modalidades_sugeridas": ["emprendimiento"],
       "palabras_clave": [
         "empleo", "trabajo", "desempleo", "emprender", "emprendimiento",
         "negocio", "negocios", "venta", "ventas", "microempresa",
@@ -620,6 +644,8 @@
     {
       "id": "tecnologia",
       "nombre": "Tecnología y conectividad",
+      "linea_proidet": { "numero": 1, "nombre": "Desarrollo Tecnológico" },
+      "modalidades_sugeridas": ["prototipo", "emprendimiento"],
       "palabras_clave": [
         "tecnologia", "tecnología", "internet", "conexion", "conexión",
         "wifi", "red", "señal", "telefono", "teléfono", "celular",
@@ -671,13 +697,19 @@
     {
       "id": "espacio_publico",
       "nombre": "Espacio público y vivienda",
+      "linea_proidet": { "numero": 5, "nombre": "Desarrollo Humano, Social y Emocional" },
+      "modalidades_sugeridas": ["prototipo", "emprendimiento"],
       "palabras_clave": [
         "espacio publico", "espacio público", "parque", "jardin", "jardín",
         "plaza", "cancha", "areas verdes", "áreas verdes", "banqueta",
         "alumbrado", "luminaria", "vivienda", "casa", "techo", "piso",
         "banquetas rotas", "baches", "calles", "seguridad publica",
         "seguridad pública", "pandillerismo", "grafiti", "vandalismo",
-        "recreacion", "recreación", "deporte", "canchas deportivas"
+        "recreacion", "recreación", "deporte", "canchas deportivas","espacio comunitario", "espacios comunitarios", "areas comunes",
+        "áreas comunes", "punto de reunion", "punto de reunión",
+        "lugar para convivir", "mesas", "sillas", "bancas",
+        "comedor comunitario", "convivencia", "reunion vecinal",
+        "reunión vecinal", "espacio para jovenes", "espacio para jóvenes"
       ],
       "plantilla": {
         "titulo_base": "Mejora del espacio público en {comunidad}",

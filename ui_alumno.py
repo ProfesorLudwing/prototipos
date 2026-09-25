@@ -12,7 +12,7 @@ import streamlit as st
 import config
 import db
 import motor_ia
-from models import Respuesta, Equipo, Integrante, Entregable
+from models import Respuesta, Equipo, Integrante, Asesor, Entregable
 from ui_comun import (
     header, badge_etapa, progreso_etapas, tarjeta_aviso,
     tarjeta_entregable, caja_info, mensaje_vacio,
@@ -20,7 +20,7 @@ from ui_comun import (
 
 
 # ============================================================
-# Preguntas del cuestionario por bloque
+# Constantes
 # ============================================================
 BLOQUES_PREGUNTAS = {
     "inicio": [
@@ -47,6 +47,18 @@ BLOQUES_PREGUNTAS = {
 }
 
 OPCION_OTRO_NOMBRE = "✏️ Otro (escribir mi propio nombre)"
+
+LINEAS_PROIDET = [
+    (1, "Desarrollo Tecnológico"),
+    (2, "Investigación Educativa"),
+    (3, "Desarrollo Sustentable y Medio Ambiente"),
+    (4, "Investigación en Ciencias de la Salud"),
+    (5, "Desarrollo Humano, Social y Emocional"),
+]
+
+
+def _etiqueta_linea(numero: int, nombre: str) -> str:
+    return f"{numero}. {nombre}"
 
 
 # ============================================================
@@ -125,6 +137,16 @@ def _propuesta_y_registro(usuario, respuestas_dict):
     # --- Propuesta generada ---
     with st.expander("🎯 Ver propuesta generada por el asistente", expanded=True):
         st.markdown(f"**Área detectada:** {propuesta['dominio_nombre']}")
+        linea = propuesta.get("linea_proidet", {})
+        if linea:
+            st.markdown(
+                f"**Línea PROIDET sugerida:** {linea.get('numero', '—')}. "
+                f"{linea.get('nombre', '—')}"
+            )
+        mods = propuesta.get("modalidades_sugeridas", [])
+        if mods:
+            st.markdown(f"**Modalidad(es) sugerida(s):** {', '.join(mods).capitalize()}")
+
         st.markdown(f"#### {propuesta['titulo_sugerido']}")
         st.write(propuesta["resumen"])
         st.markdown("**Objetivo general:**")
@@ -155,7 +177,7 @@ def _propuesta_y_registro(usuario, respuestas_dict):
     st.divider()
     st.markdown("### 🏷️ Registro del equipo")
 
-    # Nombre del proyecto: elegir sugerencia o escribir propio
+    # ---------- Nombre del proyecto ----------
     opciones = sugerencias + [OPCION_OTRO_NOMBRE]
     eleccion = st.radio("Nombre del proyecto:", opciones, key="eleccion_nombre")
     if eleccion == OPCION_OTRO_NOMBRE:
@@ -166,6 +188,36 @@ def _propuesta_y_registro(usuario, respuestas_dict):
     nombre_equipo = st.text_input(
         "Nombre del equipo", max_chars=60, placeholder="Ej. Los Innovadores"
     )
+
+    # ---------- Modalidad ----------
+    modalidades_sugeridas = propuesta.get("modalidades_sugeridas", ["prototipo", "emprendimiento"])
+    opciones_modalidad = ["prototipo", "emprendimiento"]
+    default_mod_idx = 0
+    # Si solo hay una modalidad sugerida, dejarla como default
+    if modalidades_sugeridas and len(modalidades_sugeridas) == 1:
+        default_mod_idx = opciones_modalidad.index(modalidades_sugeridas[0])
+    modalidad = st.radio(
+        "Modalidad del proyecto:",
+        options=opciones_modalidad,
+        index=default_mod_idx,
+        format_func=lambda x: x.capitalize(),
+        help="Prototipo = construir algo físico o digital. Emprendimiento = modelo de negocio o servicio.",
+        horizontal=True,
+    )
+
+    # ---------- Línea PROIDET ----------
+    linea_sugerida = propuesta.get("linea_proidet", {})
+    num_sugerido = linea_sugerida.get("numero", 5)
+    idx_linea = next((i for i, (n, _) in enumerate(LINEAS_PROIDET) if n == num_sugerido), 4)
+    idx_linea_sel = st.selectbox(
+        "Línea PROIDET (línea de investigación DGETI):",
+        options=range(len(LINEAS_PROIDET)),
+        index=idx_linea,
+        format_func=lambda i: _etiqueta_linea(*LINEAS_PROIDET[i]),
+    )
+    num_linea, nom_linea = LINEAS_PROIDET[idx_linea_sel]
+
+    # ---------- Problemática ----------
     problematica = st.text_area(
         "Problemática a resolver (pueden editarla):",
         value=respuestas[0].respuesta if respuestas else "",
@@ -173,7 +225,8 @@ def _propuesta_y_registro(usuario, respuestas_dict):
         height=100,
     )
 
-    st.markdown("**Integrantes** (tú eres el primero, mínimo 2, máximo 4):")
+    # ---------- Integrantes ----------
+    st.markdown("**Integrantes** (tú eres el primero. De 1 a 4 estudiantes):")
     integrantes = []
     for i in range(4):
         cols = st.columns([3, 2])
@@ -194,14 +247,69 @@ def _propuesta_y_registro(usuario, respuestas_dict):
         if nombre.strip():
             integrantes.append(Integrante(nombre=nombre.strip(), escuela=escuela.strip()))
 
+    # ---------- Asesores ----------
+    st.markdown("**Asesores** (1 o 2 docentes que guían al equipo):")
+    tipo_asesores = st.radio(
+        "Composición de asesores:",
+        options=["dos", "uno"],
+        format_func=lambda x: (
+            "Dos asesores (uno técnico + uno metodológico)"
+            if x == "dos" else
+            "Un solo asesor (cubre ambas funciones — caso excepcional)"
+        ),
+        key="tipo_asesores",
+    )
+
+    asesores = []
+    if tipo_asesores == "dos":
+        col1, col2 = st.columns(2)
+        with col1:
+            nombre_tec = st.text_input(
+                "Asesor técnico — nombre", key="asesor_tec", max_chars=80
+            )
+            cedula_tec = st.text_input(
+                "Cédula (opcional)", key="cedula_tec", max_chars=30
+            )
+        with col2:
+            nombre_met = st.text_input(
+                "Asesor metodológico — nombre", key="asesor_met", max_chars=80
+            )
+            cedula_met = st.text_input(
+                "Cédula (opcional)", key="cedula_met", max_chars=30
+            )
+        if nombre_tec.strip():
+            asesores.append(Asesor(nombre=nombre_tec.strip(), rol="tecnico",
+                                   cedula=cedula_tec.strip()))
+        if nombre_met.strip():
+            asesores.append(Asesor(nombre=nombre_met.strip(), rol="metodologico",
+                                   cedula=cedula_met.strip()))
+    else:
+        nombre_ambos = st.text_input(
+            "Asesor (técnico y metodológico) — nombre", key="asesor_ambos", max_chars=80
+        )
+        cedula_ambos = st.text_input(
+            "Cédula (opcional)", key="cedula_ambos", max_chars=30
+        )
+        if nombre_ambos.strip():
+            asesores.append(Asesor(nombre=nombre_ambos.strip(), rol="ambos",
+                                   cedula=cedula_ambos.strip()))
+
+    # ---------- Botón de registro ----------
     if st.button("✅ Registrar equipo", use_container_width=True, type="primary"):
         errores = []
         if not nombre_equipo.strip():
             errores.append("Falta el nombre del equipo.")
         if not nombre_proyecto or not nombre_proyecto.strip():
             errores.append("Falta el nombre del proyecto.")
-        if len(integrantes) < 2:
-            errores.append("Se necesitan al menos 2 integrantes.")
+        if len(integrantes) < 1:
+            errores.append("Se necesita al menos 1 estudiante.")
+        if len(integrantes) > 4:
+            errores.append("Máximo 4 estudiantes por equipo.")
+        if len(asesores) < 1:
+            errores.append("Se necesita al menos 1 asesor.")
+        if len(asesores) > 2:
+            errores.append("Máximo 2 asesores por equipo.")
+        # Un alumno solo puede estar en 1 equipo
         for integ in integrantes:
             if db.alumno_ya_registrado(integ.nombre):
                 errores.append(f"«{integ.nombre}» ya está registrado en otro equipo.")
@@ -217,12 +325,14 @@ def _propuesta_y_registro(usuario, respuestas_dict):
                 problematica=problematica.strip(),
                 etapa_actual="inicio",
                 integrantes=integrantes,
+                asesores=asesores,
+                modalidad=modalidad,
+                linea_proidet={"numero": num_linea, "nombre": nom_linea},
                 respuestas=respuestas,
                 propuesta=propuesta,
             )
             db.guardar_equipo(nuevo_eq)
 
-            # Actualizar la sesión (patrón seguro para session_state)
             usuario_actual = dict(st.session_state.get("usuario_actual", {}))
             usuario_actual["equipo_id"] = nuevo_eq.id
             st.session_state["usuario_actual"] = usuario_actual
@@ -239,8 +349,8 @@ def _dashboard(equipo: Equipo):
     st.subheader(f"🚀 {equipo.nombre_proyecto}")
     st.caption(
         f"Equipo: {equipo.nombre_equipo} · "
-        f"{len(equipo.integrantes)} integrantes · "
-        f"{config.ESCUELA}"
+        f"{len(equipo.integrantes)} estudiantes · "
+        f"{len(equipo.asesores)} asesor(es)"
     )
     badge_etapa(equipo.etapa_actual)
     st.write("")
@@ -264,9 +374,35 @@ def _dashboard(equipo: Equipo):
 
 
 def _tab_proyecto(equipo: Equipo):
-    st.markdown("#### 👥 Integrantes")
+    # --- Integrantes ---
+    st.markdown("#### 👥 Estudiantes")
     for i in equipo.integrantes:
         st.markdown(f"- **{i.nombre}** · {i.escuela}")
+
+    # --- Asesores ---
+    st.markdown("#### 👨‍🏫 Asesores")
+    if not equipo.asesores:
+        st.caption("(sin asesores registrados)")
+    else:
+        for a in equipo.asesores:
+            rol_txt = {
+                "tecnico": "Asesor técnico",
+                "metodologico": "Asesor metodológico",
+                "ambos": "Técnico y metodológico",
+            }.get(a.rol, a.rol)
+            cedula_txt = f" · Cédula: {a.cedula}" if a.cedula else ""
+            st.markdown(f"- **{a.nombre}** · _{rol_txt}_{cedula_txt}")
+
+    # --- Datos oficiales ---
+    st.markdown("#### 📌 Datos del proyecto")
+    col1, col2 = st.columns(2)
+    with col1:
+        st.markdown(f"**Modalidad:** {equipo.modalidad.capitalize()}")
+    with col2:
+        linea = equipo.linea_proidet or {}
+        st.markdown(
+            f"**Línea PROIDET:** {linea.get('numero', '—')}. {linea.get('nombre', '—')}"
+        )
 
     st.markdown("#### 🧩 Problemática")
     st.write(equipo.problematica or "(sin definir)")
@@ -324,7 +460,6 @@ def _form_cuestionario_etapa(equipo: Equipo, bloque: str, preguntas: list):
                 Respuesta(bloque=bloque, pregunta=p, respuesta=r)
                 for p, r in nuevas.items() if r.strip()
             ]
-            # Avanzar etapa automáticamente
             if bloque == "desarrollo" and equipo.etapa_actual == "inicio":
                 equipo.etapa_actual = "desarrollo"
             if bloque == "cierre" and equipo.etapa_actual == "desarrollo":
