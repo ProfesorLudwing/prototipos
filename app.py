@@ -23,21 +23,28 @@ st.set_page_config(
 
 
 # ============================================================
-# 2) Asegurar que la estructura de datos existe (sin verbose)
+# 2) Asegurar datos y sincronizar con GitHub
 # ============================================================
-def _asegurar_datos():
+def _preparar_datos():
+    """
+    1. Crea la estructura local si falta.
+    2. Si hay token de GitHub, baja los JSON más recientes.
+    """
     try:
         seed.inicializar(verbose=False)
     except Exception:
-        # No queremos que un fallo aquí impida abrir la app.
         pass
 
-
+    try:
+        import db
+        db.sincronizar_desde_github()
+    except Exception:
+        pass
 # ============================================================
 # 3) Router principal (función, para poder usar return limpio)
 # ============================================================
 def main():
-    _asegurar_datos()
+    _preparar_datos()
 
     # --- Login ---
     usuario = auth.pantalla_login()

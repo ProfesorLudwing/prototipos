@@ -2,7 +2,9 @@
 ui_tutor.py — Vista del tutor (admin) en 'prototipos'.
 Todo lo que solo tú puedes hacer:
   - Ver el panel general de todos los equipos
+  - Editar / eliminar equipos
   - Asignar entregables con fecha límite
+  - Cargar el cronograma oficial DGETI
   - Subir documentos oficiales (PDFs)
   - Publicar avisos
   - Exportar reportes
@@ -15,13 +17,13 @@ import streamlit as st
 import config
 import db
 import reportes
-import seed           # ← AÑADIR ESTA LÍNEA
+import seed
 from models import Aviso, Entregable, Equipo, Integrante, Asesor
-from ui_alumno import LINEAS_PROIDET
 from ui_comun import (
     header, badge_etapa, progreso_etapas, tarjeta_aviso,
     tarjeta_entregable, caja_info, mensaje_vacio, color_semaforo,
 )
+from ui_alumno import LINEAS_PROIDET
 
 
 # ============================================================
@@ -63,13 +65,11 @@ def _tab_resumen():
         mensaje_vacio("👥", "Aún no hay equipos registrados.")
         return
 
-    # --- Métricas rápidas ---
     total_alumnos = sum(len(e.integrantes) for e in equipos)
     total_entregables = len(entregables)
     entregados = sum(1 for e in entregables if e.estado == "entregado")
     pendientes = total_entregables - entregados
 
-    # Contar entregables por semáforo
     verdes = amarillos = rojos = 0
     for e in entregables:
         c = color_semaforo(e.fecha_limite, e.estado)
@@ -93,7 +93,6 @@ def _tab_resumen():
 
     st.divider()
 
-    # --- Tabla por equipo ---
     st.markdown("### Estado por equipo")
     filas = []
     for eq in equipos:
@@ -166,9 +165,6 @@ def _botones_exportar():
 
 
 # ============================================================
-# 2) Equipos
-# ============================================================
-# ============================================================
 # 2) Equipos (ver / editar / eliminar)
 # ============================================================
 def _tab_equipos():
@@ -196,7 +192,6 @@ def _tab_equipos():
 
 
 def _vista_ver_equipo(eq):
-    """Vista de solo lectura de un equipo, con botones de acción."""
     badge_etapa(eq.etapa_actual)
     st.write("")
     progreso_etapas(eq.etapa_actual)
@@ -273,14 +268,12 @@ def _vista_ver_equipo(eq):
 
 
 def _vista_editar_equipo(eq):
-    """Formulario completo de edición de un equipo."""
     st.warning(
         "✏️ **Modo edición**. Modifica los campos y guarda. "
         "Los cambios son permanentes."
     )
 
     with st.form(f"form_edit_{eq.id}"):
-        # --- Básicos ---
         col1, col2 = st.columns(2)
         with col1:
             nombre_equipo = st.text_input(
@@ -295,7 +288,6 @@ def _vista_editar_equipo(eq):
             "Problemática", value=eq.problematica, max_chars=400, height=100
         )
 
-        # --- Modalidad y línea ---
         col1, col2 = st.columns(2)
         with col1:
             modalidad = st.radio(
@@ -436,7 +428,6 @@ def _vista_editar_equipo(eq):
             cancelar = st.form_submit_button(
                 "❌ Cancelar", use_container_width=True)
 
-    # --- Acciones (fuera del form para poder usar st.rerun) ---
     if cancelar:
         st.session_state.pop("editando_equipo_id", None)
         st.rerun()
@@ -482,7 +473,6 @@ def _vista_editar_equipo(eq):
 
 
 def _vista_confirmar_eliminar(eq):
-    """Confirmación antes de eliminar un equipo."""
     n_ents = len(db.entregables_de_equipo(eq.id))
     st.error(
         f"⚠️ **¿Eliminar el equipo «{eq.nombre_equipo}»?**\n\n"
@@ -510,6 +500,8 @@ def _vista_confirmar_eliminar(eq):
         ):
             st.session_state.pop("eliminando_equipo_id", None)
             st.rerun()
+
+
 # ============================================================
 # 3) Entregables
 # ============================================================
@@ -519,7 +511,6 @@ def _tab_entregables():
         mensaje_vacio("👥", "Registra al menos un equipo primero.")
         return
 
-    # ---------- Cargar cronograma DGETI ----------
     st.markdown("### 📥 Cronograma oficial DGETI 2026-2027")
     st.caption(
         "Crea automáticamente los 10 entregables del cronograma oficial "
@@ -553,7 +544,6 @@ def _tab_entregables():
 
     st.divider()
 
-    # ---------- Asignar entregable individual ----------
     st.markdown("### ➕ Asignar nuevo entregable (individual)")
     with st.form("form_nuevo_entregable"):
         col1, col2 = st.columns(2)
@@ -592,7 +582,6 @@ def _tab_entregables():
 
     st.divider()
 
-    # ---------- Lista por equipo ----------
     st.markdown("### 📋 Entregables por equipo")
     for eq in equipos:
         ents = db.entregables_de_equipo(eq.id)
@@ -618,6 +607,7 @@ def _tab_entregables():
                         _json.dump([e.to_dict() for e in todos], f, ensure_ascii=False, indent=2)
                     st.rerun()
 
+
 # ============================================================
 # 4) Documentos
 # ============================================================
@@ -639,10 +629,8 @@ def _tab_documentos():
         elif archivo.size > config.MAX_PDF_MB * 1024 * 1024:
             st.error(f"El archivo supera los {config.MAX_PDF_MB} MB.")
         else:
-            os.makedirs(config.RUTA_DOCUMENTOS, exist_ok=True)
             ruta = os.path.join(config.RUTA_DOCUMENTOS, archivo.name)
-            with open(ruta, "wb") as f:
-                f.write(archivo.getbuffer())
+            db.guardar_pdf(ruta, archivo.getbuffer().tobytes())
             st.success(f"Documento publicado: {archivo.name}")
             st.rerun()
 
@@ -659,7 +647,7 @@ def _tab_documentos():
             st.markdown(f"📄 `{nombre}`")
         with col2:
             if st.button("🗑️", key=f"del_doc_{nombre}", help="Eliminar"):
-                os.remove(ruta)
+                db.eliminar_pdf(ruta)
                 st.rerun()
 
 

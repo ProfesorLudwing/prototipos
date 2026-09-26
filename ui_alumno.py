@@ -501,10 +501,8 @@ def _form_subir_pdf(ent: Entregable):
         elif archivo.size > config.MAX_PDF_MB * 1024 * 1024:
             st.error(f"El archivo supera los {config.MAX_PDF_MB} MB.")
         else:
-            os.makedirs(config.RUTA_ENTREGAS, exist_ok=True)
             ruta = os.path.join(config.RUTA_ENTREGAS, f"{ent.id}.pdf")
-            with open(ruta, "wb") as f:
-                f.write(archivo.getbuffer())
+            db.guardar_pdf(ruta, archivo.getbuffer().tobytes())
             ent.archivo_pdf = ruta
             ent.estado = "entregado"
             ent.fecha_entrega = datetime.now().isoformat(timespec="seconds")
