@@ -58,14 +58,12 @@ def _leer_secret(clave: str, por_defecto: str = "") -> str:
     Lee un secret desde st.secrets (en Streamlit Cloud) o desde
     .streamlit/secrets.toml (en local), con fallback silencioso.
     """
-    # Intento 1: st.secrets
     try:
         import streamlit as st
         if hasattr(st, "secrets") and clave in st.secrets:
             return st.secrets[clave]
     except Exception:
         pass
-    # Intento 2: leer el toml directamente
     try:
         import toml
         ruta = ".streamlit/secrets.toml"
@@ -101,6 +99,11 @@ def _obtener_repo():
         return None
 
 
+def _ruta_github(ruta_local: str) -> str:
+    """Convierte backslashes de Windows a forward slashes para GitHub API."""
+    return ruta_local.replace("\\", "/")
+
+
 def sincronizar_desde_github():
     """
     Descarga los JSON desde GitHub al sistema local.
@@ -119,7 +122,7 @@ def sincronizar_desde_github():
     ]
     for ruta in archivos:
         try:
-            contenido = repo.get_contents(ruta)
+            contenido = repo.get_contents(_ruta_github(ruta))
             texto = contenido.decoded_content.decode("utf-8")
             _asegurar_carpetas()
             with open(ruta, "w", encoding="utf-8") as f:
@@ -146,20 +149,29 @@ def _subir_archivo_a_github(ruta_local: str, mensaje: str = "[app] Update"):
             contenido = f.read()
 
         branch = _leer_secret("GITHUB_BRANCH", "main")
+        path_github = _ruta_github(ruta_local)
 
+        # ¿Ya existe en GitHub?
+        existe = False
+        sha_actual = None
         try:
-            existente = repo.get_contents(ruta_local, ref=branch)
+            existente = repo.get_contents(path_github, ref=branch)
+            existe = True
+            sha_actual = existente.sha
+        except Exception:
+            existe = False
+
+        if existe:
             repo.update_file(
-                path=ruta_local,
+                path=path_github,
                 message=mensaje,
                 content=contenido,
-                sha=existente.sha,
+                sha=sha_actual,
                 branch=branch,
             )
-        except Exception:
-            # No existe → crear
+        else:
             repo.create_file(
-                path=ruta_local,
+                path=path_github,
                 message=mensaje,
                 content=contenido,
                 branch=branch,
@@ -333,9 +345,10 @@ def eliminar_pdf(ruta_local: str) -> None:
         return
     try:
         branch = _leer_secret("GITHUB_BRANCH", "main")
-        existente = repo.get_contents(ruta_local, ref=branch)
+        path_github = _ruta_github(ruta_local)
+        existente = repo.get_contents(path_github, ref=branch)
         repo.delete_file(
-            path=ruta_local,
+            path=path_github,
             message=f"[app] Eliminar {os.path.basename(ruta_local)}",
             sha=existente.sha,
             branch=branch,
