@@ -12,7 +12,7 @@ import ui_tutor
 
 
 # ============================================================
-# 1) Configuración de la página (debe ir ANTES de cualquier st.*)
+# 1) Configuración de la página
 # ============================================================
 st.set_page_config(
     page_title=config.APP_NOMBRE,
@@ -23,11 +23,11 @@ st.set_page_config(
 
 
 # ============================================================
-# 2) Asegurar datos y sincronizar con GitHub
+# 2) Preparar datos (estructura local + sincronización GitHub)
 # ============================================================
 def _preparar_datos():
     """
-    1. Crea la estructura local si falta.
+    1. Crea la estructura local si falta (data/, JSON vacíos, etc.).
     2. Si hay token de GitHub, baja los JSON más recientes.
     """
     try:
@@ -40,19 +40,18 @@ def _preparar_datos():
         db.sincronizar_desde_github()
     except Exception:
         pass
+
+
 # ============================================================
-# 3) Router principal (función, para poder usar return limpio)
+# 3) Router principal
 # ============================================================
 def main():
     _preparar_datos()
 
-    # --- Login ---
     usuario = auth.pantalla_login()
     if usuario is None:
-        # Aún no se identifica. pantalla_login ya mostró el formulario.
         return
 
-    # --- Router por rol ---
     rol = usuario.get("rol")
 
     if rol == "tutor":
@@ -67,6 +66,6 @@ def main():
 
 
 # ============================================================
-# 4) Ejecutar (Streamlit llama al script; nosotros disparamos main)
+# 4) Ejecutar
 # ============================================================
 main()
