@@ -16,7 +16,8 @@ import config
 import db
 import reportes
 import seed           # ← AÑADIR ESTA LÍNEA
-from models import Aviso, Entregable
+from models import Aviso, Entregable, Equipo, Integrante, Asesor
+from ui_alumno import LINEAS_PROIDET
 from ui_comun import (
     header, badge_etapa, progreso_etapas, tarjeta_aviso,
     tarjeta_entregable, caja_info, mensaje_vacio, color_semaforo,
@@ -167,46 +168,348 @@ def _botones_exportar():
 # ============================================================
 # 2) Equipos
 # ============================================================
+# ============================================================
+# 2) Equipos (ver / editar / eliminar)
+# ============================================================
 def _tab_equipos():
     equipos = db.get_equipos()
     if not equipos:
         mensaje_vacio("👥", "Aún no hay equipos registrados.")
         return
 
+    st.caption(
+        "Aquí puedes ver, editar o eliminar cada equipo. "
+        "Usa ✏️ Editar para corregir datos mal capturados por los alumnos."
+    )
+
     for eq in equipos:
         with st.expander(f"🚀 {eq.nombre_equipo} — {eq.nombre_proyecto}", expanded=False):
-            badge_etapa(eq.etapa_actual)
-            st.write("")
-            progreso_etapas(eq.etapa_actual)
-            st.divider()
+            modo_eliminar = st.session_state.get("eliminando_equipo_id") == eq.id
+            modo_editar = st.session_state.get("editando_equipo_id") == eq.id
 
-            c1, c2 = st.columns([1, 1])
-            with c1:
-                st.markdown("**Integrantes**")
-                for i in eq.integrantes:
-                    st.markdown(f"- {i.nombre} · {i.escuela}")
-            with c2:
-                st.markdown("**Problemática**")
-                st.write(eq.problematica or "(sin definir)")
+            if modo_eliminar:
+                _vista_confirmar_eliminar(eq)
+            elif modo_editar:
+                _vista_editar_equipo(eq)
+            else:
+                _vista_ver_equipo(eq)
 
-            st.markdown(f"**Área detectada:** {eq.propuesta.get('dominio_nombre', '—')}")
 
-            # Cambiar etapa manualmente
-            nueva = st.selectbox(
-                "Cambiar etapa del proyecto:",
-                options=config.ETAPAS,
-                index=config.ETAPAS.index(eq.etapa_actual) if eq.etapa_actual in config.ETAPAS else 0,
-                format_func=lambda x: config.ETIQUETA_ETAPA.get(x, x),
-                key=f"etapa_{eq.id}",
+def _vista_ver_equipo(eq):
+    """Vista de solo lectura de un equipo, con botones de acción."""
+    badge_etapa(eq.etapa_actual)
+    st.write("")
+    progreso_etapas(eq.etapa_actual)
+    st.divider()
+
+    c1, c2 = st.columns([1, 1])
+    with c1:
+        st.markdown("**👥 Estudiantes**")
+        if eq.integrantes:
+            for i in eq.integrantes:
+                st.markdown(f"- {i.nombre} · {i.escuela}")
+        else:
+            st.caption("(sin estudiantes)")
+
+        st.markdown("**👨‍🏫 Asesores**")
+        if eq.asesores:
+            for a in eq.asesores:
+                rol = {
+                    "tecnico": "técnico",
+                    "metodologico": "metodológico",
+                    "ambos": "técnico y metodológico",
+                }.get(a.rol, a.rol)
+                st.markdown(f"- {a.nombre} · _{rol}_")
+        else:
+            st.caption("(sin asesores)")
+
+    with c2:
+        st.markdown("**📌 Datos oficiales**")
+        st.markdown(f"- Modalidad: **{eq.modalidad.capitalize()}**")
+        linea = eq.linea_proidet or {}
+        st.markdown(
+            f"- Línea PROIDET: **{linea.get('numero', '—')}. "
+            f"{linea.get('nombre', '—')}**"
+        )
+        st.markdown(f"- Área detectada: {eq.propuesta.get('dominio_nombre', '—')}")
+        st.markdown(f"- Registrado: {eq.fecha_registro.replace('T', ' ')[:16]}")
+        st.markdown(f"- ID: `{eq.id}`")
+
+    st.markdown("**🧩 Problemática**")
+    st.write(eq.problematica or "(sin definir)")
+
+    st.divider()
+    c1, c2 = st.columns([2, 1])
+    with c1:
+        nueva = st.selectbox(
+            "Cambiar etapa del proyecto:",
+            options=config.ETAPAS,
+            index=config.ETAPAS.index(eq.etapa_actual)
+            if eq.etapa_actual in config.ETAPAS else 0,
+            format_func=lambda x: config.ETIQUETA_ETAPA.get(x, x),
+            key=f"etapa_{eq.id}",
+        )
+    with c2:
+        st.write("")
+        st.write("")
+        if st.button("Guardar etapa", key=f"btn_etapa_{eq.id}",
+                     use_container_width=True):
+            eq.etapa_actual = nueva
+            db.guardar_equipo(eq)
+            st.rerun()
+
+    st.divider()
+    c1, c2 = st.columns([1, 1])
+    with c1:
+        if st.button("✏️ Editar este equipo", key=f"btn_edit_{eq.id}",
+                     use_container_width=True):
+            st.session_state["editando_equipo_id"] = eq.id
+            st.rerun()
+    with c2:
+        if st.button("🗑️ Eliminar equipo", key=f"btn_del_{eq.id}",
+                     use_container_width=True):
+            st.session_state["eliminando_equipo_id"] = eq.id
+            st.rerun()
+
+
+def _vista_editar_equipo(eq):
+    """Formulario completo de edición de un equipo."""
+    st.warning(
+        "✏️ **Modo edición**. Modifica los campos y guarda. "
+        "Los cambios son permanentes."
+    )
+
+    with st.form(f"form_edit_{eq.id}"):
+        # --- Básicos ---
+        col1, col2 = st.columns(2)
+        with col1:
+            nombre_equipo = st.text_input(
+                "Nombre del equipo", value=eq.nombre_equipo, max_chars=60
             )
-            if nueva != eq.etapa_actual:
-                if st.button("Guardar etapa", key=f"btn_etapa_{eq.id}"):
-                    eq.etapa_actual = nueva
-                    db.guardar_equipo(eq)
-                    st.success("Etapa actualizada.")
-                    st.rerun()
+        with col2:
+            nombre_proyecto = st.text_input(
+                "Nombre del proyecto", value=eq.nombre_proyecto, max_chars=120
+            )
+
+        problematica = st.text_area(
+            "Problemática", value=eq.problematica, max_chars=400, height=100
+        )
+
+        # --- Modalidad y línea ---
+        col1, col2 = st.columns(2)
+        with col1:
+            modalidad = st.radio(
+                "Modalidad",
+                options=["prototipo", "emprendimiento"],
+                index=0 if eq.modalidad == "prototipo" else 1,
+                format_func=lambda x: x.capitalize(),
+                horizontal=True,
+                key=f"edit_modalidad_{eq.id}",
+            )
+        with col2:
+            linea_actual_num = (eq.linea_proidet or {}).get("numero", 5)
+            idx_linea = next(
+                (i for i, (n, _) in enumerate(LINEAS_PROIDET)
+                 if n == linea_actual_num), 4
+            )
+            idx_linea_sel = st.selectbox(
+                "Línea PROIDET",
+                options=range(len(LINEAS_PROIDET)),
+                index=idx_linea,
+                format_func=lambda i: f"{LINEAS_PROIDET[i][0]}. {LINEAS_PROIDET[i][1]}",
+                key=f"edit_linea_{eq.id}",
+            )
+
+        st.divider()
+        st.markdown("**👥 Estudiantes** (1 a 4)")
+        integrantes_nuevos = []
+        for i in range(4):
+            col1, col2 = st.columns([3, 2])
+            with col1:
+                nombre_actual = (
+                    eq.integrantes[i].nombre if i < len(eq.integrantes) else ""
+                )
+                nombre = st.text_input(
+                    f"Estudiante {i+1}",
+                    value=nombre_actual,
+                    key=f"edit_int_nombre_{i}_{eq.id}",
+                    max_chars=60,
+                )
+            with col2:
+                escuela_actual = (
+                    eq.integrantes[i].escuela if i < len(eq.integrantes)
+                    else config.ESCUELA
+                )
+                escuela = st.text_input(
+                    "Escuela",
+                    value=escuela_actual,
+                    key=f"edit_int_escuela_{i}_{eq.id}",
+                    max_chars=60,
+                )
+            if nombre.strip():
+                integrantes_nuevos.append(
+                    Integrante(nombre=nombre.strip(), escuela=escuela.strip())
+                )
+
+        st.divider()
+        st.markdown("**👨‍🏫 Asesores** (1 o 2)")
+
+        if len(eq.asesores) == 1 and eq.asesores[0].rol == "ambos":
+            tipo_actual = "uno"
+        else:
+            tipo_actual = "dos"
+
+        tipo_asesores = st.radio(
+            "Composición de asesores:",
+            options=["dos", "uno"],
+            index=0 if tipo_actual == "dos" else 1,
+            format_func=lambda x: (
+                "Dos asesores (técnico + metodológico)"
+                if x == "dos" else
+                "Un solo asesor (cubre ambas funciones)"
+            ),
+            key=f"edit_tipo_asesores_{eq.id}",
+        )
+
+        asesores_nuevos = []
+        if tipo_asesores == "dos":
+            asesor_tec = next((a for a in eq.asesores if a.rol == "tecnico"), None)
+            asesor_met = next((a for a in eq.asesores if a.rol == "metodologico"), None)
+
+            col1, col2 = st.columns(2)
+            with col1:
+                nombre_tec = st.text_input(
+                    "Asesor técnico — nombre",
+                    value=asesor_tec.nombre if asesor_tec else "",
+                    key=f"edit_tec_{eq.id}", max_chars=80,
+                )
+                cedula_tec = st.text_input(
+                    "Cédula (opcional)",
+                    value=asesor_tec.cedula if asesor_tec else "",
+                    key=f"edit_ced_tec_{eq.id}", max_chars=30,
+                )
+            with col2:
+                nombre_met = st.text_input(
+                    "Asesor metodológico — nombre",
+                    value=asesor_met.nombre if asesor_met else "",
+                    key=f"edit_met_{eq.id}", max_chars=80,
+                )
+                cedula_met = st.text_input(
+                    "Cédula (opcional)",
+                    value=asesor_met.cedula if asesor_met else "",
+                    key=f"edit_ced_met_{eq.id}", max_chars=30,
+                )
+            if nombre_tec.strip():
+                asesores_nuevos.append(Asesor(
+                    nombre=nombre_tec.strip(), rol="tecnico",
+                    cedula=cedula_tec.strip()))
+            if nombre_met.strip():
+                asesores_nuevos.append(Asesor(
+                    nombre=nombre_met.strip(), rol="metodologico",
+                    cedula=cedula_met.strip()))
+        else:
+            asesor_ambos = next((a for a in eq.asesores if a.rol == "ambos"), None)
+            if asesor_ambos is None and eq.asesores:
+                asesor_ambos = eq.asesores[0]
+
+            nombre_ambos = st.text_input(
+                "Asesor (técnico y metodológico) — nombre",
+                value=asesor_ambos.nombre if asesor_ambos else "",
+                key=f"edit_ambos_{eq.id}", max_chars=80,
+            )
+            cedula_ambos = st.text_input(
+                "Cédula (opcional)",
+                value=asesor_ambos.cedula if asesor_ambos else "",
+                key=f"edit_ced_ambos_{eq.id}", max_chars=30,
+            )
+            if nombre_ambos.strip():
+                asesores_nuevos.append(Asesor(
+                    nombre=nombre_ambos.strip(), rol="ambos",
+                    cedula=cedula_ambos.strip()))
+
+        st.divider()
+        col1, col2 = st.columns(2)
+        with col1:
+            guardar = st.form_submit_button(
+                "💾 Guardar cambios", use_container_width=True, type="primary")
+        with col2:
+            cancelar = st.form_submit_button(
+                "❌ Cancelar", use_container_width=True)
+
+    # --- Acciones (fuera del form para poder usar st.rerun) ---
+    if cancelar:
+        st.session_state.pop("editando_equipo_id", None)
+        st.rerun()
+
+    if guardar:
+        errores = []
+        if not nombre_equipo.strip():
+            errores.append("Falta el nombre del equipo.")
+        if not nombre_proyecto.strip():
+            errores.append("Falta el nombre del proyecto.")
+        if len(integrantes_nuevos) < 1:
+            errores.append("Al menos 1 estudiante.")
+        if len(integrantes_nuevos) > 4:
+            errores.append("Máximo 4 estudiantes.")
+        if len(asesores_nuevos) < 1:
+            errores.append("Al menos 1 asesor.")
+        if len(asesores_nuevos) > 2:
+            errores.append("Máximo 2 asesores.")
+
+        for integ in integrantes_nuevos:
+            otro = db.buscar_equipo_de_alumno(integ.nombre)
+            if otro and otro.id != eq.id:
+                errores.append(
+                    f"«{integ.nombre}» ya está en otro equipo "
+                    f"({otro.nombre_equipo})."
+                )
+
+        if errores:
+            for e in errores:
+                st.error(e)
+        else:
+            num_linea, nom_linea = LINEAS_PROIDET[idx_linea_sel]
+            eq.nombre_equipo = nombre_equipo.strip()
+            eq.nombre_proyecto = nombre_proyecto.strip()
+            eq.problematica = problematica.strip()
+            eq.modalidad = modalidad
+            eq.linea_proidet = {"numero": num_linea, "nombre": nom_linea}
+            eq.integrantes = integrantes_nuevos
+            eq.asesores = asesores_nuevos
+            db.guardar_equipo(eq)
+            st.session_state.pop("editando_equipo_id", None)
+            st.rerun()
 
 
+def _vista_confirmar_eliminar(eq):
+    """Confirmación antes de eliminar un equipo."""
+    n_ents = len(db.entregables_de_equipo(eq.id))
+    st.error(
+        f"⚠️ **¿Eliminar el equipo «{eq.nombre_equipo}»?**\n\n"
+        f"Proyecto: **{eq.nombre_proyecto}**\n\n"
+        f"Se eliminarán también:\n"
+        f"- Los **{n_ents} entregables** del equipo\n"
+        f"- Los PDFs que hayan subido\n\n"
+        f"**Esta acción NO se puede deshacer.**"
+    )
+    col1, col2 = st.columns([1, 1])
+    with col1:
+        if st.button(
+            "🗑️ Sí, eliminar definitivamente",
+            key=f"btn_confirm_del_{eq.id}",
+            use_container_width=True, type="primary",
+        ):
+            db.eliminar_equipo(eq.id)
+            st.session_state.pop("eliminando_equipo_id", None)
+            st.rerun()
+    with col2:
+        if st.button(
+            "❌ Cancelar",
+            key=f"btn_cancel_del_{eq.id}",
+            use_container_width=True,
+        ):
+            st.session_state.pop("eliminando_equipo_id", None)
+            st.rerun()
 # ============================================================
 # 3) Entregables
 # ============================================================

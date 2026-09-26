@@ -150,3 +150,56 @@ def listar_documentos_publicos() -> List[str]:
         f for f in os.listdir(config.RUTA_DOCUMENTOS)
         if f.lower().endswith(".pdf")
     )
+
+# ============================================================
+# Eliminar equipos (solo tutor)
+# ============================================================
+def eliminar_equipo(equipo_id: str) -> bool:
+    """
+    Elimina un equipo y todos sus entregables asociados.
+    Devuelve True si encontró y eliminó el equipo.
+    También borra los PDFs subidos por ese equipo.
+    """
+    equipos = get_equipos()
+    equipos_filtrados = [e for e in equipos if e.id != equipo_id]
+    if len(equipos_filtrados) == len(equipos):
+        return False  # no se encontró
+
+    # 1) Eliminar entregables del equipo
+    entregables = get_entregables()
+    eliminados = [e for e in entregables if e.equipo_id == equipo_id]
+    entregables_filtrados = [e for e in entregables if e.equipo_id != equipo_id]
+    _guardar_json(config.ARCHIVO_ENTREGABLES,
+                  [e.to_dict() for e in entregables_filtrados])
+
+    # 2) Borrar los PDFs en disco de esos entregables
+    for ent in eliminados:
+        if ent.archivo_pdf and os.path.exists(ent.archivo_pdf):
+            try:
+                os.remove(ent.archivo_pdf)
+            except OSError:
+                pass  # no pasa nada si falla
+
+    # 3) Eliminar el equipo del archivo
+    _guardar_json(config.ARCHIVO_EQUIPOS,
+                  [e.to_dict() for e in equipos_filtrados])
+    return True
+
+
+# ============================================================
+# Eliminar un integrante o asesor concreto (para edición)
+# ============================================================
+def actualizar_equipo(equipo_id: str, **cambios) -> bool:
+    """
+    Actualiza campos del equipo por nombre de campo.
+    Uso:  db.actualizar_equipo(id, nombre_equipo='Nuevo', modalidad='prototipo')
+    Devuelve True si encontró el equipo.
+    """
+    equipo = get_equipo(equipo_id)
+    if equipo is None:
+        return False
+    for campo, valor in cambios.items():
+        if hasattr(equipo, campo):
+            setattr(equipo, campo, valor)
+    guardar_equipo(equipo)
+    return True

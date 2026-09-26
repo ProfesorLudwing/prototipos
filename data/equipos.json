@@ -3,7 +3,7 @@
     "id": "9c69a78a",
     "nombre_equipo": "los innova",
     "nombre_proyecto": "Espacio público y vivienda en No Hay Espacios Comunitarios Para Convivir",
-    "problematica": "no hay espacios comunitarios para convivir",
+    "problematica": "se ha cambiado la problematica correctamente",
     "etapa_actual": "inicio",
     "integrantes": [
       {
@@ -31,7 +31,7 @@
         "cedula": ""
       }
     ],
-    "modalidad": "prototipo",
+    "modalidad": "emprendimiento",
     "linea_proidet": {
       "numero": 5,
       "nombre": "Desarrollo Humano, Social y Emocional"
