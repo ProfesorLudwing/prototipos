@@ -3,6 +3,7 @@ ui_comun.py — Componentes visuales reutilizables de 'prototipos'.
 Sin lógica de negocio. Solo pintar bonito y consistente.
 Compatible con tema claro y oscuro de Streamlit.
 """
+import os
 from datetime import datetime, date
 from typing import Optional, List
 
@@ -13,10 +14,40 @@ import auth
 
 
 # ============================================================
+# Banner con la foto del taller
+# ============================================================
+def banner_taller(altura_px: int = 180):
+    """Muestra el banner con la foto del taller del CBTIS."""
+    import base64
+    ruta_banner = "assets/taller_banner.jpg"
+    if not os.path.exists(ruta_banner):
+        return
+    with open(ruta_banner, "rb") as f:
+        img_bytes = f.read()
+    b64 = base64.b64encode(img_bytes).decode()
+    st.markdown(
+        f"""
+        <div style="
+            width: 100%;
+            height: {altura_px}px;
+            overflow: hidden;
+            border-radius: 8px;
+            margin-bottom: 16px;
+        ">
+            <img src="data:image/jpeg;base64,{b64}"
+                 style="width: 100%; height: 100%; object-fit: cover;
+                        object-position: center 35%; display: block;" />
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+# ============================================================
 # Header superior (aparece en todas las vistas)
 # ============================================================
 def header(usuario: dict):
-    """Header con título, quién está conectado y botón de cerrar sesión."""
+    """Header con banner, título, quién está conectado y cerrar sesión."""
+    banner_taller()
+
     col_izq, col_der = st.columns([5, 1])
     with col_izq:
         st.title(f"{config.ICONO} {config.APP_TITULO}")
