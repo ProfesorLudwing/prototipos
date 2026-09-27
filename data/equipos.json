@@ -1,1 +1,156 @@
-[]
+[
+  {
+    "id": "8d9a287e",
+    "nombre_equipo": "Magic",
+    "nombre_proyecto": "Medio ambiente y cambio climático en No Hay Actividades Grupales Ordenadas",
+    "problematica": "No hay actividades grupales ordenadas",
+    "etapa_actual": "inicio",
+    "integrantes": [
+      {
+        "nombre": "Prueba Cloud1",
+        "escuela": "CBTIS 303"
+      },
+      {
+        "nombre": "Prueba",
+        "escuela": "CBTIS 303"
+      },
+      {
+        "nombre": "Diana Cazadora",
+        "escuela": "CBTIS 303"
+      }
+    ],
+    "asesores": [
+      {
+        "nombre": "Asesor técnico",
+        "rol": "tecnico",
+        "cedula": ""
+      },
+      {
+        "nombre": "Asesor metodológico",
+        "rol": "metodologico",
+        "cedula": ""
+      }
+    ],
+    "modalidad": "prototipo",
+    "linea_proidet": {
+      "numero": 3,
+      "nombre": "Desarrollo Sustentable y Medio Ambiente"
+    },
+    "respuestas": [
+      {
+        "bloque": "inicio",
+        "pregunta": "¿Qué problema vieron en su comunidad?",
+        "respuesta": "No hay actividades grupales ordenadas"
+      },
+      {
+        "bloque": "inicio",
+        "pregunta": "¿A quiénes afecta y desde cuándo?",
+        "respuesta": "Los alumnos en sus momentos libres no tienen una actividad recreativa , solo los deportistas tienen cancha de fútbol y de básquetbol, pero cuando se trata de hacer otras actividades no hay disciplina todo se hace un caos "
+      },
+      {
+        "bloque": "inicio",
+        "pregunta": "¿Cómo se resuelve hoy ese problema?",
+        "respuesta": "Desarrollar actividades grupales ordenadas,  juegos de grupo que se puedan organizar en pocos minutos para que los alumnos tengan ya la costumbre de convivir en equipos y acatar instrucciones sin muchas correcciones "
+      },
+      {
+        "bloque": "inicio",
+        "pregunta": "¿Por qué la solución actual no es suficiente?",
+        "respuesta": "Solo estamos en un mismo espacio pero sin orden ni sentido de pertenencia "
+      },
+      {
+        "bloque": "inicio",
+        "pregunta": "¿Qué pasa si nadie lo resuelve en 5 años?",
+        "respuesta": "Nada grave , solo indisciplina "
+      },
+      {
+        "bloque": "inicio",
+        "pregunta": "¿Qué proponen hacer?",
+        "respuesta": "Un banco de juegos que podamos practicar en 15 minutos,que las personas que tienen habilidades para organizar ,organicen unos juegos "
+      },
+      {
+        "bloque": "inicio",
+        "pregunta": "¿Por qué es innovador frente a lo que ya existe?",
+        "respuesta": "Porque no se trata de refuerzos negativos para mantener la disciplina, sino modificar el ambiente de formas pasivas pero constantes y con refuerzos positivos "
+      },
+      {
+        "bloque": "inicio",
+        "pregunta": "¿Qué necesitan (materiales, personas, permiso, dinero)?",
+        "respuesta": "Materiales si el juego necesita algún artículo, dado gigante por ejemplo "
+      },
+      {
+        "bloque": "inicio",
+        "pregunta": "¿Cómo sabrán si funcionó?",
+        "respuesta": "Cuando haya participación en equipo el docente responsable usa palabras clave que se utilizan en el juego para poner atención y eso se traslada de inmediato al aula"
+      }
+    ],
+    "propuesta": {
+      "dominio_id": "medio_ambiente",
+      "dominio_nombre": "Medio ambiente y cambio climático",
+      "puntaje_coincidencia": 1,
+      "linea_proidet": {
+        "numero": 3,
+        "nombre": "Desarrollo Sustentable y Medio Ambiente"
+      },
+      "modalidades_sugeridas": [
+        "prototipo",
+        "emprendimiento"
+      ],
+      "titulo_sugerido": "Cuidado del medio ambiente en No hay actividades grupales ordenadas",
+      "resumen": "En No hay actividades grupales ordenadas detectamos un problema ambiental: No hay actividades grupales ordenadas. Proponemos una intervención de restauración, mitigación o sensibilización, alineada con acuerdos globales de sostenibilidad.",
+      "objetivo_general": "Contribuir a la mitigación o adaptación ambiental en No hay actividades grupales ordenadas.",
+      "objetivos_especificos": [
+        "Diagnosticar el estado ambiental actual y sus causas.",
+        "Diseñar una acción concreta (reforestación, limpieza, monitoreo, campaña).",
+        "Medir el impacto ambiental o educativo alcanzado."
+      ],
+      "aliados": [
+        "Autoridades ambientales municipales",
+        "Viveros o grupos ecologistas",
+        "Escuelas y comunidad",
+        "Universidades o centros de investigación"
+      ],
+      "indicadores": [
+        "Árboles plantados o área restaurada",
+        "Kilos de residuos recogidos",
+        "Personas sensibilizadas",
+        "Cambios medibles en calidad ambiental"
+      ],
+      "riesgos": [
+        "Falta de permisos para intervenir",
+        "Pérdida de plantas por falta de riego",
+        "Poco seguimiento a largo plazo"
+      ],
+      "referencias_globales": [
+        {
+          "titulo": "ODS 13 — Acción por el clima",
+          "url": "https://www.un.org/sustainabledevelopment/es/climate-change-2/",
+          "descripcion": "Metas globales de acción climática."
+        },
+        {
+          "titulo": "PNUMA — Programa de las Naciones Unidas para el Medio Ambiente",
+          "url": "https://www.unep.org/es",
+          "descripcion": "Programas ambientales globales."
+        }
+      ],
+      "alternativas": [
+        {
+          "id": "medio_ambiente",
+          "nombre": "Medio ambiente y cambio climático",
+          "puntaje": 1
+        },
+        {
+          "id": "empleo",
+          "nombre": "Empleo juvenil y emprendimiento",
+          "puntaje": 1
+        },
+        {
+          "id": "espacio_publico",
+          "nombre": "Espacio público y vivienda",
+          "puntaje": 1
+        }
+      ],
+      "innovacion_declarada": "Porque no se trata de refuerzos negativos para mantener la disciplina, sino modificar el ambiente de formas pasivas pero constantes y con refuerzos positivos"
+    },
+    "fecha_registro": "2026-09-27T22:29:04"
+  }
+]
