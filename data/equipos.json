@@ -151,5 +151,159 @@
       "innovacion_declarada": "porque no hay nada"
     },
     "fecha_registro": "2026-09-29T19:50:38"
+  },
+  {
+    "id": "5a56e19c",
+    "nombre_equipo": "Nosotros Los Guapos",
+    "nombre_proyecto": "Agua y saneamiento en Flata De Riego De Agua",
+    "problematica": "Flata de riego de agua",
+    "etapa_actual": "inicio",
+    "integrantes": [
+      {
+        "nombre": "Luis Antonio Morales Pluma",
+        "escuela": "CBTIS 303"
+      },
+      {
+        "nombre": "Jaime Yahir Minor García",
+        "escuela": "CBTIS 303"
+      },
+      {
+        "nombre": "Josue Benjamín Trujillo López",
+        "escuela": "CBTIS 303"
+      }
+    ],
+    "asesores": [
+      {
+        "nombre": "Ludwing Iturbe",
+        "rol": "tecnico",
+        "cedula": ""
+      },
+      {
+        "nombre": "Asesor 2",
+        "rol": "metodologico",
+        "cedula": ""
+      }
+    ],
+    "modalidad": "prototipo",
+    "linea_proidet": {
+      "numero": 3,
+      "nombre": "Desarrollo Sustentable y Medio Ambiente"
+    },
+    "respuestas": [
+      {
+        "bloque": "inicio",
+        "pregunta": "¿Qué problema vieron en su comunidad?",
+        "respuesta": "Flata de riego de agua"
+      },
+      {
+        "bloque": "inicio",
+        "pregunta": "¿A quiénes afecta y desde cuándo?",
+        "respuesta": "al municipio y a agricultores"
+      },
+      {
+        "bloque": "inicio",
+        "pregunta": "¿Cómo se resuelve hoy ese problema?",
+        "respuesta": "se riega con agua contaminada"
+      },
+      {
+        "bloque": "inicio",
+        "pregunta": "¿Por qué la solución actual no es suficiente?",
+        "respuesta": "porque contamina "
+      },
+      {
+        "bloque": "inicio",
+        "pregunta": "¿Qué pasa si nadie lo resuelve en 5 años?",
+        "respuesta": "mayor sequía , menor producción"
+      },
+      {
+        "bloque": "inicio",
+        "pregunta": "¿Qué proponen hacer?",
+        "respuesta": "Mejorar el sistema de riego, automatización"
+      },
+      {
+        "bloque": "inicio",
+        "pregunta": "¿Por qué es innovador frente a lo que ya existe?",
+        "respuesta": "porque no hay automatización"
+      },
+      {
+        "bloque": "inicio",
+        "pregunta": "¿Qué necesitan (materiales, personas, permiso, dinero)?",
+        "respuesta": "bomba de agua, tubería, planos, dinero,permisos"
+      },
+      {
+        "bloque": "inicio",
+        "pregunta": "¿Cómo sabrán si funcionó?",
+        "respuesta": "evaluación anual de producción"
+      }
+    ],
+    "propuesta": {
+      "dominio_id": "agua",
+      "dominio_nombre": "Agua y saneamiento",
+      "puntaje_coincidencia": 5,
+      "linea_proidet": {
+        "numero": 3,
+        "nombre": "Desarrollo Sustentable y Medio Ambiente"
+      },
+      "modalidades_sugeridas": [
+        "prototipo",
+        "emprendimiento"
+      ],
+      "titulo_sugerido": "Cuidado y acceso al agua en Flata de riego de agua",
+      "resumen": "El equipo detectó que en Flata de riego de agua existe un problema relacionado con el agua: Flata de riego de agua. Proponemos una solución enfocada en el uso responsable, el acceso equitativo y la participación de la comunidad escolar y vecinal, tomando como base experiencias exitosas en otras regiones del mundo.",
+      "objetivo_general": "Diseñar e implementar una solución que mejore el acceso, uso o cuidado del agua en Flata de riego de agua, involucrando a estudiantes y comunidad.",
+      "objetivos_especificos": [
+        "Diagnosticar la situación actual del agua en la comunidad (fuentes, uso, pérdidas y calidad).",
+        "Diseñar una propuesta técnica y social viable con recursos locales.",
+        "Medir el impacto de la propuesta en al menos un indicador claro (litros ahorrados, personas beneficiadas, etc.)."
+      ],
+      "aliados": [
+        "Comité de agua o autoridades locales",
+        "Padres de familia y vecinos",
+        "Organismos como CONAGUA o CEAS locales",
+        "Universidades o tecnológicos cercanos"
+      ],
+      "indicadores": [
+        "Litros de agua ahorrados o recuperados por semana",
+        "Número de personas con acceso mejorado",
+        "Reducción de fugas o desperdicio detectado",
+        "Nivel de participación comunitaria"
+      ],
+      "riesgos": [
+        "Falta de permisos para intervenir en infraestructura",
+        "Baja participación de la comunidad",
+        "Recursos económicos insuficientes"
+      ],
+      "referencias_globales": [
+        {
+          "titulo": "ODS 6 — Agua limpia y saneamiento (ONU)",
+          "url": "https://www.un.org/sustainabledevelopment/es/water-and-sanitation/",
+          "descripcion": "Meta global de acceso universal al agua."
+        },
+        {
+          "titulo": "UNICEF — Agua, saneamiento e higiene",
+          "url": "https://www.unicef.org/es/agua-saneamiento-higiene",
+          "descripcion": "Programas escolares y comunitarios."
+        }
+      ],
+      "alternativas": [
+        {
+          "id": "agua",
+          "nombre": "Agua y saneamiento",
+          "puntaje": 5
+        },
+        {
+          "id": "empleo",
+          "nombre": "Empleo juvenil y emprendimiento",
+          "puntaje": 1
+        },
+        {
+          "id": "residuos",
+          "nombre": "Residuos y reciclaje",
+          "puntaje": 0
+        }
+      ],
+      "innovacion_declarada": "porque no hay automatización"
+    },
+    "fecha_registro": "2026-09-29T19:57:16"
   }
 ]
