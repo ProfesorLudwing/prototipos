@@ -1,1 +1,155 @@
-[]
+[
+  {
+    "id": "af4a9afe",
+    "nombre_equipo": "Mecalab",
+    "nombre_proyecto": "Energía y eficiencia en Falta Luminarias En El Exterior",
+    "problematica": "falta luminarias en el exterior",
+    "etapa_actual": "inicio",
+    "integrantes": [
+      {
+        "nombre": "Elena Saloma Cuatepotzo",
+        "escuela": "CBTIS 303"
+      },
+      {
+        "nombre": "Samai Mejía Hernández",
+        "escuela": "CBTIS 303"
+      },
+      {
+        "nombre": "Pamela Itzel Roldán Zárate",
+        "escuela": "CBTIS 303"
+      }
+    ],
+    "asesores": [
+      {
+        "nombre": "Ludwing Iturbe Ortiz",
+        "rol": "tecnico",
+        "cedula": ""
+      },
+      {
+        "nombre": "Asesor 2",
+        "rol": "metodologico",
+        "cedula": ""
+      }
+    ],
+    "modalidad": "prototipo",
+    "linea_proidet": {
+      "numero": 3,
+      "nombre": "Desarrollo Sustentable y Medio Ambiente"
+    },
+    "respuestas": [
+      {
+        "bloque": "inicio",
+        "pregunta": "¿Qué problema vieron en su comunidad?",
+        "respuesta": "falta luminarias en el exterior"
+      },
+      {
+        "bloque": "inicio",
+        "pregunta": "¿A quiénes afecta y desde cuándo?",
+        "respuesta": "a todos los alumnos y maestros"
+      },
+      {
+        "bloque": "inicio",
+        "pregunta": "¿Cómo se resuelve hoy ese problema?",
+        "respuesta": "cotización y compra de las lamparas"
+      },
+      {
+        "bloque": "inicio",
+        "pregunta": "¿Por qué la solución actual no es suficiente?",
+        "respuesta": "por que no hay nada"
+      },
+      {
+        "bloque": "inicio",
+        "pregunta": "¿Qué pasa si nadie lo resuelve en 5 años?",
+        "respuesta": "inseguridad, afecta el aprendizaje"
+      },
+      {
+        "bloque": "inicio",
+        "pregunta": "¿Qué proponen hacer?",
+        "respuesta": "cotizar, gestionar, comprar , instalar"
+      },
+      {
+        "bloque": "inicio",
+        "pregunta": "¿Por qué es innovador frente a lo que ya existe?",
+        "respuesta": "porque no hay nada"
+      },
+      {
+        "bloque": "inicio",
+        "pregunta": "¿Qué necesitan (materiales, personas, permiso, dinero)?",
+        "respuesta": "tubo, cable, lampara, control"
+      },
+      {
+        "bloque": "inicio",
+        "pregunta": "¿Cómo sabrán si funcionó?",
+        "respuesta": "se haria una evaluación"
+      }
+    ],
+    "propuesta": {
+      "dominio_id": "energia",
+      "dominio_nombre": "Energía y eficiencia",
+      "puntaje_coincidencia": 2,
+      "linea_proidet": {
+        "numero": 3,
+        "nombre": "Desarrollo Sustentable y Medio Ambiente"
+      },
+      "modalidades_sugeridas": [
+        "prototipo"
+      ],
+      "titulo_sugerido": "Energía limpia y eficiente en falta luminarias en el exterior",
+      "resumen": "En falta luminarias en el exterior identificamos un problema energético: falta luminarias en el exterior. Proponemos una solución enfocada en eficiencia, ahorro o energías renovables, alineada con compromisos globales de transición energética.",
+      "objetivo_general": "Mejorar el uso, ahorro o acceso a la energía en falta luminarias en el exterior.",
+      "objetivos_especificos": [
+        "Diagnosticar el consumo y las fuentes de energía actuales.",
+        "Diseñar una intervención de eficiencia, ahorro o renovables.",
+        "Medir el ahorro energético o el impacto logrado."
+      ],
+      "aliados": [
+        "CFE o autoridad energética local",
+        "Especialistas técnicos",
+        "Escuela y padres de familia",
+        "Proveedores de tecnología solar"
+      ],
+      "indicadores": [
+        "kWh ahorrados o generados",
+        "Porcentaje de reducción de consumo",
+        "Personas beneficiadas",
+        "Inversión recuperada"
+      ],
+      "riesgos": [
+        "Costo inicial elevado",
+        "Falta de mantenimiento",
+        "Tecnología poco accesible en la zona"
+      ],
+      "referencias_globales": [
+        {
+          "titulo": "ODS 7 — Energía asequible y no contaminante",
+          "url": "https://www.un.org/sustainabledevelopment/es/energy/",
+          "descripcion": "Metas globales de energía."
+        },
+        {
+          "titulo": "IRENA — Agencia Internacional de Energías Renovables",
+          "url": "https://www.irena.org/",
+          "descripcion": "Datos y casos globales de energías renovables."
+        }
+      ],
+      "alternativas": [
+        {
+          "id": "energia",
+          "nombre": "Energía y eficiencia",
+          "puntaje": 2
+        },
+        {
+          "id": "educacion",
+          "nombre": "Educación y aprendizaje",
+          "puntaje": 1
+        },
+        {
+          "id": "agua",
+          "nombre": "Agua y saneamiento",
+          "puntaje": 0
+        }
+      ],
+      "innovacion_declarada": "porque no hay nada"
+    },
+    "fecha_registro": "2026-09-29T19:50:38"
+  }
+]
