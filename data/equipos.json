@@ -305,5 +305,151 @@
       "innovacion_declarada": "porque no hay automatización"
     },
     "fecha_registro": "2026-09-29T19:57:16"
+  },
+  {
+    "id": "b92b1198",
+    "nombre_equipo": "Los jobs",
+    "nombre_proyecto": "Propuesta general de impacto comunitario en Tu Comunidad",
+    "problematica": "La falta de seguridad y de iluminación",
+    "etapa_actual": "inicio",
+    "integrantes": [
+      {
+        "nombre": "Joab abdiel Sanchez Garcia",
+        "escuela": "CBTIS 303"
+      },
+      {
+        "nombre": "Luis angel tzompantzi tecoapacho",
+        "escuela": "CBTIS 303"
+      },
+      {
+        "nombre": "Cristopher Ahuactzin Zarate",
+        "escuela": "CBTIS 303"
+      },
+      {
+        "nombre": "Karla Deniss Maza Zarate",
+        "escuela": "CBTIS 303"
+      }
+    ],
+    "asesores": [
+      {
+        "nombre": "Anel Hernadez Perez",
+        "rol": "tecnico",
+        "cedula": ""
+      },
+      {
+        "nombre": "Etna Aranzazu Velazquez Garcia",
+        "rol": "metodologico",
+        "cedula": ""
+      }
+    ],
+    "modalidad": "prototipo",
+    "linea_proidet": {
+      "numero": 5,
+      "nombre": "Desarrollo Humano, Social y Emocional"
+    },
+    "respuestas": [
+      {
+        "bloque": "inicio",
+        "pregunta": "¿Qué problema vieron en su comunidad?",
+        "respuesta": "La falta de seguridad y de iluminación"
+      },
+      {
+        "bloque": "inicio",
+        "pregunta": "¿A quiénes afecta y desde cuándo?",
+        "respuesta": "Afecta toda la comunidad"
+      },
+      {
+        "bloque": "inicio",
+        "pregunta": "¿Cómo se resuelve hoy ese problema?",
+        "respuesta": "Actualmente se resuelve a través de cámaras pero son muy ineficientes"
+      },
+      {
+        "bloque": "inicio",
+        "pregunta": "¿Por qué la solución actual no es suficiente?",
+        "respuesta": "Por la falta de iluminación ya que a simple vista las cámaras no pueden detectar las cosas bien"
+      },
+      {
+        "bloque": "inicio",
+        "pregunta": "¿Qué pasa si nadie lo resuelve en 5 años?",
+        "respuesta": "Pues  incrementaría la falta de seguridad"
+      },
+      {
+        "bloque": "inicio",
+        "pregunta": "¿Qué proponen hacer?",
+        "respuesta": "Proponemos hacer cámaras con sensor de movimiento asimismo se alumbraría la zona y tendría reconocimiento facial "
+      },
+      {
+        "bloque": "inicio",
+        "pregunta": "¿Por qué es innovador frente a lo que ya existe?",
+        "respuesta": "Por qué actualmente lo que es que está es muy difícil y siento que se puede mejorar"
+      },
+      {
+        "bloque": "inicio",
+        "pregunta": "¿Qué necesitan (materiales, personas, permiso, dinero)?",
+        "respuesta": "Principalmente serían cámaras permiso de las personas para probar el producto"
+      },
+      {
+        "bloque": "inicio",
+        "pregunta": "¿Cómo sabrán si funcionó?",
+        "respuesta": "Porque anteriormente lo hemos probado el producto con las personas "
+      }
+    ],
+    "propuesta": {
+      "dominio_id": "generico",
+      "dominio_nombre": "Propuesta general de impacto comunitario",
+      "puntaje_coincidencia": 0,
+      "linea_proidet": {
+        "numero": 5,
+        "nombre": "Desarrollo Humano, Social y Emocional"
+      },
+      "modalidades_sugeridas": [
+        "prototipo",
+        "emprendimiento"
+      ],
+      "titulo_sugerido": "Proyecto de innovación para tu comunidad",
+      "resumen": "El equipo detectó un problema en tu comunidad: La falta de seguridad y de iluminación. Proponemos una solución innovadora construida con recursos locales y con el objetivo de generar un impacto positivo y medible.",
+      "objetivo_general": "Diseñar y aplicar una solución al problema detectado en tu comunidad, con impacto comunitario y posibilidad de réplica.",
+      "objetivos_especificos": [
+        "Diagnosticar el problema con datos de la comunidad.",
+        "Diseñar una solución viable con los recursos disponibles.",
+        "Implementarla, medir resultados y ajustar lo necesario."
+      ],
+      "aliados": [
+        "Escuela y docentes",
+        "Padres de familia",
+        "Autoridades locales",
+        "Organizaciones de la sociedad civil"
+      ],
+      "indicadores": [
+        "Número de personas beneficiadas",
+        "Cambio medible en la situación inicial",
+        "Nivel de participación comunitaria"
+      ],
+      "riesgos": [
+        "Falta de recursos",
+        "Poca participación",
+        "Falta de continuidad"
+      ],
+      "referencias_globales": [],
+      "alternativas": [
+        {
+          "id": "agua",
+          "nombre": "Agua y saneamiento",
+          "puntaje": 0
+        },
+        {
+          "id": "residuos",
+          "nombre": "Residuos y reciclaje",
+          "puntaje": 0
+        },
+        {
+          "id": "movilidad",
+          "nombre": "Movilidad y transporte",
+          "puntaje": 0
+        }
+      ],
+      "innovacion_declarada": "Por qué actualmente lo que es que está es muy difícil y siento que se puede mejorar"
+    },
+    "fecha_registro": "2026-10-09T03:07:17"
   }
 ]
