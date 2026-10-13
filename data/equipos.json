@@ -605,5 +605,154 @@
       "innovacion_declarada": "Porque usamos tecnologías a nuestro favor para facilitar el proceso de pase de lista"
     },
     "fecha_registro": "2026-10-09T16:29:41"
+  },
+  {
+    "id": "75d9687e",
+    "nombre_equipo": "Los innovadores de la salud",
+    "nombre_proyecto": "GlucoNova",
+    "problematica": "Observamos que una gran cantidad de habitantes de nuestra comunidad padecen de diabetes y enfrentan dificultades constantes para el monitoreo de su glucosa debido a los métodos invasivos.",
+    "etapa_actual": "inicio",
+    "integrantes": [
+      {
+        "nombre": "Aldo Tecozahuatzi Tzontecomani",
+        "escuela": "CBTIS 303"
+      },
+      {
+        "nombre": "Diana Cristal Garza Rivera",
+        "escuela": "CBTIS 303"
+      },
+      {
+        "nombre": "Thania Hernández Tecuapacho",
+        "escuela": "CBTIS 303"
+      }
+    ],
+    "asesores": [
+      {
+        "nombre": "Julio César Flores Cuecuecha",
+        "rol": "tecnico",
+        "cedula": ""
+      }
+    ],
+    "modalidad": "prototipo",
+    "linea_proidet": {
+      "numero": 4,
+      "nombre": "Investigación en Ciencias de la Salud"
+    },
+    "respuestas": [
+      {
+        "bloque": "inicio",
+        "pregunta": "¿Qué problema vieron en su comunidad?",
+        "respuesta": "Observamos que una gran cantidad de habitantes de nuestra comunidad padecen de diabetes y enfrentan dificultades constantes para el monitoreo de su glucosa debido a los métodos invasivos."
+      },
+      {
+        "bloque": "inicio",
+        "pregunta": "¿A quiénes afecta y desde cuándo?",
+        "respuesta": "Esto afecta principalmente a la población adulta y de la tercera edad, siendo una problemática constante desde hace varios años."
+      },
+      {
+        "bloque": "inicio",
+        "pregunta": "¿Cómo se resuelve hoy ese problema?",
+        "respuesta": "Actualmente, el problema se resuelve mediante métodos invasivos, como punciones frecuentes en la piel."
+      },
+      {
+        "bloque": "inicio",
+        "pregunta": "¿Por qué la solución actual no es suficiente?",
+        "respuesta": "Porque la naturaleza invasiva del monitoreo causa dolor y estrés, lo que desmotiva a los pacientes a realizar las mediciones frecuentes y necesarias"
+      },
+      {
+        "bloque": "inicio",
+        "pregunta": "¿Qué pasa si nadie lo resuelve en 5 años?",
+        "respuesta": "Los pacientes seguirán sintiendo dolor e incomodidad por los métodos invasivos, lo que podría dificultar el monitoreo constante de sus niveles de glucosa."
+      },
+      {
+        "bloque": "inicio",
+        "pregunta": "¿Qué proponen hacer?",
+        "respuesta": "Proponemos crear un dispositivo portátil que pueda medir la glucosa sin utilizar métodos invasivos."
+      },
+      {
+        "bloque": "inicio",
+        "pregunta": "¿Por qué es innovador frente a lo que ya existe?",
+        "respuesta": "Es innovador porque busca ofrecer un monitoreo continuo, cómodo e indoloro, sin necesidad de realizar punciones frecuentes en la piel."
+      },
+      {
+        "bloque": "inicio",
+        "pregunta": "¿Qué necesitan (materiales, personas, permiso, dinero)?",
+        "respuesta": "Necesitamos piezas y componentes electrónicos para construir el primer prototipo, así como un equipo que nos ayude con el diseño, asesoría especializada, permisos necesarios y recursos económicos para desarrollar y probar el dispositivo."
+      },
+      {
+        "bloque": "inicio",
+        "pregunta": "¿Cómo sabrán si funcionó?",
+        "respuesta": "Haremos pruebas comparando el dispositivo con un método tradicional y evaluaremos que tan cómodo es"
+      }
+    ],
+    "propuesta": {
+      "dominio_id": "salud",
+      "dominio_nombre": "Salud comunitaria",
+      "puntaje_coincidencia": 3,
+      "linea_proidet": {
+        "numero": 4,
+        "nombre": "Investigación en Ciencias de la Salud"
+      },
+      "modalidades_sugeridas": [
+        "prototipo",
+        "emprendimiento"
+      ],
+      "titulo_sugerido": "Salud y bienestar en tu comunidad",
+      "resumen": "El equipo detectó en tu comunidad un problema de salud: Observamos que una gran cantidad de habitantes de nuestra comunidad padecen de diabetes y enfrentan dificultades constantes para el monitoreo de su glucosa debido a los métodos invasivos. Proponemos una intervención preventiva y comunitaria, con enfoque en educación, detección temprana o acceso a servicios, tomando experiencias internacionales como referencia.",
+      "objetivo_general": "Mejorar el bienestar y la prevención en salud en tu comunidad.",
+      "objetivos_especificos": [
+        "Diagnosticar las principales problemáticas de salud en la comunidad.",
+        "Diseñar una campaña o intervención preventiva.",
+        "Medir el impacto en conocimiento, hábitos o acceso a servicios."
+      ],
+      "aliados": [
+        "Centro de salud o clínica local",
+        "Jurisdicción sanitaria",
+        "Padres de familia y docentes",
+        "Organizaciones juveniles o de salud"
+      ],
+      "indicadores": [
+        "Número de personas informadas o atendidas",
+        "Cambio en hábitos reportados",
+        "Casos detectados a tiempo",
+        "Nivel de satisfacción de los beneficiarios"
+      ],
+      "riesgos": [
+        "Desconfianza de la comunidad",
+        "Falta de personal médico",
+        "Seguimiento limitado en el tiempo"
+      ],
+      "referencias_globales": [
+        {
+          "titulo": "ODS 3 — Salud y bienestar",
+          "url": "https://www.un.org/sustainabledevelopment/es/health/",
+          "descripcion": "Metas globales de salud."
+        },
+        {
+          "titulo": "OPS — Salud en las Américas",
+          "url": "https://www.paho.org/es",
+          "descripcion": "Programas regionales de salud comunitaria."
+        }
+      ],
+      "alternativas": [
+        {
+          "id": "salud",
+          "nombre": "Salud comunitaria",
+          "puntaje": 3
+        },
+        {
+          "id": "inclusion",
+          "nombre": "Inclusión y discapacidad",
+          "puntaje": 1
+        },
+        {
+          "id": "agua",
+          "nombre": "Agua y saneamiento",
+          "puntaje": 0
+        }
+      ],
+      "innovacion_declarada": "Es innovador porque busca ofrecer un monitoreo continuo, cómodo e indoloro, sin necesidad de realizar punciones frecuentes en la piel."
+    },
+    "fecha_registro": "2026-10-13T18:55:35"
   }
 ]
