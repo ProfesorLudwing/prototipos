@@ -754,5 +754,150 @@
       "innovacion_declarada": "Es innovador porque busca ofrecer un monitoreo continuo, cómodo e indoloro, sin necesidad de realizar punciones frecuentes en la piel."
     },
     "fecha_registro": "2026-10-13T18:55:35"
+  },
+  {
+    "id": "228059cd",
+    "nombre_equipo": "Ludwing Iturbe Ortiz",
+    "nombre_proyecto": "Empleo juvenil y emprendimiento en Tu Comunidad",
+    "problematica": "Los alumnos esperan a revisar su avance hasta que ya va a termianr el parcial, entonces los jovenes que por la edad aun no desarrollan esa responsabilidad y reprueban o bajan su calificación.",
+    "etapa_actual": "inicio",
+    "integrantes": [
+      {
+        "nombre": "Ludwing Iturbe Ortiz",
+        "escuela": "CBTIS 303"
+      }
+    ],
+    "asesores": [
+      {
+        "nombre": "Ludwing Iturbe OrtiZ",
+        "rol": "tecnico",
+        "cedula": ""
+      },
+      {
+        "nombre": "Asesor 2",
+        "rol": "metodologico",
+        "cedula": ""
+      }
+    ],
+    "modalidad": "prototipo",
+    "linea_proidet": {
+      "numero": 5,
+      "nombre": "Desarrollo Humano, Social y Emocional"
+    },
+    "respuestas": [
+      {
+        "bloque": "inicio",
+        "pregunta": "¿Qué problema vieron en su comunidad?",
+        "respuesta": "Los alumnos esperan a revisar su avance hasta que ya va a termianr el parcial, entonces los jovenes que por la edad aun no desarrollan esa responsabilidad y reprueban o bajan su calificación."
+      },
+      {
+        "bloque": "inicio",
+        "pregunta": "¿A quiénes afecta y desde cuándo?",
+        "respuesta": "A los alumnos porque bajan su calificación. A los maestros porque el sistema te pide que les des hasta la ultima oportunidad hasta el ultimo día entonces es mas dificil recordar las tareas que les faltan a cada alumno"
+      },
+      {
+        "bloque": "inicio",
+        "pregunta": "¿Cómo se resuelve hoy ese problema?",
+        "respuesta": "los maestros llevan un registro y los alumnos esperan un milagro para que aparezcan sus tareas registradas o hacen trampa para entregar todo a tiempo"
+      },
+      {
+        "bloque": "inicio",
+        "pregunta": "¿Por qué la solución actual no es suficiente?",
+        "respuesta": "Es desgastante para amabas partes y no ayuda a crear esa responsabilidad en tiempo y forma"
+      },
+      {
+        "bloque": "inicio",
+        "pregunta": "¿Qué pasa si nadie lo resuelve en 5 años?",
+        "respuesta": "habrá un conflicto porque a los maestros ahora se les exige que pasen a los alumnos y los alumnos toman sus derechos pero no sus responsabilidades, y como resultad tendran calificaciones aproebatorias pero sin crear buenos hábitos"
+      },
+      {
+        "bloque": "inicio",
+        "pregunta": "¿Qué proponen hacer?",
+        "respuesta": "Una pagina donde el docente suba el estatus de sus alumnos en excel y la pagina lo adapte al formato de la pagina y puedan mostrar a los alumnos su estatus en la materia, todo de manera confidecial porque se manejará un sistema de contraseñas"
+      },
+      {
+        "bloque": "inicio",
+        "pregunta": "¿Por qué es innovador frente a lo que ya existe?",
+        "respuesta": "porque no hay un estandar de como mostrar el avance a los alumnos"
+      },
+      {
+        "bloque": "inicio",
+        "pregunta": "¿Qué necesitan (materiales, personas, permiso, dinero)?",
+        "respuesta": "permisos y avisos de privacidad, coputadora y capacitación para los maestros"
+      },
+      {
+        "bloque": "inicio",
+        "pregunta": "¿Cómo sabrán si funcionó?",
+        "respuesta": "Los alumnos podran aumentar su responsabilidad verificacndo periodicamente su avance asi como revisan sus redes sociales"
+      }
+    ],
+    "propuesta": {
+      "dominio_id": "empleo",
+      "dominio_nombre": "Empleo juvenil y emprendimiento",
+      "puntaje_coincidencia": 2,
+      "linea_proidet": {
+        "numero": 5,
+        "nombre": "Desarrollo Humano, Social y Emocional"
+      },
+      "modalidades_sugeridas": [
+        "emprendimiento"
+      ],
+      "titulo_sugerido": "Oportunidades económicas para jóvenes en tu comunidad",
+      "resumen": "En tu comunidad detectamos un problema de empleo o emprendimiento: Los alumnos esperan a revisar su avance hasta que ya va a termianr el parcial, entonces los jovenes que por la edad aun no desarrollan esa responsabilidad y reprueban o bajan su calificación. Proponemos una intervención que genere ingresos, habilidades o autoempleo entre los jóvenes, inspirada en modelos globales de inclusión económica juvenil.",
+      "objetivo_general": "Mejorar las oportunidades económicas de los jóvenes en tu comunidad.",
+      "objetivos_especificos": [
+        "Diagnosticar las barreras de empleo o emprendimiento.",
+        "Diseñar una intervención productiva, formativa o de vinculación.",
+        "Medir ingresos, habilidades o empleos generados."
+      ],
+      "aliados": [
+        "Empresas locales y cámaras de comercio",
+        "Autoridades de fomento económico",
+        "Instituciones educativas",
+        "Organizaciones juveniles y de emprendimiento"
+      ],
+      "indicadores": [
+        "Número de jóvenes capacitados",
+        "Ingresos generados",
+        "Negocios o proyectos iniciados",
+        "Alianzas con empresas logradas"
+      ],
+      "riesgos": [
+        "Falta de capital semilla",
+        "Poco mercado para los productos",
+        "Abandono por bajos ingresos iniciales"
+      ],
+      "referencias_globales": [
+        {
+          "titulo": "ODS 8 — Trabajo decente y crecimiento económico",
+          "url": "https://www.un.org/sustainabledevelopment/es/economic-growth/",
+          "descripcion": "Metas globales de empleo juvenil."
+        },
+        {
+          "titulo": "OIT — Empleo juvenil",
+          "url": "https://www.ilo.org/es/temas/empleo-juvenil",
+          "descripcion": "Programas globales de empleabilidad juvenil."
+        }
+      ],
+      "alternativas": [
+        {
+          "id": "empleo",
+          "nombre": "Empleo juvenil y emprendimiento",
+          "puntaje": 2
+        },
+        {
+          "id": "educacion",
+          "nombre": "Educación y aprendizaje",
+          "puntaje": 1
+        },
+        {
+          "id": "convivencia",
+          "nombre": "Violencia y convivencia escolar",
+          "puntaje": 1
+        }
+      ],
+      "innovacion_declarada": "porque no hay un estandar de como mostrar el avance a los alumnos"
+    },
+    "fecha_registro": "2026-10-15T19:08:49"
   }
 ]
