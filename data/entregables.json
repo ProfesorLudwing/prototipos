@@ -53,5 +53,16 @@
     "estado": "pendiente",
     "archivo_pdf": null,
     "fecha_entrega": null
+  },
+  {
+    "id": "a5fd36e9",
+    "equipo_id": "228059cd",
+    "etapa": "cierre",
+    "titulo": "9. Trámites nacionales",
+    "descripcion": "Publicación de aceptados, actualización final en SIGPE, carga documental definitiva y atención a observaciones ANIDET.",
+    "fecha_limite": "2027-05-26",
+    "estado": "pendiente",
+    "archivo_pdf": null,
+    "fecha_entrega": null
   }
 ]
