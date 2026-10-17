@@ -44,12 +44,12 @@
     "fecha_entrega": null
   },
   {
-    "id": "c12ff4c2",
+    "id": "7d563ce5",
     "equipo_id": "228059cd",
     "etapa": "desarrollo",
-    "titulo": "7. Carga de actas",
-    "descripcion": "Carga en el SIGPE de los PDF firmados: Acta de Apertura, Acta de Cierre y Anexo B de Puntajes.",
-    "fecha_limite": "2027-01-09",
+    "titulo": "8. Fase estatal",
+    "descripcion": "Evaluación estatal y compilación del expediente digital (FOREG, FOAPA, FOCOMO, FOAS, Informe Técnico y Carpeta Documental). Tramitar formato FOACT si hay cambios de integrantes.",
+    "fecha_limite": "2027-03-20",
     "estado": "pendiente",
     "archivo_pdf": null,
     "fecha_entrega": null
