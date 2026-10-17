@@ -11,23 +11,34 @@
     "fecha_entrega": null
   },
   {
-    "id": "a5bba7eb",
+    "id": "fdc51561",
     "equipo_id": "228059cd",
     "etapa": "inicio",
-    "titulo": "3. Enfoque, ética y línea PROIDET",
-    "descripcion": "Vinculación con un problema real / PAEC, selección de la línea PROIDET y elaboración y firma del Formato de Compromiso de Ética y Originalidad (FOCOMO).",
-    "fecha_limite": "2026-10-31",
+    "titulo": "2. Asignación de asesor",
+    "descripcion": "Designación del docente asesor (técnico y metodológico). Verificar constancia del curso o taller de metodología de investigación (2025 o 2026).",
+    "fecha_limite": "2026-10-25",
     "estado": "pendiente",
     "archivo_pdf": null,
     "fecha_entrega": null
   },
   {
-    "id": "caf2fead",
+    "id": "954f6536",
     "equipo_id": "228059cd",
     "etapa": "desarrollo",
-    "titulo": "5. Cédulas oficiales (FOREG)",
-    "descripcion": "Descarga del formato impreso oficial FOREG con el folio asignado por el sistema SIGPE.",
-    "fecha_limite": "2026-11-24",
+    "titulo": "4. Registro en SIGPE",
+    "descripcion": "Conclusión del borrador del Informe Técnico y la Bitácora de trabajo. Inserción de los datos en la plataforma oficial SIGPE.",
+    "fecha_limite": "2026-11-21",
+    "estado": "pendiente",
+    "archivo_pdf": null,
+    "fecha_entrega": null
+  },
+  {
+    "id": "173abd77",
+    "equipo_id": "228059cd",
+    "etapa": "desarrollo",
+    "titulo": "6. Evaluación local",
+    "descripcion": "Realización del certamen en el plantel evaluado por 3 jurados por proyecto. Puntaje mínimo de acreditación: 80 puntos.",
+    "fecha_limite": "2026-12-19",
     "estado": "pendiente",
     "archivo_pdf": null,
     "fecha_entrega": null
