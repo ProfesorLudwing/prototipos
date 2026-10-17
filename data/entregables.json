@@ -42,5 +42,16 @@
     "estado": "pendiente",
     "archivo_pdf": null,
     "fecha_entrega": null
+  },
+  {
+    "id": "c12ff4c2",
+    "equipo_id": "228059cd",
+    "etapa": "desarrollo",
+    "titulo": "7. Carga de actas",
+    "descripcion": "Carga en el SIGPE de los PDF firmados: Acta de Apertura, Acta de Cierre y Anexo B de Puntajes.",
+    "fecha_limite": "2027-01-09",
+    "estado": "pendiente",
+    "archivo_pdf": null,
+    "fecha_entrega": null
   }
 ]
