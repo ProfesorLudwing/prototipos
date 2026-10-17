@@ -1,1 +1,13 @@
-[]
+[
+  {
+    "id": "9b1c75d7",
+    "equipo_id": "228059cd",
+    "etapa": "inicio",
+    "titulo": "1. Conformación del equipo y modalidad",
+    "descripcion": "Integración del equipo (1 a 4 estudiantes), definición de la modalidad (Prototipo o Emprendimiento) y registro interno en el plantel.",
+    "fecha_limite": "2026-10-10",
+    "estado": "pendiente",
+    "archivo_pdf": null,
+    "fecha_entrega": null
+  }
+]
