@@ -9,5 +9,16 @@
     "estado": "pendiente",
     "archivo_pdf": null,
     "fecha_entrega": null
+  },
+  {
+    "id": "fdc51561",
+    "equipo_id": "228059cd",
+    "etapa": "inicio",
+    "titulo": "2. Asignación de asesor",
+    "descripcion": "Designación del docente asesor (técnico y metodológico). Verificar constancia del curso o taller de metodología de investigación (2025 o 2026).",
+    "fecha_limite": "2026-10-25",
+    "estado": "pendiente",
+    "archivo_pdf": null,
+    "fecha_entrega": null
   }
 ]
