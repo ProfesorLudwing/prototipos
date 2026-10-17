@@ -64,5 +64,16 @@
     "estado": "pendiente",
     "archivo_pdf": null,
     "fecha_entrega": null
+  },
+  {
+    "id": "d919440b",
+    "equipo_id": "228059cd",
+    "etapa": "cierre",
+    "titulo": "10. Evento nacional",
+    "descripcion": "Asistencia presencial (máximo 2 alumnos autores y 1 asesor docente), montaje de stand, exposición ante jurados nacionales y ceremonia de premiación.",
+    "fecha_limite": "2027-06-25",
+    "estado": "pendiente",
+    "archivo_pdf": null,
+    "fecha_entrega": null
   }
 ]
