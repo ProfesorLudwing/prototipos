@@ -1,18 +1,13 @@
 """
 auth.py — Identificación simple para 'prototipos'.
-No hay usuarios con contraseña propios; solo:
-  - Tutor (tú): entra con la contraseña definida en config.py
-  - Alumno: entra escribiendo su nombre
-Guarda la sesión en st.session_state para no pedirla en cada rerun.
+Maneja el inicio de sesión de alumnos y tutores.
 """
 import streamlit as st
 
 import config
 import db
 
-
 CLAVE_SESION = "usuario_actual"
-
 
 # ============================================================
 # API principal
@@ -21,11 +16,9 @@ def usuario_actual():
     """Devuelve el usuario en sesión o None."""
     return st.session_state.get(CLAVE_SESION)
 
-
 def cerrar_sesion():
     """Elimina la sesión actual."""
     st.session_state.pop(CLAVE_SESION, None)
-
 
 def pantalla_login():
     """
@@ -49,16 +42,11 @@ def pantalla_login():
     # Pestaña Alumno
     # ============================================================
     with tab_alumno:
-        st.caption(
-            "Escribe tu nombre tal como lo vas a usar en tu equipo. "
-            "Si ya estás registrado, te llevamos directo a tu proyecto."
-        )
+        st.caption("Escribe tu nombre. Si ya estás registrado, te llevamos a tu proyecto.")
+        
+        # El uso de st.form permite que al presionar "Enter" en el teclado se envíe.
         with st.form("form_login_alumno", clear_on_submit=False):
-            nombre = st.text_input(
-                "Tu nombre",
-                placeholder="Ej. Ana López",
-                max_chars=60,
-            )
+            nombre = st.text_input("Tu nombre", placeholder="Ej. Ana López", max_chars=60)
             enviado = st.form_submit_button("Entrar", use_container_width=True)
 
         if enviado:
@@ -78,27 +66,20 @@ def pantalla_login():
     # Pestaña Tutor
     # ============================================================
     with tab_tutor:
-        st.caption(
-            "Acceso reservado para el tutor del proyecto. "
-            "Aquí puedes publicar avisos, subir documentos oficiales "
-            "y ver el avance de todos los equipos."
-        )
+        st.caption("Acceso reservado para el tutor del proyecto.")
+        
         with st.form("form_login_tutor", clear_on_submit=False):
             pwd = st.text_input("Contraseña", type="password")
             enviado_t = st.form_submit_button("Entrar como tutor", use_container_width=True)
 
         if enviado_t:
             if pwd == config.PASSWORD_TUTOR:
-                st.session_state[CLAVE_SESION] = {
-                    "rol": "tutor",
-                    "nombre": "Tutor",
-                }
+                st.session_state[CLAVE_SESION] = {"rol": "tutor", "nombre": "Tutor"}
                 st.rerun()
             else:
                 st.error("Contraseña incorrecta.")
 
     return usuario_actual()
-
 
 # ============================================================
 # Helpers de conveniencia
@@ -107,20 +88,15 @@ def es_tutor() -> bool:
     u = usuario_actual()
     return bool(u and u.get("rol") == "tutor")
 
-
 def es_alumno() -> bool:
     u = usuario_actual()
     return bool(u and u.get("rol") == "alumno")
-
 
 def nombre_actual() -> str:
     u = usuario_actual()
     return u["nombre"] if u else ""
 
-
 def equipo_id_actual():
-    """Devuelve el id del equipo del alumno, o None si aún no tiene."""
     u = usuario_actual()
-    if not u or u.get("rol") != "alumno":
-        return None
+    if not u or u.get("rol") != "alumno": return None
     return u.get("equipo_id")
