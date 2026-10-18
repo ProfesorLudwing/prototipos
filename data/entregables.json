@@ -6,9 +6,13 @@
     "titulo": "1. Conformación de equipos y asignación de asesores",
     "descripcion": "Integración de equipos (1 a 4 miembros) en Prototipos o Emprendimiento. Asignación de la pareja de asesores obligatoria (Técnico y Metodológico). (14 al 18 de Octubre)",
     "fecha_limite": "2026-10-18",
-    "estado": "pendiente",
-    "archivos_pdf": [],
-    "fecha_entrega": null
+    "estado": "entregado",
+    "archivos_pdf": [
+      "data/entregas/96cc4fc5_085714_reporte.pdf",
+      "data/entregas/96cc4fc5_085716_3._FOCOMO_(1).docx",
+      "data/entregas/96cc4fc5_085718_CONVOCATORIA_CNP_y_PE_2026.pdf"
+    ],
+    "fecha_entrega": "2026-10-18T08:57:21"
   },
   {
     "id": "af48671c",
