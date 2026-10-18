@@ -1,1 +1,79 @@
-[]
+[
+  {
+    "id": "9b1c75d7",
+    "equipo_id": "228059cd",
+    "etapa": "inicio",
+    "titulo": "1. Conformación del equipo y modalidad",
+    "descripcion": "Integración del equipo (1 a 4 estudiantes), definición de la modalidad (Prototipo o Emprendimiento) y registro interno en el plantel.",
+    "fecha_limite": "2026-10-10",
+    "estado": "pendiente",
+    "archivo_pdf": null,
+    "fecha_entrega": null
+  },
+  {
+    "id": "fdc51561",
+    "equipo_id": "228059cd",
+    "etapa": "inicio",
+    "titulo": "2. Asignación de asesor",
+    "descripcion": "Designación del docente asesor (técnico y metodológico). Verificar constancia del curso o taller de metodología de investigación (2025 o 2026).",
+    "fecha_limite": "2026-10-25",
+    "estado": "pendiente",
+    "archivo_pdf": null,
+    "fecha_entrega": null
+  },
+  {
+    "id": "954f6536",
+    "equipo_id": "228059cd",
+    "etapa": "desarrollo",
+    "titulo": "4. Registro en SIGPE",
+    "descripcion": "Conclusión del borrador del Informe Técnico y la Bitácora de trabajo. Inserción de los datos en la plataforma oficial SIGPE.",
+    "fecha_limite": "2026-11-21",
+    "estado": "pendiente",
+    "archivo_pdf": null,
+    "fecha_entrega": null
+  },
+  {
+    "id": "173abd77",
+    "equipo_id": "228059cd",
+    "etapa": "desarrollo",
+    "titulo": "6. Evaluación local",
+    "descripcion": "Realización del certamen en el plantel evaluado por 3 jurados por proyecto. Puntaje mínimo de acreditación: 80 puntos.",
+    "fecha_limite": "2026-12-19",
+    "estado": "pendiente",
+    "archivo_pdf": null,
+    "fecha_entrega": null
+  },
+  {
+    "id": "7d563ce5",
+    "equipo_id": "228059cd",
+    "etapa": "desarrollo",
+    "titulo": "8. Fase estatal",
+    "descripcion": "Evaluación estatal y compilación del expediente digital (FOREG, FOAPA, FOCOMO, FOAS, Informe Técnico y Carpeta Documental). Tramitar formato FOACT si hay cambios de integrantes.",
+    "fecha_limite": "2027-03-20",
+    "estado": "pendiente",
+    "archivo_pdf": null,
+    "fecha_entrega": null
+  },
+  {
+    "id": "a5fd36e9",
+    "equipo_id": "228059cd",
+    "etapa": "cierre",
+    "titulo": "9. Trámites nacionales",
+    "descripcion": "Publicación de aceptados, actualización final en SIGPE, carga documental definitiva y atención a observaciones ANIDET.",
+    "fecha_limite": "2027-05-26",
+    "estado": "pendiente",
+    "archivo_pdf": null,
+    "fecha_entrega": null
+  },
+  {
+    "id": "d919440b",
+    "equipo_id": "228059cd",
+    "etapa": "cierre",
+    "titulo": "10. Evento nacional",
+    "descripcion": "Asistencia presencial (máximo 2 alumnos autores y 1 asesor docente), montaje de stand, exposición ante jurados nacionales y ceremonia de premiación.",
+    "fecha_limite": "2027-06-25",
+    "estado": "pendiente",
+    "archivo_pdf": null,
+    "fecha_entrega": null
+  }
+]
