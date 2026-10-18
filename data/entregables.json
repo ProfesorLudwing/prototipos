@@ -64,5 +64,16 @@
     "estado": "pendiente",
     "archivo_pdf": null,
     "fecha_entrega": null
+  },
+  {
+    "id": "eaca8b5f",
+    "equipo_id": "228059cd",
+    "etapa": "cierre",
+    "titulo": "10. Evento Presencial Fase Nacional",
+    "descripcion": "Asistencia de hasta 2 alumnos autores y 1 asesor docente autorizado para montaje de stand, evaluación nacional y premiación. (21 al 25 de Junio)",
+    "fecha_limite": "2027-06-25",
+    "estado": "pendiente",
+    "archivo_pdf": null,
+    "fecha_entrega": null
   }
 ]
