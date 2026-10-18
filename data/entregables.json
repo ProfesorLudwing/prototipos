@@ -11,12 +11,12 @@
     "fecha_entrega": null
   },
   {
-    "id": "d12ee61c",
+    "id": "3065986c",
     "equipo_id": "228059cd",
-    "etapa": "inicio",
-    "titulo": "2. Línea PROIDET y Formatos Iniciales",
-    "descripcion": "Selección de la línea de investigación (Anexo A). Llenado de formatos base: FOAS (con cédulas), FOCOMO (Ética) y FOAPA (Academia). (19 al 21 de Octubre)",
-    "fecha_limite": "2026-10-21",
+    "etapa": "desarrollo",
+    "titulo": "3. MUESTRA 1 (25% de Avance)",
+    "descripcion": "Entrega del Protocolo Inicial de Investigación (planteamiento, hipótesis, objetivos) + formatos firmados FOAS, FOCOMO y FOAPA tramitado. (22 de Octubre)",
+    "fecha_limite": "2026-10-22",
     "estado": "pendiente",
     "archivo_pdf": null,
     "fecha_entrega": null
