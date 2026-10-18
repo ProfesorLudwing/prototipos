@@ -1,1 +1,13 @@
-[]
+[
+  {
+    "id": "5fd0cb1a",
+    "equipo_id": "228059cd",
+    "etapa": "inicio",
+    "titulo": "1. Conformación de equipos y asignación de asesores",
+    "descripcion": "Integración de equipos (1 a 4 miembros) en Prototipos o Emprendimiento. Asignación de la pareja de asesores obligatoria (Técnico y Metodológico). (14 al 18 de Octubre)",
+    "fecha_limite": "2026-10-18",
+    "estado": "pendiente",
+    "archivo_pdf": null,
+    "fecha_entrega": null
+  }
+]
