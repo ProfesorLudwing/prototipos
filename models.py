@@ -1,20 +1,17 @@
 """
 models.py — Entidades de la app 'prototipos'.
-Cada clase representa un objeto que se guarda como JSON en data/.
-No contiene lógica de negocio, solo estructura de datos.
+Define las clases que se convierten a JSON y se guardan en GitHub.
 """
 from dataclasses import dataclass, field, asdict
 from datetime import datetime
 from typing import List, Optional
 
-
 def _ahora() -> str:
-    """Devuelve la fecha/hora actual en formato ISO (ordenable)."""
+    """Devuelve la fecha y hora actual en formato ISO (ej. 2026-10-18T12:00:00)."""
     return datetime.now().isoformat(timespec="seconds")
 
-
 # ============================================================
-# Integrante — un estudiante dentro de un equipo
+# Clase Integrante: Un alumno dentro del equipo.
 # ============================================================
 @dataclass
 class Integrante:
@@ -23,51 +20,37 @@ class Integrante:
 
     @classmethod
     def from_dict(cls, d: dict) -> "Integrante":
-        return cls(
-            nombre=d.get("nombre", ""),
-            escuela=d.get("escuela", "CBTIS 303"),
-        )
-
+        """Convierte un diccionario de JSON a un objeto Integrante."""
+        return cls(nombre=d.get("nombre", ""), escuela=d.get("escuela", "CBTIS 303"))
 
 # ============================================================
-# Asesor — un docente que guía al equipo
-# rol: "tecnico" | "metodologico" | "ambos"
+# Clase Asesor: Docente que guía al equipo (técnico o metodológico).
 # ============================================================
 @dataclass
 class Asesor:
     nombre: str
-    rol: str = "ambos"
+    rol: str = "ambos"  # Puede ser: "tecnico", "metodologico" o "ambos"
     cedula: str = ""
 
     @classmethod
     def from_dict(cls, d: dict) -> "Asesor":
-        return cls(
-            nombre=d.get("nombre", ""),
-            rol=d.get("rol", "ambos"),
-            cedula=d.get("cedula", ""),
-        )
-
+        return cls(nombre=d.get("nombre", ""), rol=d.get("rol", "ambos"), cedula=d.get("cedula", ""))
 
 # ============================================================
-# Respuesta — una respuesta del cuestionario guiado
+# Clase Respuesta: Guarda lo que el alumno contestó en el cuestionario.
 # ============================================================
 @dataclass
 class Respuesta:
-    bloque: str      # "inicio" | "desarrollo" | "cierre"
+    bloque: str      # "inicio", "desarrollo" o "cierre"
     pregunta: str
     respuesta: str
 
     @classmethod
     def from_dict(cls, d: dict) -> "Respuesta":
-        return cls(
-            bloque=d.get("bloque", ""),
-            pregunta=d.get("pregunta", ""),
-            respuesta=d.get("respuesta", ""),
-        )
-
+        return cls(bloque=d.get("bloque", ""), pregunta=d.get("pregunta", ""), respuesta=d.get("respuesta", ""))
 
 # ============================================================
-# Equipo — un equipo con su proyecto
+# Clase Equipo: Contiene todos los datos de un proyecto.
 # ============================================================
 @dataclass
 class Equipo:
@@ -85,10 +68,12 @@ class Equipo:
     fecha_registro: str = field(default_factory=_ahora)
 
     def to_dict(self) -> dict:
+        """Convierte el objeto a un diccionario para guardarlo en JSON."""
         return asdict(self)
 
     @classmethod
     def from_dict(cls, d: dict) -> "Equipo":
+        """Reconstruye un objeto Equipo a partir del JSON de GitHub."""
         return cls(
             id=d["id"],
             nombre_equipo=d.get("nombre_equipo", ""),
@@ -104,37 +89,20 @@ class Equipo:
             fecha_registro=d.get("fecha_registro", _ahora()),
         )
 
-    def nombres_integrantes(self) -> List[str]:
-        return [i.nombre for i in self.integrantes]
-
-    def nombres_asesores(self) -> List[str]:
-        return [a.nombre for a in self.asesores]
-
-    def etiqueta_asesores(self) -> str:
-        """Texto resumido para mostrar en UI."""
-        if not self.asesores:
-            return "(sin asesores)"
-        if len(self.asesores) == 1:
-            a = self.asesores[0]
-            if a.rol == "ambos":
-                return f"{a.nombre} (técnico y metodológico)"
-            return f"{a.nombre} ({a.rol})"
-        return " + ".join(a.nombre for a in self.asesores)
-
-
 # ============================================================
-# Entregable — un PDF que el equipo debe subir
+# Clase Entregable: Tareas o documentos que el equipo debe subir.
 # ============================================================
 @dataclass
 class Entregable:
     id: str
     equipo_id: str
-    etapa: str                    # "inicio" | "desarrollo" | "cierre"
+    etapa: str
     titulo: str
     descripcion: str
-    fecha_limite: str             # ISO
-    estado: str = "pendiente"     # "pendiente" | "entregado"
-    archivo_pdf: Optional[str] = None
+    fecha_limite: str
+    estado: str = "pendiente"
+    # AHORA ES UNA LISTA: Permite guardar varios archivos por entregable
+    archivos_pdf: List[str] = field(default_factory=list) 
     fecha_entrega: Optional[str] = None
 
     def to_dict(self) -> dict:
@@ -142,6 +110,13 @@ class Entregable:
 
     @classmethod
     def from_dict(cls, d: dict) -> "Entregable":
+        """Reconstruye el entregable. Incluye un parche para datos viejos."""
+        # Parche de compatibilidad: Si el JSON viejo tiene "archivo_pdf" (singular), 
+        # lo metemos en la lista "archivos_pdf" (plural) para no perder el archivo.
+        archivos = d.get("archivos_pdf", [])
+        if not archivos and d.get("archivo_pdf"):
+            archivos = [d["archivo_pdf"]]
+
         return cls(
             id=d["id"],
             equipo_id=d["equipo_id"],
@@ -150,13 +125,12 @@ class Entregable:
             descripcion=d.get("descripcion", ""),
             fecha_limite=d.get("fecha_limite", ""),
             estado=d.get("estado", "pendiente"),
-            archivo_pdf=d.get("archivo_pdf"),
+            archivos_pdf=archivos,
             fecha_entrega=d.get("fecha_entrega"),
         )
 
-
 # ============================================================
-# Aviso — mensaje público que solo el tutor publica
+# Clase Aviso: Mensajes del tutor para todos los equipos.
 # ============================================================
 @dataclass
 class Aviso:
@@ -170,9 +144,4 @@ class Aviso:
 
     @classmethod
     def from_dict(cls, d: dict) -> "Aviso":
-        return cls(
-            id=d["id"],
-            titulo=d.get("titulo", ""),
-            contenido=d.get("contenido", ""),
-            fecha=d.get("fecha", _ahora()),
-        )
+        return cls(id=d["id"], titulo=d.get("titulo", ""), contenido=d.get("contenido", ""), fecha=d.get("fecha", _ahora()))
