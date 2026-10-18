@@ -31,5 +31,16 @@
     "estado": "pendiente",
     "archivo_pdf": null,
     "fecha_entrega": null
+  },
+  {
+    "id": "32b13edd",
+    "equipo_id": "228059cd",
+    "etapa": "desarrollo",
+    "titulo": "6. MUESTRA 4 (100% Cierre de Expediente)",
+    "descripcion": "Verificación final del expediente digital: FOREG, FOAPA, FOCOMO, FOAS, ...INFORME (PDF técnico final) y ...DOCUMENTOS (Bitácora, Manuales, Cartel). (26 de Noviembre)",
+    "fecha_limite": "2026-11-26",
+    "estado": "pendiente",
+    "archivo_pdf": null,
+    "fecha_entrega": null
   }
 ]
