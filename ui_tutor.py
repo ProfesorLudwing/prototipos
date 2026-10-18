@@ -1,5 +1,6 @@
 """
 ui_tutor.py — Vista del tutor (admin) en 'prototipos'.
+Gestiona equipos, entregables (automáticos y manuales), documentos y avisos.
 """
 import os
 from datetime import date, timedelta
@@ -19,7 +20,10 @@ def render(usuario: dict):
     st.subheader("🧑‍🏫 Panel del tutor")
     st.caption(f"Administración de proyectos · {config.ESCUELA}")
     st.divider()
-    tab1, tab2, tab3, tab4, tab5 = st.tabs(["📊 Resumen", "👥 Equipos", "📤 Entregables", "📚 Documentos", "📢 Avisos"])
+    
+    tab1, tab2, tab3, tab4, tab5 = st.tabs([
+        "📊 Resumen", "👥 Equipos", "📤 Entregables", "📚 Documentos", "📢 Avisos"
+    ])
     with tab1: _tab_resumen()
     with tab2: _tab_equipos()
     with tab3: _tab_entregables()
@@ -69,11 +73,15 @@ def _tab_equipos():
     equipos = db.get_equipos()
     if not equipos: 
         mensaje_vacio("👥", "No hay equipos."); return
+        
     for eq in equipos:
         with st.expander(f"🚀 {eq.nombre_equipo} — {eq.nombre_proyecto}"):
-            if st.session_state.get("eliminando") == eq.id: _vista_borrar(eq)
-            elif st.session_state.get("editando") == eq.id: _vista_editar(eq)
-            else: _vista_ver(eq)
+            if st.session_state.get("eliminando") == eq.id: 
+                _vista_borrar(eq)
+            elif st.session_state.get("editando") == eq.id: 
+                _vista_editar(eq)
+            else: 
+                _vista_ver(eq)
 
 def _vista_ver(eq):
     """Muestra la ficha técnica del equipo."""
@@ -104,16 +112,13 @@ def _vista_editar(eq):
     
     with st.form(f"form_edit_{eq.id}"):
         col1, col2 = st.columns(2)
-        with col1: 
-            nombre_equipo = st.text_input("Nombre del equipo", value=eq.nombre_equipo)
-        with col2: 
-            nombre_proyecto = st.text_input("Nombre del proyecto", value=eq.nombre_proyecto)
+        with col1: nombre_equipo = st.text_input("Nombre del equipo", value=eq.nombre_equipo)
+        with col2: nombre_proyecto = st.text_input("Nombre del proyecto", value=eq.nombre_proyecto)
 
         problematica = st.text_area("Problemática", value=eq.problematica, height=100)
         
         col1, col2 = st.columns(2)
-        with col1: 
-            modalidad = st.radio("Modalidad", ["prototipo", "emprendimiento"], index=0 if eq.modalidad == "prototipo" else 1, horizontal=True, key=f"edit_mod_{eq.id}")
+        with col1: modalidad = st.radio("Modalidad", ["prototipo", "emprendimiento"], index=0 if eq.modalidad == "prototipo" else 1, horizontal=True, key=f"edit_mod_{eq.id}")
         with col2:
             idx_linea = next((i for i, (n, _) in enumerate(LINEAS_PROIDET) if n == (eq.linea_proidet or {}).get("numero", 5)), 4)
             idx_linea_sel = st.selectbox("Línea PROIDET", options=range(len(LINEAS_PROIDET)), index=idx_linea, format_func=lambda i: f"{LINEAS_PROIDET[i][0]}. {LINEAS_PROIDET[i][1]}", key=f"edit_lin_{eq.id}")
@@ -123,12 +128,9 @@ def _vista_editar(eq):
         integrantes_nuevos = []
         for i in range(4):
             c1, c2 = st.columns([3, 2])
-            with c1: 
-                nombre = st.text_input(f"Estudiante {i+1}", value=eq.integrantes[i].nombre if i < len(eq.integrantes) else "", key=f"edit_int_nom_{i}_{eq.id}")
-            with c2: 
-                escuela = st.text_input("Escuela", value=eq.integrantes[i].escuela if i < len(eq.integrantes) else config.ESCUELA, key=f"edit_int_esc_{i}_{eq.id}")
-            if nombre.strip(): 
-                integrantes_nuevos.append(Integrante(nombre=nombre.strip(), escuela=escuela.strip()))
+            with c1: nombre = st.text_input(f"Estudiante {i+1}", value=eq.integrantes[i].nombre if i < len(eq.integrantes) else "", key=f"edit_int_nom_{i}_{eq.id}")
+            with c2: escuela = st.text_input("Escuela", value=eq.integrantes[i].escuela if i < len(eq.integrantes) else config.ESCUELA, key=f"edit_int_esc_{i}_{eq.id}")
+            if nombre.strip(): integrantes_nuevos.append(Integrante(nombre=nombre.strip(), escuela=escuela.strip()))
 
         st.divider()
         st.markdown("**👨‍🏫 Asesores** (1 o 2)")
@@ -140,19 +142,14 @@ def _vista_editar(eq):
             a_tec = next((a for a in eq.asesores if a.rol == "tecnico"), None)
             a_met = next((a for a in eq.asesores if a.rol == "metodologico"), None)
             c1, c2 = st.columns(2)
-            with c1: 
-                nom_tec = st.text_input("Asesor técnico", value=a_tec.nombre if a_tec else "", key=f"edit_tec_{eq.id}")
-            with c2: 
-                nom_met = st.text_input("Asesor metodológico", value=a_met.nombre if a_met else "", key=f"edit_met_{eq.id}")
-            if nom_tec.strip(): 
-                asesores_nuevos.append(Asesor(nombre=nom_tec.strip(), rol="tecnico"))
-            if nom_met.strip(): 
-                asesores_nuevos.append(Asesor(nombre=nom_met.strip(), rol="metodologico"))
+            with c1: nom_tec = st.text_input("Asesor técnico", value=a_tec.nombre if a_tec else "", key=f"edit_tec_{eq.id}")
+            with c2: nom_met = st.text_input("Asesor metodológico", value=a_met.nombre if a_met else "", key=f"edit_met_{eq.id}")
+            if nom_tec.strip(): asesores_nuevos.append(Asesor(nombre=nom_tec.strip(), rol="tecnico"))
+            if nom_met.strip(): asesores_nuevos.append(Asesor(nombre=nom_met.strip(), rol="metodologico"))
         else:
             a_ambos = eq.asesores[0] if eq.asesores else None
             nom_ambos = st.text_input("Asesor (ambas funciones)", value=a_ambos.nombre if a_ambos else "", key=f"edit_amb_{eq.id}")
-            if nom_ambos.strip(): 
-                asesores_nuevos.append(Asesor(nombre=nom_ambos.strip(), rol="ambos"))
+            if nom_ambos.strip(): asesores_nuevos.append(Asesor(nombre=nom_ambos.strip(), rol="ambos"))
 
         st.divider()
         c1, c2 = st.columns(2)
@@ -164,12 +161,9 @@ def _vista_editar(eq):
         st.rerun()
 
     if guardar:
-        if not nombre_equipo.strip() or not nombre_proyecto.strip(): 
-            st.error("Falta nombre de equipo o proyecto.")
-        elif len(integrantes_nuevos) < 1 or len(integrantes_nuevos) > 4: 
-            st.error("Debe haber entre 1 y 4 estudiantes.")
-        elif len(asesores_nuevos) < 1 or len(asesores_nuevos) > 2: 
-            st.error("Debe haber entre 1 y 2 asesores.")
+        if not nombre_equipo.strip() or not nombre_proyecto.strip(): st.error("Falta nombre de equipo o proyecto.")
+        elif len(integrantes_nuevos) < 1 or len(integrantes_nuevos) > 4: st.error("Debe haber entre 1 y 4 estudiantes.")
+        elif len(asesores_nuevos) < 1 or len(asesores_nuevos) > 2: st.error("Debe haber entre 1 y 2 asesores.")
         else:
             num_l, nom_l = LINEAS_PROIDET[idx_linea_sel]
             eq.nombre_equipo = nombre_equipo.strip()
@@ -195,11 +189,12 @@ def _vista_borrar(eq):
 # Pestaña 3: Entregables
 # ============================================================
 def _tab_entregables():
-    """Permite cargar el cronograma, crear entregables y ver los archivos subidos."""
+    """Gestiona el cronograma automático, la creación manual y la revisión de entregas."""
     equipos = db.get_equipos()
     if not equipos: 
         mensaje_vacio("👥", "No hay equipos."); return
 
+    # --- 1. Cargar cronograma oficial ---
     st.markdown("### 📥 Cronograma oficial DGETI")
     c1, c2 = st.columns(2)
     with c1:
@@ -212,14 +207,45 @@ def _tab_entregables():
             res = seed.aplicar_cronograma_a_todos(); st.success(f"{res['entregables_creados']} creados."); st.rerun()
 
     st.divider()
+
+    # --- 2. Crear un entregable manual ---
+    st.markdown("### ➕ Asignar nuevo entregable (Manual)")
+    st.caption("Úsalo para pedir tareas extra o evidencias específicas a un equipo.")
+    with st.form("form_nuevo_entregable"):
+        c1, c2 = st.columns(2)
+        with c1:
+            eq_sel = st.selectbox("Equipo destinatario:", options=[e.id for e in equipos], format_func=lambda x: next(e.nombre_equipo for e in equipos if e.id == x))
+            titulo = st.text_input("Título del entregable", placeholder="Ej. Reporte de Avance 1")
+        with c2:
+            etapa = st.selectbox("Etapa:", options=config.ETAPAS, format_func=lambda x: config.ETIQUETA_ETAPA.get(x, x))
+            fecha_lim = st.date_input("Fecha límite", value=date.today() + timedelta(days=7))
+        desc = st.text_area("Descripción (opcional)", placeholder="Instrucciones para el equipo...")
+        
+        if st.form_submit_button("Crear y asignar entregable"):
+            if titulo.strip():
+                nuevo = Entregable(
+                    id=db.nuevo_id(), equipo_id=eq_sel, etapa=etapa, 
+                    titulo=titulo.strip(), descripcion=desc.strip(), 
+                    fecha_limite=fecha_lim.isoformat()
+                )
+                db.guardar_entregable(nuevo)
+                st.success("Entregable creado y asignado al equipo.")
+                st.rerun()
+            else:
+                st.error("El título es obligatorio.")
+
+    st.divider()
+
+    # --- 3. Revisar entregables por equipo ---
+    st.markdown("### 📋 Revisión de entregables por equipo")
     for eq in equipos:
         ents = db.entregables_de_equipo(eq.id)
         with st.expander(f"🚀 {eq.nombre_equipo} — {len(ents)} entregables"):
-            if not ents: st.caption("Sin entregables.")
+            if not ents: st.caption("Sin entregables asignados.")
             for ent in ents:
                 tarjeta_entregable(ent)
                 
-                # Mostrar TODOS los archivos subidos por el equipo
+                # Mostrar TODOS los archivos (PDF/Word) que subió el equipo
                 if ent.archivos_pdf:
                     st.markdown("**Archivos entregados:**")
                     for archivo in ent.archivos_pdf:
@@ -229,7 +255,7 @@ def _tab_entregables():
                             with open(archivo, "rb") as f:
                                 st.download_button(f"⬇️ {nombre_base}", data=f.read(), file_name=nombre_base, mime=mime_type, key=f"dl_{archivo}")
                 
-                # Botón para eliminar el entregable
+                # Botón para eliminar entregable
                 if st.button("🗑️ Eliminar entregable", key=f"del_{ent.id}"):
                     db.eliminar_entregable(ent.id); st.rerun()
 
@@ -237,9 +263,9 @@ def _tab_entregables():
 # Pestaña 4: Documentos Públicos
 # ============================================================
 def _tab_documentos():
-    """Muestra y permite subir los formatos oficiales."""
+    """Muestra y permite subir los formatos oficiales para todos."""
     st.markdown("### 📚 Documentos oficiales")
-    archivo = st.file_uploader("Subir archivo", type=["pdf", "docx"], key="up_doc")
+    archivo = st.file_uploader("Subir archivo (PDF o Word)", type=["pdf", "docx"], key="up_doc")
     if st.button("Publicar documento"):
         if archivo:
             ruta = os.path.join(config.RUTA_DOCUMENTOS, archivo.name)
@@ -273,5 +299,7 @@ def _tab_avisos():
         if st.form_submit_button("Publicar"):
             if titulo.strip() and contenido.strip():
                 db.guardar_aviso(Aviso(id=db.nuevo_id(), titulo=titulo, contenido=contenido)); st.rerun()
+            else:
+                st.error("Faltan datos.")
     st.divider()
     for a in db.get_avisos(): tarjeta_aviso(a)
