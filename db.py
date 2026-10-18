@@ -1,7 +1,6 @@
 """
 db.py — Capa de acceso a datos de 'prototipos'.
-Guarda todo en archivos JSON dentro de data/.
-Con GitHub configurado, sincroniza para persistir en la nube.
+Guarda todo en archivos JSON dentro de data/ y sincroniza con GitHub.
 """
 import json
 import os
@@ -11,21 +10,23 @@ from typing import List, Optional
 import config
 from models import Equipo, Integrante, Respuesta, Entregable, Aviso
 
-
 # ============================================================
-# Utilidades internas
+# Utilidades generales
 # ============================================================
 def nuevo_id() -> str:
+    """Genera un ID único de 8 caracteres para equipos, entregables o avisos."""
     return uuid.uuid4().hex[:8]
 
 
 def _asegurar_carpetas():
+    """Crea las carpetas necesarias en el disco si no existen."""
     os.makedirs(config.RUTA_DATA, exist_ok=True)
     os.makedirs(config.RUTA_DOCUMENTOS, exist_ok=True)
     os.makedirs(config.RUTA_ENTREGAS, exist_ok=True)
 
 
 def _cargar_json(ruta: str, por_defecto):
+    """Lee un archivo JSON. Si no existe o está vacío, devuelve la lista vacía."""
     _asegurar_carpetas()
     if not os.path.exists(ruta):
         return por_defecto
@@ -37,6 +38,7 @@ def _cargar_json(ruta: str, por_defecto):
 
 
 def _guardar_json(ruta: str, datos, subir_a_github: bool = True):
+    """Guarda los datos en el archivo local y los sube a GitHub automáticamente."""
     _asegurar_carpetas()
     with open(ruta, "w", encoding="utf-8") as f:
         json.dump(datos, f, ensure_ascii=False, indent=2)
@@ -48,16 +50,13 @@ def _guardar_json(ruta: str, datos, subir_a_github: bool = True):
 
 
 # ============================================================
-# Integración con GitHub (persistencia en la nube)
+# Integración con GitHub
 # ============================================================
 _github_repo_cache = None
 
 
 def _leer_secret(clave: str, por_defecto: str = "") -> str:
-    """
-    Lee un secret desde st.secrets (en Streamlit Cloud) o desde
-    .streamlit/secrets.toml (en local), con fallback silencioso.
-    """
+    """Lee las credenciales desde los secrets de Streamlit o el archivo local."""
     try:
         import streamlit as st
         if hasattr(st, "secrets") and clave in st.secrets:
@@ -77,11 +76,12 @@ def _leer_secret(clave: str, por_defecto: str = "") -> str:
 
 
 def _github_disponible() -> bool:
+    """Revisa si hay un token de GitHub configurado."""
     return bool(_leer_secret("GITHUB_TOKEN"))
 
 
 def _obtener_repo():
-    """Devuelve el objeto Repository de PyGithub (cacheado)."""
+    """Conecta con GitHub usando el token y guarda la conexión en caché."""
     global _github_repo_cache
     if _github_repo_cache is not None:
         return _github_repo_cache
@@ -100,15 +100,12 @@ def _obtener_repo():
 
 
 def _ruta_github(ruta_local: str) -> str:
-    """Convierte backslashes de Windows a forward slashes para GitHub API."""
+    """Convierte las barras invertidas de Windows (\) a barras normales (/)."""
     return ruta_local.replace("\\", "/")
 
 
 def sincronizar_desde_github():
-    """
-    Descarga los JSON desde GitHub al sistema local.
-    Llamar UNA vez al inicio de la app (en app.py).
-    """
+    """Descarga los JSON más recientes desde GitHub a la computadora local."""
     if not _github_disponible():
         return
     repo = _obtener_repo()
@@ -128,16 +125,11 @@ def sincronizar_desde_github():
             with open(ruta, "w", encoding="utf-8") as f:
                 f.write(texto)
         except Exception:
-            # El archivo aún no existe en GitHub → ignorar
             pass
 
 
 def _subir_archivo_a_github(ruta_local: str, mensaje: str = "[app] Update"):
-    """
-    Sube un archivo local a GitHub.
-    Si el archivo no existe en el repo, lo crea; si existe, lo actualiza.
-    Falla silenciosamente si no hay config o red.
-    """
+    """Sube un archivo local a GitHub. Si ya existe, lo actualiza; si no, lo crea."""
     if not _github_disponible():
         return
     repo = _obtener_repo()
@@ -151,7 +143,6 @@ def _subir_archivo_a_github(ruta_local: str, mensaje: str = "[app] Update"):
         branch = _leer_secret("GITHUB_BRANCH", "main")
         path_github = _ruta_github(ruta_local)
 
-        # ¿Ya existe en GitHub?
         existe = False
         sha_actual = None
         try:
@@ -163,33 +154,28 @@ def _subir_archivo_a_github(ruta_local: str, mensaje: str = "[app] Update"):
 
         if existe:
             repo.update_file(
-                path=path_github,
-                message=mensaje,
-                content=contenido,
-                sha=sha_actual,
-                branch=branch,
+                path=path_github, message=mensaje, content=contenido,
+                sha=sha_actual, branch=branch,
             )
         else:
             repo.create_file(
-                path=path_github,
-                message=mensaje,
-                content=contenido,
-                branch=branch,
+                path=path_github, message=mensaje, content=contenido, branch=branch,
             )
     except Exception as e:
-        # Nunca tumbamos la app por un fallo de red
         print(f"[github] No se pudo subir {ruta_local}: {e}")
 
 
 # ============================================================
-# Equipos
+# Funciones de EQUIPOS
 # ============================================================
 def get_equipos() -> List[Equipo]:
+    """Devuelve una lista con todos los equipos registrados."""
     crudos = _cargar_json(config.ARCHIVO_EQUIPOS, [])
     return [Equipo.from_dict(d) for d in crudos]
 
 
 def guardar_equipo(equipo: Equipo) -> None:
+    """Guarda un equipo nuevo o actualiza uno existente."""
     equipos = get_equipos()
     for i, e in enumerate(equipos):
         if e.id == equipo.id:
@@ -201,6 +187,7 @@ def guardar_equipo(equipo: Equipo) -> None:
 
 
 def get_equipo(equipo_id: str) -> Optional[Equipo]:
+    """Busca un equipo por su ID. Devuelve None si no lo encuentra."""
     for e in get_equipos():
         if e.id == equipo_id:
             return e
@@ -208,6 +195,7 @@ def get_equipo(equipo_id: str) -> Optional[Equipo]:
 
 
 def buscar_equipo_de_alumno(nombre_alumno: str) -> Optional[Equipo]:
+    """Busca a qué equipo pertenece un alumno usando su nombre."""
     objetivo = nombre_alumno.strip().lower()
     for e in get_equipos():
         for i in e.integrantes:
@@ -217,10 +205,12 @@ def buscar_equipo_de_alumno(nombre_alumno: str) -> Optional[Equipo]:
 
 
 def alumno_ya_registrado(nombre_alumno: str) -> bool:
+    """Revisa si un alumno ya está en algún equipo."""
     return buscar_equipo_de_alumno(nombre_alumno) is not None
 
 
 def eliminar_equipo(equipo_id: str) -> bool:
+    """Elimina un equipo y todos sus entregables asociados del sistema y GitHub."""
     equipos = get_equipos()
     equipos_filtrados = [e for e in equipos if e.id != equipo_id]
     if len(equipos_filtrados) == len(equipos):
@@ -229,8 +219,7 @@ def eliminar_equipo(equipo_id: str) -> bool:
     entregables = get_entregables()
     eliminados = [e for e in entregables if e.equipo_id == equipo_id]
     entregables_filtrados = [e for e in entregables if e.equipo_id != equipo_id]
-    _guardar_json(config.ARCHIVO_ENTREGABLES,
-                  [e.to_dict() for e in entregables_filtrados])
+    _guardar_json(config.ARCHIVO_ENTREGABLES, [e.to_dict() for e in entregables_filtrados])
 
     for ent in eliminados:
         if ent.archivo_pdf and os.path.exists(ent.archivo_pdf):
@@ -239,12 +228,12 @@ def eliminar_equipo(equipo_id: str) -> bool:
             except OSError:
                 pass
 
-    _guardar_json(config.ARCHIVO_EQUIPOS,
-                  [e.to_dict() for e in equipos_filtrados])
+    _guardar_json(config.ARCHIVO_EQUIPOS, [e.to_dict() for e in equipos_filtrados])
     return True
 
 
 def actualizar_equipo(equipo_id: str, **cambios) -> bool:
+    """Actualiza campos específicos de un equipo (ej. nombre, etapa)."""
     equipo = get_equipo(equipo_id)
     if equipo is None:
         return False
@@ -256,18 +245,21 @@ def actualizar_equipo(equipo_id: str, **cambios) -> bool:
 
 
 # ============================================================
-# Entregables
+# Funciones de ENTREGABLES
 # ============================================================
 def get_entregables() -> List[Entregable]:
+    """Devuelve una lista con todos los entregables del sistema."""
     crudos = _cargar_json(config.ARCHIVO_ENTREGABLES, [])
     return [Entregable.from_dict(d) for d in crudos]
 
 
 def entregables_de_equipo(equipo_id: str) -> List[Entregable]:
+    """Devuelve los entregables que pertenecen a un equipo específico."""
     return [e for e in get_entregables() if e.equipo_id == equipo_id]
 
 
 def guardar_entregable(entregable: Entregable) -> None:
+    """Guarda un entregable nuevo o actualiza uno existente."""
     entregables = get_entregables()
     for i, e in enumerate(entregables):
         if e.id == entregable.id:
@@ -275,69 +267,71 @@ def guardar_entregable(entregable: Entregable) -> None:
             break
     else:
         entregables.append(entregable)
-    _guardar_json(config.ARCHIVO_ENTREGABLES,
-                  [e.to_dict() for e in entregables])
+    _guardar_json(config.ARCHIVO_ENTREGABLES, [e.to_dict() for e in entregables])
 
 
 def get_entregable(entregable_id: str) -> Optional[Entregable]:
+    """Busca un entregable por su ID."""
     for e in get_entregables():
         if e.id == entregable_id:
             return e
     return None
 
 
+def eliminar_entregable(entregable_id: str) -> bool:
+    """Elimina un entregable por su ID de la base de datos y de GitHub."""
+    entregables = get_entregables()
+    filtrados = [e for e in entregables if e.id != entregable_id]
+    if len(filtrados) == len(entregables):
+        return False
+    _guardar_json(config.ARCHIVO_ENTREGABLES, [e.to_dict() for e in filtrados])
+    return True
+
+
 # ============================================================
-# Avisos
+# Funciones de AVISOS
 # ============================================================
 def get_avisos() -> List[Aviso]:
+    """Devuelve los avisos, ordenados del más reciente al más antiguo."""
     crudos = _cargar_json(config.ARCHIVO_AVISOS, [])
     avisos = [Aviso.from_dict(d) for d in crudos]
     return sorted(avisos, key=lambda a: a.fecha, reverse=True)
 
 
 def guardar_aviso(aviso: Aviso) -> None:
+    """Agrega un nuevo aviso a la lista."""
     avisos = get_avisos()
     avisos.append(aviso)
     _guardar_json(config.ARCHIVO_AVISOS, [a.to_dict() for a in avisos])
 
 
 # ============================================================
-# Documentos públicos
+# Documentos y PDFs
 # ============================================================
 def listar_documentos_publicos() -> List[str]:
+    """Devuelve una lista con los nombres de los PDFs públicos."""
     _asegurar_carpetas()
     if not os.path.exists(config.RUTA_DOCUMENTOS):
         return []
-    return sorted(
-        f for f in os.listdir(config.RUTA_DOCUMENTOS)
-        if f.lower().endswith(".pdf")
-    )
+    return sorted(f for f in os.listdir(config.RUTA_DOCUMENTOS) if f.lower().endswith(".pdf"))
 
 
-# ============================================================
-# Subida de archivos (con sync a GitHub)
-# ============================================================
 def guardar_pdf(ruta_destino: str, contenido_bytes: bytes) -> None:
     """Guarda un PDF localmente y lo sube a GitHub."""
     _asegurar_carpetas()
     os.makedirs(os.path.dirname(ruta_destino), exist_ok=True)
     with open(ruta_destino, "wb") as f:
         f.write(contenido_bytes)
-    _subir_archivo_a_github(
-        ruta_destino,
-        mensaje=f"[app] Subir {os.path.basename(ruta_destino)}"
-    )
+    _subir_archivo_a_github(ruta_destino, mensaje=f"[app] Subir {os.path.basename(ruta_destino)}")
 
 
 def eliminar_pdf(ruta_local: str) -> None:
     """Elimina un PDF localmente y de GitHub."""
-    # 1) Local
     if os.path.exists(ruta_local):
         try:
             os.remove(ruta_local)
         except OSError:
             pass
-    # 2) GitHub
     if not _github_disponible():
         return
     repo = _obtener_repo()
@@ -348,10 +342,8 @@ def eliminar_pdf(ruta_local: str) -> None:
         path_github = _ruta_github(ruta_local)
         existente = repo.get_contents(path_github, ref=branch)
         repo.delete_file(
-            path=path_github,
-            message=f"[app] Eliminar {os.path.basename(ruta_local)}",
-            sha=existente.sha,
-            branch=branch,
+            path=path_github, message=f"[app] Eliminar {os.path.basename(ruta_local)}",
+            sha=existente.sha, branch=branch,
         )
     except Exception as e:
         print(f"[github] No se pudo eliminar {ruta_local}: {e}")
