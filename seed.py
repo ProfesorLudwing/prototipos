@@ -42,102 +42,78 @@ AVISO_BIENVENIDA = {
 
 
 # ============================================================
-# Cronograma oficial DGETI (Concurso Nacional de Prototipos)
-# Ciclo 2026-2027 · Fuente: guía cronológica y checklist de control de avance
+# Cronograma oficial DGETI v6 (Concurso Nacional de Prototipos)
 # ============================================================
 CRONOGRAMA_DGETI = [
+    # ==========================================
+    # ETAPA 1: INICIO (Organización)
+    # ==========================================
     {
         "etapa": "inicio",
-        "titulo": "1. Conformación del equipo y modalidad",
-        "descripcion": (
-            "Integración del equipo (1 a 4 estudiantes), definición de la "
-            "modalidad (Prototipo o Emprendimiento) y registro interno en el plantel."
-        ),
-        "fecha_limite": "2026-10-10",
-    },
-    {
-        "etapa": "inicio",
-        "titulo": "2. Asignación de asesor",
-        "descripcion": (
-            "Designación del docente asesor (técnico y metodológico). "
-            "Verificar constancia del curso o taller de metodología de "
-            "investigación (2025 o 2026)."
-        ),
-        "fecha_limite": "2026-10-25",
+        "titulo": "1. Conformación de equipos y asignación de asesores",
+        "descripcion": "Integración de equipos (1 a 4 miembros) en Prototipos o Emprendimiento. Asignación de la pareja de asesores obligatoria (Técnico y Metodológico). (14 al 18 de Octubre)",
+        "fecha_limite": "2026-10-18",
     },
     {
         "etapa": "inicio",
-        "titulo": "3. Enfoque, ética y línea PROIDET",
-        "descripcion": (
-            "Vinculación con un problema real / PAEC, selección de la línea "
-            "PROIDET y elaboración y firma del Formato de Compromiso de "
-            "Ética y Originalidad (FOCOMO)."
-        ),
-        "fecha_limite": "2026-10-31",
+        "titulo": "2. Línea PROIDET y Formatos Iniciales",
+        "descripcion": "Selección de la línea de investigación (Anexo A). Llenado de formatos base: FOAS (con cédulas), FOCOMO (Ética) y FOAPA (Academia). (19 al 21 de Octubre)",
+        "fecha_limite": "2026-10-21",
+    },
+    
+    # ==========================================
+    # ETAPA 2: DESARROLLO (Muestras y Fase Estatal)
+    # ==========================================
+    {
+        "etapa": "desarrollo",
+        "titulo": "3. MUESTRA 1 (25% de Avance)",
+        "descripcion": "Entrega del Protocolo Inicial de Investigación (planteamiento, hipótesis, objetivos) + formatos firmados FOAS, FOCOMO y FOAPA tramitado. (22 de Octubre)",
+        "fecha_limite": "2026-10-22",
     },
     {
         "etapa": "desarrollo",
-        "titulo": "4. Registro en SIGPE",
-        "descripcion": (
-            "Conclusión del borrador del Informe Técnico y la Bitácora de "
-            "trabajo. Inserción de los datos en la plataforma oficial SIGPE."
-        ),
-        "fecha_limite": "2026-11-21",
+        "titulo": "4. MUESTRA 2 (50% de Avance)",
+        "descripcion": "Revisión del 50% del Informe Técnico (marco teórico, metodología y diagramas) + Bitácora de investigación al día y avance en manuales. (05 de Noviembre)",
+        "fecha_limite": "2026-11-05",
     },
     {
         "etapa": "desarrollo",
-        "titulo": "5. Cédulas oficiales (FOREG)",
-        "descripcion": (
-            "Descarga del formato impreso oficial FOREG con el folio "
-            "asignado por el sistema SIGPE."
-        ),
-        "fecha_limite": "2026-11-24",
+        "titulo": "5. MUESTRA 3 (75% de Avance)",
+        "descripcion": "Demostración funcional en vivo del prototipo/MVP + Pre-diseño del cartel de exposición + Primer ensayo de defensa oral + Constancias de asesores. (18 de Noviembre)",
+        "fecha_limite": "2026-11-18",
     },
     {
         "etapa": "desarrollo",
-        "titulo": "6. Evaluación local",
-        "descripcion": (
-            "Realización del certamen en el plantel evaluado por 3 jurados "
-            "por proyecto. Puntaje mínimo de acreditación: 80 puntos."
-        ),
-        "fecha_limite": "2026-12-19",
+        "titulo": "6. MUESTRA 4 (100% Cierre de Expediente)",
+        "descripcion": "Verificación final del expediente digital: FOREG, FOAPA, FOCOMO, FOAS, ...INFORME (PDF técnico final) y ...DOCUMENTOS (Bitácora, Manuales, Cartel). (26 de Noviembre)",
+        "fecha_limite": "2026-11-26",
     },
     {
         "etapa": "desarrollo",
-        "titulo": "7. Carga de actas",
-        "descripcion": (
-            "Carga en el SIGPE de los PDF firmados: Acta de Apertura, "
-            "Acta de Cierre y Anexo B de Puntajes."
-        ),
-        "fecha_limite": "2027-01-09",
+        "titulo": "7. Fase Estatal y Carga en SIGPE",
+        "descripcion": "Emisión de Actas (Apertura, Cierre, Anexo B), presentación en Fase Estatal (mínimo 80 pts) y subida digital a SIGPE. (27 Nov al 03 Dic)",
+        "fecha_limite": "2026-12-03",
     },
+
+    # ==========================================
+    # ETAPA 3: CIERRE (Fase Nacional)
+    # ==========================================
     {
-        "etapa": "desarrollo",
-        "titulo": "8. Fase estatal",
-        "descripcion": (
-            "Evaluación estatal y compilación del expediente digital "
-            "(FOREG, FOAPA, FOCOMO, FOAS, Informe Técnico y Carpeta Documental). "
-            "Tramitar formato FOACT si hay cambios de integrantes."
-        ),
-        "fecha_limite": "2027-03-20",
+        "etapa": "cierre",
+        "titulo": "8. Publicación de Clasificados",
+        "descripcion": "Verificación de listas oficiales de proyectos acreditados a la Fase Nacional. (13 de Abril)",
+        "fecha_limite": "2027-04-13",
     },
     {
         "etapa": "cierre",
-        "titulo": "9. Trámites nacionales",
-        "descripcion": (
-            "Publicación de aceptados, actualización final en SIGPE, "
-            "carga documental definitiva y atención a observaciones ANIDET."
-        ),
+        "titulo": "9. Carga Documental Definitiva y ANIDET",
+        "descripcion": "Subida de documentación final corregida a SIGPE (04-11 May) y atención a observaciones del comité nacional ANIDET (21-26 May).",
         "fecha_limite": "2027-05-26",
     },
     {
         "etapa": "cierre",
-        "titulo": "10. Evento nacional",
-        "descripcion": (
-            "Asistencia presencial (máximo 2 alumnos autores y 1 asesor "
-            "docente), montaje de stand, exposición ante jurados nacionales "
-            "y ceremonia de premiación."
-        ),
+        "titulo": "10. Evento Presencial Fase Nacional",
+        "descripcion": "Asistencia de hasta 2 alumnos autores y 1 asesor docente autorizado para montaje de stand, evaluación nacional y premiación. (21 al 25 de Junio)",
         "fecha_limite": "2027-06-25",
     },
 ]
@@ -213,7 +189,7 @@ def inicializar(verbose: bool = True) -> dict:
 # ============================================================
 def aplicar_cronograma_a_equipo(equipo_id: str) -> int:
     """
-    Crea los 10 entregables del cronograma DGETI para un equipo.
+    Crea los entregables del cronograma DGETI para un equipo.
     No duplica los que ya existan (compara por título).
     Devuelve el número de entregables nuevos creados.
     """
