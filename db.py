@@ -270,6 +270,20 @@ def guardar_entregable(entregable: Entregable) -> None:
     _guardar_json(config.ARCHIVO_ENTREGABLES, [e.to_dict() for e in entregables])
 
 
+def guardar_entregables_lote(entregables_nuevos: List[Entregable]) -> None:
+    """
+    Guarda una lista de entregables de golpe.
+    Esto es vital para no saturar a GitHub con 10 subidas en 1 segundo.
+    """
+    todos = get_entregables()
+    # Filtramos por si alguno ya existía (para no duplicar)
+    ids_nuevos = {e.id for e in entregables_nuevos}
+    todos = [t for t in todos if t.id not in ids_nuevos]
+    # Agregamos los nuevos y guardamos todo en una sola operación
+    todos.extend(entregables_nuevos)
+    _guardar_json(config.ARCHIVO_ENTREGABLES, [e.to_dict() for e in todos])
+
+
 def get_entregable(entregable_id: str) -> Optional[Entregable]:
     """Busca un entregable por su ID."""
     for e in get_entregables():

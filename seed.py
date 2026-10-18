@@ -1,17 +1,6 @@
 """
 seed.py — Inicializa la estructura de datos de 'prototipos'.
-Uso:  python seed.py
-
-Crea:
-  - data/
-  - data/documentos/
-  - data/entregas/
-  - data/equipos.json        (lista vacía)
-  - data/entregables.json    (lista vacía)
-  - data/avisos.json         (con aviso de bienvenida)
-
-También expone el cronograma oficial DGETI 2026-2027 y funciones
-para aplicarlo a equipos desde el panel del tutor.
+Contiene el cronograma oficial y las funciones para inyectarlo a los equipos.
 """
 import json
 import os
@@ -154,12 +143,6 @@ def inicializar(verbose: bool = True) -> dict:
     if _crear_json_si_falta(config.ARCHIVO_AVISOS, [AVISO_BIENVENIDA]):
         resultado["archivos_creados"].append(config.ARCHIVO_AVISOS)
 
-    if not os.path.exists(config.ARCHIVO_BANCO):
-        if verbose:
-            print(f"⚠️  Falta {config.ARCHIVO_BANCO}.")
-    else:
-        resultado["banco_ideas"] = "OK"
-
     if verbose:
         print("=" * 55)
         print(f"  Inicialización de '{config.APP_NOMBRE}' — {config.ESCUELA}")
@@ -176,8 +159,6 @@ def inicializar(verbose: bool = True) -> dict:
                 print(f"   + {a}")
         else:
             print("📄 Archivos JSON: ya existían todos")
-        if resultado.get("banco_ideas") == "OK":
-            print(f"✅ Banco de ideas: OK ({config.ARCHIVO_BANCO})")
         print("-" * 55)
         print("Listo. Ahora puedes correr:  streamlit run app.py")
 
@@ -190,13 +171,13 @@ def inicializar(verbose: bool = True) -> dict:
 def aplicar_cronograma_a_equipo(equipo_id: str) -> int:
     """
     Crea los entregables del cronograma DGETI para un equipo.
-    No duplica los que ya existan (compara por título).
+    Usa guardado en lote para no saturar a GitHub.
     Devuelve el número de entregables nuevos creados.
     """
     existentes = db.entregables_de_equipo(equipo_id)
     titulos_existentes = {e.titulo for e in existentes}
 
-    creados = 0
+    nuevos = []
     for item in CRONOGRAMA_DGETI:
         if item["titulo"] in titulos_existentes:
             continue
@@ -208,15 +189,19 @@ def aplicar_cronograma_a_equipo(equipo_id: str) -> int:
             descripcion=item["descripcion"],
             fecha_limite=item["fecha_limite"],
         )
-        db.guardar_entregable(nuevo)
-        creados += 1
-    return creados
+        nuevos.append(nuevo)
+
+    if nuevos:
+        # Guardamos todos de golpe (una sola subida a GitHub)
+        db.guardar_entregables_lote(nuevos)
+        
+    return len(nuevos)
 
 
 def aplicar_cronograma_a_todos() -> dict:
     """
     Aplica el cronograma DGETI a todos los equipos registrados.
-    Devuelve un resumen: cuántos equipos y cuántos entregables nuevos.
+    Devuelve un resumen de cuántos equipos y entregables se crearon.
     """
     equipos = db.get_equipos()
     total_creados = 0
