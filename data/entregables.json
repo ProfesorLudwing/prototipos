@@ -1,1 +1,112 @@
-[]
+[
+  {
+    "id": "96cc4fc5",
+    "equipo_id": "228059cd",
+    "etapa": "inicio",
+    "titulo": "1. Conformación de equipos y asignación de asesores",
+    "descripcion": "Integración de equipos (1 a 4 miembros) en Prototipos o Emprendimiento. Asignación de la pareja de asesores obligatoria (Técnico y Metodológico). (14 al 18 de Octubre)",
+    "fecha_limite": "2026-10-18",
+    "estado": "pendiente",
+    "archivo_pdf": null,
+    "fecha_entrega": null
+  },
+  {
+    "id": "af48671c",
+    "equipo_id": "228059cd",
+    "etapa": "inicio",
+    "titulo": "2. Línea PROIDET y Formatos Iniciales",
+    "descripcion": "Selección de la línea de investigación (Anexo A). Llenado de formatos base: FOAS (con cédulas), FOCOMO (Ética) y FOAPA (Academia). (19 al 21 de Octubre)",
+    "fecha_limite": "2026-10-21",
+    "estado": "pendiente",
+    "archivo_pdf": null,
+    "fecha_entrega": null
+  },
+  {
+    "id": "eb6f0b36",
+    "equipo_id": "228059cd",
+    "etapa": "desarrollo",
+    "titulo": "3. MUESTRA 1 (25% de Avance)",
+    "descripcion": "Entrega del Protocolo Inicial de Investigación (planteamiento, hipótesis, objetivos) + formatos firmados FOAS, FOCOMO y FOAPA tramitado. (22 de Octubre)",
+    "fecha_limite": "2026-10-22",
+    "estado": "pendiente",
+    "archivo_pdf": null,
+    "fecha_entrega": null
+  },
+  {
+    "id": "f156b5a2",
+    "equipo_id": "228059cd",
+    "etapa": "desarrollo",
+    "titulo": "4. MUESTRA 2 (50% de Avance)",
+    "descripcion": "Revisión del 50% del Informe Técnico (marco teórico, metodología y diagramas) + Bitácora de investigación al día y avance en manuales. (05 de Noviembre)",
+    "fecha_limite": "2026-11-05",
+    "estado": "pendiente",
+    "archivo_pdf": null,
+    "fecha_entrega": null
+  },
+  {
+    "id": "53eb5d96",
+    "equipo_id": "228059cd",
+    "etapa": "desarrollo",
+    "titulo": "5. MUESTRA 3 (75% de Avance)",
+    "descripcion": "Demostración funcional en vivo del prototipo/MVP + Pre-diseño del cartel de exposición + Primer ensayo de defensa oral + Constancias de asesores. (18 de Noviembre)",
+    "fecha_limite": "2026-11-18",
+    "estado": "pendiente",
+    "archivo_pdf": null,
+    "fecha_entrega": null
+  },
+  {
+    "id": "ef5c1d56",
+    "equipo_id": "228059cd",
+    "etapa": "desarrollo",
+    "titulo": "6. MUESTRA 4 (100% Cierre de Expediente)",
+    "descripcion": "Verificación final del expediente digital: FOREG, FOAPA, FOCOMO, FOAS, ...INFORME (PDF técnico final) y ...DOCUMENTOS (Bitácora, Manuales, Cartel). (26 de Noviembre)",
+    "fecha_limite": "2026-11-26",
+    "estado": "pendiente",
+    "archivo_pdf": null,
+    "fecha_entrega": null
+  },
+  {
+    "id": "ef002d6b",
+    "equipo_id": "228059cd",
+    "etapa": "desarrollo",
+    "titulo": "7. Fase Estatal y Carga en SIGPE",
+    "descripcion": "Emisión de Actas (Apertura, Cierre, Anexo B), presentación en Fase Estatal (mínimo 80 pts) y subida digital a SIGPE. (27 Nov al 03 Dic)",
+    "fecha_limite": "2026-12-03",
+    "estado": "pendiente",
+    "archivo_pdf": null,
+    "fecha_entrega": null
+  },
+  {
+    "id": "d5b6d931",
+    "equipo_id": "228059cd",
+    "etapa": "cierre",
+    "titulo": "8. Publicación de Clasificados",
+    "descripcion": "Verificación de listas oficiales de proyectos acreditados a la Fase Nacional. (13 de Abril)",
+    "fecha_limite": "2027-04-13",
+    "estado": "pendiente",
+    "archivo_pdf": null,
+    "fecha_entrega": null
+  },
+  {
+    "id": "e1ddb0f6",
+    "equipo_id": "228059cd",
+    "etapa": "cierre",
+    "titulo": "9. Carga Documental Definitiva y ANIDET",
+    "descripcion": "Subida de documentación final corregida a SIGPE (04-11 May) y atención a observaciones del comité nacional ANIDET (21-26 May).",
+    "fecha_limite": "2027-05-26",
+    "estado": "pendiente",
+    "archivo_pdf": null,
+    "fecha_entrega": null
+  },
+  {
+    "id": "bc49883c",
+    "equipo_id": "228059cd",
+    "etapa": "cierre",
+    "titulo": "10. Evento Presencial Fase Nacional",
+    "descripcion": "Asistencia de hasta 2 alumnos autores y 1 asesor docente autorizado para montaje de stand, evaluación nacional y premiación. (21 al 25 de Junio)",
+    "fecha_limite": "2027-06-25",
+    "estado": "pendiente",
+    "archivo_pdf": null,
+    "fecha_entrega": null
+  }
+]
