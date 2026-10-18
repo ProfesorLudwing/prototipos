@@ -112,5 +112,16 @@
     "estado": "pendiente",
     "archivos_pdf": [],
     "fecha_entrega": null
+  },
+  {
+    "id": "05b3dfbd",
+    "equipo_id": "228059cd",
+    "etapa": "inicio",
+    "titulo": "Presentación inicial",
+    "descripcion": "Describir la razón del prototipo",
+    "fecha_limite": "2026-10-23",
+    "estado": "pendiente",
+    "archivos_pdf": [],
+    "fecha_entrega": null
   }
 ]
