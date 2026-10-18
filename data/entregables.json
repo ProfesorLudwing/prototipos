@@ -42,5 +42,16 @@
     "estado": "pendiente",
     "archivo_pdf": null,
     "fecha_entrega": null
+  },
+  {
+    "id": "773dfd1e",
+    "equipo_id": "228059cd",
+    "etapa": "cierre",
+    "titulo": "9. Carga Documental Definitiva y ANIDET",
+    "descripcion": "Subida de documentación final corregida a SIGPE (04-11 May) y atención a observaciones del comité nacional ANIDET (21-26 May).",
+    "fecha_limite": "2027-05-26",
+    "estado": "pendiente",
+    "archivo_pdf": null,
+    "fecha_entrega": null
   }
 ]
