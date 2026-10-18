@@ -40,7 +40,6 @@ def _tab_resumen():
     total_alumnos = sum(len(e.integrantes) for e in equipos)
     entregados = sum(1 for e in entregables if e.estado == "entregado")
     
-    # Tarjetas de métricas
     c1, c2, c3, c4 = st.columns(4)
     c1.metric("Equipos", len(equipos))
     c2.metric("Alumnos", total_alumnos)
@@ -57,14 +56,13 @@ def _tab_resumen():
     with col3:
         if st.button("🖼️ Generar JPG", use_container_width=True): st.session_state["jpg"] = True
         
-    # Botones de descarga que aparecen solo si se presionó el botón de arriba
     if st.session_state.get("pdf"): 
         st.download_button("⬇️ Descargar PDF", data=reportes.generar_pdf_resumen(equipos), file_name="reporte.pdf")
     if st.session_state.get("jpg"): 
         st.download_button("⬇️ Descargar JPG", data=reportes.generar_jpg_resumen(equipos), file_name="reporte.jpg")
 
 # ============================================================
-# Pestaña 2: Equipos
+# Pestaña 2: Equipos (Ver, Editar, Eliminar)
 # ============================================================
 def _tab_equipos():
     """Lista los equipos en expansores."""
@@ -73,7 +71,6 @@ def _tab_equipos():
         mensaje_vacio("👥", "No hay equipos."); return
     for eq in equipos:
         with st.expander(f"🚀 {eq.nombre_equipo} — {eq.nombre_proyecto}"):
-            # Dependiendo del estado, mostramos el modo ver, editar o borrar
             if st.session_state.get("eliminando") == eq.id: _vista_borrar(eq)
             elif st.session_state.get("editando") == eq.id: _vista_editar(eq)
             else: _vista_ver(eq)
@@ -93,7 +90,6 @@ def _vista_ver(eq):
     st.markdown(f"**🧩 Problemática:** {eq.problematica}")
     st.divider()
     
-    # Botones de acción
     c1, c2 = st.columns(2)
     with c1:
         if st.button("✏️ Editar", key=f"e_{eq.id}", use_container_width=True): 
@@ -103,17 +99,89 @@ def _vista_ver(eq):
             st.session_state["eliminando"] = eq.id; st.rerun()
 
 def _vista_editar(eq):
-    """Formulario simplificado para corregir datos del equipo."""
-    with st.form(f"edit_{eq.id}"):
-        nom_eq = st.text_input("Nombre equipo", value=eq.nombre_equipo)
-        nom_py = st.text_input("Nombre proyecto", value=eq.nombre_proyecto)
-        prob = st.text_area("Problemática", value=eq.problematica)
-        mod = st.radio("Modalidad", ["prototipo", "emprendimiento"], index=0 if eq.modalidad=="prototipo" else 1, horizontal=True)
-        if st.form_submit_button("Guardar"):
-            eq.nombre_equipo = nom_eq; eq.nombre_proyecto = nom_py; eq.problematica = prob; eq.modalidad = mod
-            db.guardar_equipo(eq); st.session_state.pop("editando"); st.rerun()
-    if st.button("Cancelar"): 
-        st.session_state.pop("editando"); st.rerun()
+    """Formulario COMPLETO para editar equipo, integrantes, asesores y línea PROIDET."""
+    st.warning("✏️ Modo edición. Modifica los campos y guarda.")
+    
+    with st.form(f"form_edit_{eq.id}"):
+        col1, col2 = st.columns(2)
+        with col1: 
+            nombre_equipo = st.text_input("Nombre del equipo", value=eq.nombre_equipo)
+        with col2: 
+            nombre_proyecto = st.text_input("Nombre del proyecto", value=eq.nombre_proyecto)
+
+        problematica = st.text_area("Problemática", value=eq.problematica, height=100)
+        
+        col1, col2 = st.columns(2)
+        with col1: 
+            modalidad = st.radio("Modalidad", ["prototipo", "emprendimiento"], index=0 if eq.modalidad == "prototipo" else 1, horizontal=True, key=f"edit_mod_{eq.id}")
+        with col2:
+            idx_linea = next((i for i, (n, _) in enumerate(LINEAS_PROIDET) if n == (eq.linea_proidet or {}).get("numero", 5)), 4)
+            idx_linea_sel = st.selectbox("Línea PROIDET", options=range(len(LINEAS_PROIDET)), index=idx_linea, format_func=lambda i: f"{LINEAS_PROIDET[i][0]}. {LINEAS_PROIDET[i][1]}", key=f"edit_lin_{eq.id}")
+
+        st.divider()
+        st.markdown("**👥 Estudiantes** (1 a 4)")
+        integrantes_nuevos = []
+        for i in range(4):
+            c1, c2 = st.columns([3, 2])
+            with c1: 
+                nombre = st.text_input(f"Estudiante {i+1}", value=eq.integrantes[i].nombre if i < len(eq.integrantes) else "", key=f"edit_int_nom_{i}_{eq.id}")
+            with c2: 
+                escuela = st.text_input("Escuela", value=eq.integrantes[i].escuela if i < len(eq.integrantes) else config.ESCUELA, key=f"edit_int_esc_{i}_{eq.id}")
+            if nombre.strip(): 
+                integrantes_nuevos.append(Integrante(nombre=nombre.strip(), escuela=escuela.strip()))
+
+        st.divider()
+        st.markdown("**👨‍🏫 Asesores** (1 o 2)")
+        tipo_actual = "uno" if len(eq.asesores) == 1 and eq.asesores[0].rol == "ambos" else "dos"
+        tipo_asesores = st.radio("Composición:", ["dos", "uno"], index=0 if tipo_actual == "dos" else 1, format_func=lambda x: "Dos asesores" if x == "dos" else "Un solo asesor", key=f"edit_tipo_{eq.id}")
+
+        asesores_nuevos = []
+        if tipo_asesores == "dos":
+            a_tec = next((a for a in eq.asesores if a.rol == "tecnico"), None)
+            a_met = next((a for a in eq.asesores if a.rol == "metodologico"), None)
+            c1, c2 = st.columns(2)
+            with c1: 
+                nom_tec = st.text_input("Asesor técnico", value=a_tec.nombre if a_tec else "", key=f"edit_tec_{eq.id}")
+            with c2: 
+                nom_met = st.text_input("Asesor metodológico", value=a_met.nombre if a_met else "", key=f"edit_met_{eq.id}")
+            if nom_tec.strip(): 
+                asesores_nuevos.append(Asesor(nombre=nom_tec.strip(), rol="tecnico"))
+            if nom_met.strip(): 
+                asesores_nuevos.append(Asesor(nombre=nom_met.strip(), rol="metodologico"))
+        else:
+            a_ambos = eq.asesores[0] if eq.asesores else None
+            nom_ambos = st.text_input("Asesor (ambas funciones)", value=a_ambos.nombre if a_ambos else "", key=f"edit_amb_{eq.id}")
+            if nom_ambos.strip(): 
+                asesores_nuevos.append(Asesor(nombre=nom_ambos.strip(), rol="ambos"))
+
+        st.divider()
+        c1, c2 = st.columns(2)
+        with c1: guardar = st.form_submit_button("💾 Guardar cambios", type="primary", use_container_width=True)
+        with c2: cancelar = st.form_submit_button("❌ Cancelar", use_container_width=True)
+
+    if cancelar:
+        st.session_state.pop("editando", None)
+        st.rerun()
+
+    if guardar:
+        if not nombre_equipo.strip() or not nombre_proyecto.strip(): 
+            st.error("Falta nombre de equipo o proyecto.")
+        elif len(integrantes_nuevos) < 1 or len(integrantes_nuevos) > 4: 
+            st.error("Debe haber entre 1 y 4 estudiantes.")
+        elif len(asesores_nuevos) < 1 or len(asesores_nuevos) > 2: 
+            st.error("Debe haber entre 1 y 2 asesores.")
+        else:
+            num_l, nom_l = LINEAS_PROIDET[idx_linea_sel]
+            eq.nombre_equipo = nombre_equipo.strip()
+            eq.nombre_proyecto = nombre_proyecto.strip()
+            eq.problematica = problematica.strip()
+            eq.modalidad = modalidad
+            eq.linea_proidet = {"numero": num_l, "nombre": nom_l}
+            eq.integrantes = integrantes_nuevos
+            eq.asesores = asesores_nuevos
+            db.guardar_equipo(eq)
+            st.session_state.pop("editando", None)
+            st.rerun()
 
 def _vista_borrar(eq):
     """Confirmación de borrado para evitar accidentes."""
@@ -151,18 +219,17 @@ def _tab_entregables():
             for ent in ents:
                 tarjeta_entregable(ent)
                 
-                # --- AQUI MOSTRAMOS TODOS LOS ARCHIVOS (PDF o WORD) QUE SUBIO EL EQUIPO ---
+                # Mostrar TODOS los archivos subidos por el equipo
                 if ent.archivos_pdf:
                     st.markdown("**Archivos entregados:**")
                     for archivo in ent.archivos_pdf:
                         if os.path.exists(archivo):
                             nombre_base = os.path.basename(archivo)
-                            # Detecta el tipo de archivo para mostrarlo correctamente
                             mime_type = "application/pdf" if archivo.lower().endswith(".pdf") else "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
                             with open(archivo, "rb") as f:
                                 st.download_button(f"⬇️ {nombre_base}", data=f.read(), file_name=nombre_base, mime=mime_type, key=f"dl_{archivo}")
                 
-                # Botón para eliminar el entregable (y sus archivos)
+                # Botón para eliminar el entregable
                 if st.button("🗑️ Eliminar entregable", key=f"del_{ent.id}"):
                     db.eliminar_entregable(ent.id); st.rerun()
 
