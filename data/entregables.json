@@ -31,5 +31,16 @@
     "estado": "pendiente",
     "archivo_pdf": null,
     "fecha_entrega": null
+  },
+  {
+    "id": "a86ed642",
+    "equipo_id": "228059cd",
+    "etapa": "desarrollo",
+    "titulo": "5. MUESTRA 3 (75% de Avance)",
+    "descripcion": "Demostración funcional en vivo del prototipo/MVP + Pre-diseño del cartel de exposición + Primer ensayo de defensa oral + Constancias de asesores. (18 de Noviembre)",
+    "fecha_limite": "2026-11-18",
+    "estado": "pendiente",
+    "archivo_pdf": null,
+    "fecha_entrega": null
   }
 ]
