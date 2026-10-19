@@ -899,5 +899,147 @@
       "innovacion_declarada": "porque no hay un estandar de como mostrar el avance a los alumnos"
     },
     "fecha_registro": "2026-10-15T19:08:49"
+  },
+  {
+    "id": "be047ff6",
+    "nombre_equipo": "Diraf",
+    "nombre_proyecto": "Propuesta general de impacto comunitario en Pase De Lista",
+    "problematica": "Pase de lista",
+    "etapa_actual": "inicio",
+    "integrantes": [
+      {
+        "nombre": "Crhistian Farid Hernández Mendieta",
+        "escuela": "CBTIS 303"
+      },
+      {
+        "nombre": "Fernanda Palacios Cuatepotzo",
+        "escuela": "CBTIS 303"
+      },
+      {
+        "nombre": "Andrely yamilet Escobar Garcia",
+        "escuela": "CBTIS 303"
+      }
+    ],
+    "asesores": [
+      {
+        "nombre": "Ludwing Iturbide",
+        "rol": "tecnico",
+        "cedula": ""
+      },
+      {
+        "nombre": "Asesor metodológico",
+        "rol": "metodologico",
+        "cedula": ""
+      }
+    ],
+    "modalidad": "prototipo",
+    "linea_proidet": {
+      "numero": 1,
+      "nombre": "Desarrollo Tecnológico"
+    },
+    "respuestas": [
+      {
+        "bloque": "inicio",
+        "pregunta": "¿Qué problema vieron en su comunidad?",
+        "respuesta": "Pase de lista "
+      },
+      {
+        "bloque": "inicio",
+        "pregunta": "¿A quiénes afecta y desde cuándo?",
+        "respuesta": "A toda la comunidad estudiantil "
+      },
+      {
+        "bloque": "inicio",
+        "pregunta": "¿Cómo se resuelve hoy ese problema?",
+        "respuesta": "Con ayuda de un prototipo "
+      },
+      {
+        "bloque": "inicio",
+        "pregunta": "¿Por qué la solución actual no es suficiente?",
+        "respuesta": "Es muy lenta "
+      },
+      {
+        "bloque": "inicio",
+        "pregunta": "¿Qué pasa si nadie lo resuelve en 5 años?",
+        "respuesta": "Nos vamos a atrasar "
+      },
+      {
+        "bloque": "inicio",
+        "pregunta": "¿Qué proponen hacer?",
+        "respuesta": "Un prototipo "
+      },
+      {
+        "bloque": "inicio",
+        "pregunta": "¿Por qué es innovador frente a lo que ya existe?",
+        "respuesta": "No se "
+      },
+      {
+        "bloque": "inicio",
+        "pregunta": "¿Qué necesitan (materiales, personas, permiso, dinero)?",
+        "respuesta": "No se"
+      },
+      {
+        "bloque": "inicio",
+        "pregunta": "¿Cómo sabrán si funcionó?",
+        "respuesta": "Poniéndolo aprueba "
+      }
+    ],
+    "propuesta": {
+      "dominio_id": "generico",
+      "dominio_nombre": "Propuesta general de impacto comunitario",
+      "puntaje_coincidencia": 0,
+      "linea_proidet": {
+        "numero": 5,
+        "nombre": "Desarrollo Humano, Social y Emocional"
+      },
+      "modalidades_sugeridas": [
+        "prototipo",
+        "emprendimiento"
+      ],
+      "titulo_sugerido": "Proyecto de innovación para Pase de lista",
+      "resumen": "El equipo detectó un problema en Pase de lista: Pase de lista. Proponemos una solución innovadora construida con recursos locales y con el objetivo de generar un impacto positivo y medible.",
+      "objetivo_general": "Diseñar y aplicar una solución al problema detectado en Pase de lista, con impacto comunitario y posibilidad de réplica.",
+      "objetivos_especificos": [
+        "Diagnosticar el problema con datos de la comunidad.",
+        "Diseñar una solución viable con los recursos disponibles.",
+        "Implementarla, medir resultados y ajustar lo necesario."
+      ],
+      "aliados": [
+        "Escuela y docentes",
+        "Padres de familia",
+        "Autoridades locales",
+        "Organizaciones de la sociedad civil"
+      ],
+      "indicadores": [
+        "Número de personas beneficiadas",
+        "Cambio medible en la situación inicial",
+        "Nivel de participación comunitaria"
+      ],
+      "riesgos": [
+        "Falta de recursos",
+        "Poca participación",
+        "Falta de continuidad"
+      ],
+      "referencias_globales": [],
+      "alternativas": [
+        {
+          "id": "agua",
+          "nombre": "Agua y saneamiento",
+          "puntaje": 0
+        },
+        {
+          "id": "residuos",
+          "nombre": "Residuos y reciclaje",
+          "puntaje": 0
+        },
+        {
+          "id": "movilidad",
+          "nombre": "Movilidad y transporte",
+          "puntaje": 0
+        }
+      ],
+      "innovacion_declarada": "No se"
+    },
+    "fecha_registro": "2026-10-19T20:08:06"
   }
 ]
