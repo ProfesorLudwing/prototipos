@@ -345,8 +345,8 @@
     "fecha_entrega": null
   },
   {
-    "id": "9c95129f",
-    "equipo_id": "1b4d4eac",
+    "id": "57d8f3a6",
+    "equipo_id": "75d9687e",
     "etapa": "inicio",
     "titulo": "1. Conformación de equipos y asignación de asesores",
     "descripcion": "Integración de equipos (1 a 4 miembros) en Prototipos o Emprendimiento. Asignación de la pareja de asesores obligatoria (Técnico y Metodológico). (14 al 18 de Octubre)",
@@ -356,8 +356,8 @@
     "fecha_entrega": null
   },
   {
-    "id": "d5469da3",
-    "equipo_id": "1b4d4eac",
+    "id": "526ef924",
+    "equipo_id": "75d9687e",
     "etapa": "inicio",
     "titulo": "2. Línea PROIDET y Formatos Iniciales",
     "descripcion": "Selección de la línea de investigación (Anexo A). Llenado de formatos base: FOAS (con cédulas), FOCOMO (Ética) y FOAPA (Academia). (19 al 21 de Octubre)",
@@ -367,8 +367,8 @@
     "fecha_entrega": null
   },
   {
-    "id": "c9a47f17",
-    "equipo_id": "1b4d4eac",
+    "id": "164049d7",
+    "equipo_id": "75d9687e",
     "etapa": "desarrollo",
     "titulo": "3. MUESTRA 1 (25% de Avance)",
     "descripcion": "Entrega del Protocolo Inicial de Investigación (planteamiento, hipótesis, objetivos) + formatos firmados FOAS, FOCOMO y FOAPA tramitado. (22 de Octubre)",
@@ -378,8 +378,8 @@
     "fecha_entrega": null
   },
   {
-    "id": "398ef0c9",
-    "equipo_id": "1b4d4eac",
+    "id": "d5c4a67b",
+    "equipo_id": "75d9687e",
     "etapa": "desarrollo",
     "titulo": "4. MUESTRA 2 (50% de Avance)",
     "descripcion": "Revisión del 50% del Informe Técnico (marco teórico, metodología y diagramas) + Bitácora de investigación al día y avance en manuales. (05 de Noviembre)",
@@ -389,8 +389,8 @@
     "fecha_entrega": null
   },
   {
-    "id": "8d77bb55",
-    "equipo_id": "1b4d4eac",
+    "id": "957c7849",
+    "equipo_id": "75d9687e",
     "etapa": "desarrollo",
     "titulo": "5. MUESTRA 3 (75% de Avance)",
     "descripcion": "Demostración funcional en vivo del prototipo/MVP + Pre-diseño del cartel de exposición + Primer ensayo de defensa oral + Constancias de asesores. (18 de Noviembre)",
@@ -400,8 +400,8 @@
     "fecha_entrega": null
   },
   {
-    "id": "d77e0d7c",
-    "equipo_id": "1b4d4eac",
+    "id": "baa837c4",
+    "equipo_id": "75d9687e",
     "etapa": "desarrollo",
     "titulo": "6. MUESTRA 4 (100% Cierre de Expediente)",
     "descripcion": "Verificación final del expediente digital: FOREG, FOAPA, FOCOMO, FOAS, ...INFORME (PDF técnico final) y ...DOCUMENTOS (Bitácora, Manuales, Cartel). (26 de Noviembre)",
@@ -411,8 +411,8 @@
     "fecha_entrega": null
   },
   {
-    "id": "9c08b314",
-    "equipo_id": "1b4d4eac",
+    "id": "431f577e",
+    "equipo_id": "75d9687e",
     "etapa": "desarrollo",
     "titulo": "7. Fase Estatal y Carga en SIGPE",
     "descripcion": "Emisión de Actas (Apertura, Cierre, Anexo B), presentación en Fase Estatal (mínimo 80 pts) y subida digital a SIGPE. (27 Nov al 03 Dic)",
@@ -422,8 +422,8 @@
     "fecha_entrega": null
   },
   {
-    "id": "21438650",
-    "equipo_id": "1b4d4eac",
+    "id": "51d486b2",
+    "equipo_id": "75d9687e",
     "etapa": "cierre",
     "titulo": "8. Publicación de Clasificados",
     "descripcion": "Verificación de listas oficiales de proyectos acreditados a la Fase Nacional. (13 de Abril)",
@@ -433,8 +433,8 @@
     "fecha_entrega": null
   },
   {
-    "id": "4896a34f",
-    "equipo_id": "1b4d4eac",
+    "id": "7e82048c",
+    "equipo_id": "75d9687e",
     "etapa": "cierre",
     "titulo": "9. Carga Documental Definitiva y ANIDET",
     "descripcion": "Subida de documentación final corregida a SIGPE (04-11 May) y atención a observaciones del comité nacional ANIDET (21-26 May).",
@@ -444,8 +444,8 @@
     "fecha_entrega": null
   },
   {
-    "id": "348fd10c",
-    "equipo_id": "1b4d4eac",
+    "id": "e9442308",
+    "equipo_id": "75d9687e",
     "etapa": "cierre",
     "titulo": "10. Evento Presencial Fase Nacional",
     "descripcion": "Asistencia de hasta 2 alumnos autores y 1 asesor docente autorizado para montaje de stand, evaluación nacional y premiación. (21 al 25 de Junio)",
