@@ -783,5 +783,16 @@
     "estado": "pendiente",
     "archivos_pdf": [],
     "fecha_entrega": null
+  },
+  {
+    "id": "5ec1e2d9",
+    "equipo_id": "af4a9afe",
+    "etapa": "inicio",
+    "titulo": "Bitacora de avance Foliado",
+    "descripcion": "Bitácora Física de Investigación:\nAdquirir un libro de actas físico con numeración consecutiva en la esquina superior derecha (escrita a mano o con foliador en tinta roja)\n.\nIniciar la redacción a mano de las actividades diarias, esquemas y modelo CANVAS\n.\nRequisitar las firmas y comentarios de retroalimentación de la Pareja de Asesores (Técnico y Metodológico) en el anverso y reverso de cada hoja\n. (No presentarla en libro de actas o carecer de firmas del asesor descuenta hasta -3 puntos en la evaluación final).",
+    "fecha_limite": "2026-11-01",
+    "estado": "pendiente",
+    "archivos_pdf": [],
+    "fecha_entrega": null
   }
 ]
