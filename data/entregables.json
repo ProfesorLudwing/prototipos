@@ -893,5 +893,16 @@
     "estado": "pendiente",
     "archivos_pdf": [],
     "fecha_entrega": null
+  },
+  {
+    "id": "69ad66c5",
+    "equipo_id": "1b4d4eac",
+    "etapa": "inicio",
+    "titulo": "Requisitos del concurso",
+    "descripcion": "Descargar y compartir los archivos : guia-cronograma-concurso dgeti, requisitos_concurso_prototipos, para conocer y empezar a cubrir los requisitos de la convocatoria de prototipos",
+    "fecha_limite": "2026-11-01",
+    "estado": "pendiente",
+    "archivos_pdf": [],
+    "fecha_entrega": null
   }
 ]
