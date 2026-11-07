@@ -309,8 +309,8 @@
   {
     "id": "b92b1198",
     "nombre_equipo": "Los jobs",
-    "nombre_proyecto": "Propuesta general de impacto comunitario en Tu Comunidad",
-    "problematica": "La falta de seguridad y de iluminación",
+    "nombre_proyecto": "Autotrash",
+    "problematica": "Separación de basura ineficiente",
     "etapa_actual": "inicio",
     "integrantes": [
       {
@@ -344,8 +344,8 @@
     ],
     "modalidad": "prototipo",
     "linea_proidet": {
-      "numero": 5,
-      "nombre": "Desarrollo Humano, Social y Emocional"
+      "numero": 3,
+      "nombre": "Desarrollo Sustentable y Medio Ambiente"
     },
     "respuestas": [
       {
