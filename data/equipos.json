@@ -155,8 +155,8 @@
   {
     "id": "5a56e19c",
     "nombre_equipo": "Nosotros Los Guapos",
-    "nombre_proyecto": "Agua y saneamiento en Flata De Riego De Agua",
-    "problematica": "Flata de riego de agua",
+    "nombre_proyecto": "Riego Automático",
+    "problematica": "Hay zonas donde el riego no llega porque no hay operador que lleve el agua",
     "etapa_actual": "inicio",
     "integrantes": [
       {
