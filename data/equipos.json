@@ -765,19 +765,14 @@
     "asesores": [
       {
         "nombre": "Ludwing Iturbe OrtiZ",
-        "rol": "tecnico",
-        "cedula": ""
-      },
-      {
-        "nombre": "Asesor 2",
-        "rol": "metodologico",
+        "rol": "ambos",
         "cedula": ""
       }
     ],
     "modalidad": "prototipo",
     "linea_proidet": {
-      "numero": 5,
-      "nombre": "Desarrollo Humano, Social y Emocional"
+      "numero": 2,
+      "nombre": "Investigación Educativa"
     },
     "respuestas": [
       {
