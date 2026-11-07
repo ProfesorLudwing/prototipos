@@ -913,12 +913,7 @@
     "asesores": [
       {
         "nombre": "Ludwing Iturbide",
-        "rol": "tecnico",
-        "cedula": ""
-      },
-      {
-        "nombre": "Asesor metodológico",
-        "rol": "metodologico",
+        "rol": "ambos",
         "cedula": ""
       }
     ],
