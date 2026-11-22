@@ -544,6 +544,21 @@
         "bloque": "desarrollo",
         "pregunta": "¿Cómo involucraron a la comunidad?",
         "respuesta": "Con pruebas para verificar que nuestra app funcione bien"
+      },
+      {
+        "bloque": "cierre",
+        "pregunta": "¿Qué lograron y cómo lo miden?",
+        "respuesta": "Detectar, identificar y agrupar rostro que pusimos a prueba y creando un registro "
+      },
+      {
+        "bloque": "cierre",
+        "pregunta": "¿Qué harían distinto?",
+        "respuesta": "Las pruebas "
+      },
+      {
+        "bloque": "cierre",
+        "pregunta": "¿Cómo podría servir esto a otras comunidades?",
+        "respuesta": "Para mejorar la manera en la que pasan listas en otros salones "
       }
     ],
     "propuesta": {
