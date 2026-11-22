@@ -529,6 +529,21 @@
         "bloque": "inicio",
         "pregunta": "¿Cómo sabrán si funcionó?",
         "respuesta": "Haciendo pruebas en el cbtis 303 "
+      },
+      {
+        "bloque": "desarrollo",
+        "pregunta": "¿Qué construyeron o probaron y qué falló?",
+        "respuesta": "Una aplicación de pase de lista por rostro facial, en el enfoque de la cámara y confunciones del rostro que pusimos a prueba "
+      },
+      {
+        "bloque": "desarrollo",
+        "pregunta": "¿Qué cambiaron después de probar?",
+        "respuesta": "La parte del código en dónde tenía errores "
+      },
+      {
+        "bloque": "desarrollo",
+        "pregunta": "¿Cómo involucraron a la comunidad?",
+        "respuesta": "Con pruebas para verificar que nuestra app funcione bien"
       }
     ],
     "propuesta": {
